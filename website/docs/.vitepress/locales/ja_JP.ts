@@ -18,16 +18,16 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/tiann/KernelSU' }
+      { icon: 'github', link: 'https://github.com/bklynali/BK-KSU' }
     ],
 
     footer: {
       message: 'GPL3 ライセンスでリリースされています。',
-      copyright: 'Copyright © 2022-現在 KernelSU 開発者。'
+      copyright: 'Copyright © 2022-現在 BK-KSU 開発者。'
     },
 
     editLink: {
-      pattern: 'https://github.com/tiann/KernelSU/edit/main/website/docs/:path',
+      pattern: 'https://github.com/bklynali/BK-KSU/edit/main/website/docs/:path',
       text: 'GitHub でこのページを編集'
     }
   }
@@ -35,7 +35,7 @@ export default defineConfig({
 
 function nav() {
   return [
-    { text: 'ガイド', link: '/ja_JP/guide/what-is-kernelsu' },
+    { text: 'ガイド', link: '/ja_JP/guide/what-is-BK-KSU' },
   ]
 }
 
@@ -44,7 +44,7 @@ function sidebarGuide() {
     {
       text: 'ガイド',
       items: [
-        { text: 'KernelSU とは?', link: '/ja_JP/guide/what-is-kernelsu' },
+        { text: 'BK-KSU とは?', link: '/ja_JP/guide/what-is-BK-KSU' },
         { text: 'インストール', link: '/ja_JP/guide/installation' },
         { text: 'ビルドするには?', link: '/ja_JP/guide/how-to-build' },
         { text: '非 GKI デバイスでの実装', link: '/ja_JP/guide/how-to-integrate-for-non-gki' },

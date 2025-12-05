@@ -2,10 +2,10 @@
 
 ## 检查您的设备是否被支持 {#check-if-supported}
 
-从 [GitHub Releases](https://github.com/tiann/KernelSU/releases) 下载 KernelSU 管理器应用，然后将应用程序安装到设备并打开：
+从 [GitHub Releases](https://github.com/bklynali/BK-KSU/releases) 下载 BK-KSU 管理器应用，然后将应用程序安装到设备并打开：
 
-- 如果应用程序显示 “不支持”，则表示您的设备不支持 KernelSU，你需要自己编译设备的内核才能使用，KernelSU 官方不会也永远不会为你提供一个可以刷写的 boot 镜像。
-- 如果应用程序显示 “未安装”，那么 KernelSU 支持您的设备；可以进行下一步操作。
+- 如果应用程序显示 "不支持"，则表示您的设备不支持 BK-KSU，你需要自己编译设备的内核才能使用，BK-KSU 官方不会也永远不会为你提供一个可以刷写的 boot 镜像。
+- 如果应用程序显示 “未安装”，那么 BK-KSU 支持您的设备；可以进行下一步操作。
 
 :::info
 对于显示“不支持”的设备，这里有一个[非官方支持设备列表](unofficially-support-devices.md)，你可以用这个列表里面的内核自行编译。
@@ -57,7 +57,7 @@ w      .x         .y       -zzz           -k            -something
 
 ## 安装介绍 {#installationintroduction}
 
-自 `0.9.0` 版本以后，在 GKI 设备中，KernelSU 支持两种运行模式：
+自 `0.9.0` 版本以后，在 GKI 设备中，BK-KSU 支持两种运行模式：
 
 1. `GKI`：使用**通用内核镜像**（GKI）替换掉设备原有的内核。
 2. `LKM`：使用**可加载内核模块**（LKM）的方式加载到设备内核中，不会替换掉设备原有的内核。
@@ -66,7 +66,7 @@ w      .x         .y       -zzz           -k            -something
 
 ### GKI 模式 {#gki-mode}
 
-GKI 模式会替换掉设备原有的内核，使用 KernelSU 提供的通用内核镜像。GKI 模式的优点是：
+GKI 模式会替换掉设备原有的内核，使用 BK-KSU 提供的通用内核镜像。GKI 模式的优点是：
 
 1. 通用型强，适用于大多数设备；比如三星开启了 KNOX 的设备，LKM 模式无法运作。还有一些冷门的魔改设备，也只能使用 GKI 模式；
 2. 不依赖官方固件即可使用；不需要等待官方固件更新，只要 KMI 一致，就可以使用；
@@ -75,8 +75,8 @@ GKI 模式会替换掉设备原有的内核，使用 KernelSU 提供的通用内
 
 LKM 模式不会替换掉设备原有的内核，而是使用可加载内核模块的方式加载到设备内核中。LKM 模式的优点是：
 
-1. 不会替换掉设备原有的内核；如果你对设备原有的内核有特殊需求，或者你希望在使用第三方内核的同时使用 KernelSU，可以使用 LKM 模式；
-2. 升级和 OTA 较为方便；升级 KernelSU 时，可以直接在管理器里面安装，无需再手动刷写；系统 OTA 后，可以直接安装到第二个槽位，也无需再手动刷写；
+1. 不会替换掉设备原有的内核；如果你对设备原有的内核有特殊需求，或者你希望在使用第三方内核的同时使用 BK-KSU，可以使用 LKM 模式；
+2. 升级和 OTA 较为方便；升级 BK-KSU 时，可以直接在管理器里面安装，无需再手动刷写；系统 OTA 后，可以直接安装到第二个槽位，也无需再手动刷写；
 3. 适用于一些特殊场景；比如使用临时 ROOT 权限也可以加载 LKM，由于不需要替换 boot 分区，因此不会触发 avb，不会使设备意外变砖；
 4. LKM 可以被临时卸载；如果你临时想取消 root，可以卸载 LKM，这个过程不需要刷写分区，甚至也不用重启设备；如果你想再次 root，只需要重启设备即可；
 
@@ -94,7 +94,7 @@ LKM 模式不会替换掉设备原有的内核，而是使用可加载内核模�
 
 使用 LKM 的模式，需要获取官方固件，然后在官方固件的基础上修补；如果你使用的是第三方内核，可以把第三方内核的 boot.img 作为官方固件。
 
-获取官方固件的方法有很多，如果你的设备支持 `fastboot boot`，那么我们最推荐以及最简单的方法是使用 `fastboot boot` 临时启动 KernelSU 提供的 GKI 内核，然后安装管理器，最后在管理器中直接安装；这种方法不需要你手动下载官方固件，也不需要你手动提取 boot。
+获取官方固件的方法有很多，如果你的设备支持 `fastboot boot`，那么我们最推荐以及最简单的方法是使用 `fastboot boot` 临时启动 BK-KSU 提供的 GKI 内核，然后安装管理器，最后在管理器中直接安装；这种方法不需要你手动下载官方固件，也不需要你手动提取 boot。
 
 如果你的设备不支持 `fastboot boot`，那么你可能需要手动去下载官方固件包，然后从中提取 boot。
 
@@ -105,20 +105,20 @@ LKM 模式不会替换掉设备原有的内核，而是使用可加载内核模�
 打开管理器，点击右上角的安装图标，会出现若干个选项：
 
 1. 选择并修补一个文件；如果你手机目前没有 root 权限，你可以选择这个选项，然后选择你的官方固件，管理器会自动修补它；你只需要刷入这个修补后的文件，即可永久获取 root 权限；
-2. 直接安装；如果你手机已经 root，你可以选择这个选项，管理器会自动获取你的设备信息，然后自动修补官方固件，然后刷入；你可以考虑使用 `fastboot boot` KernelSU 的 GKI 内核来获取临时 root 安装管理器，然后再使用这个选项；这种方式也是 KernelSU 升级最主要的方式；
+2. 直接安装；如果你手机已经 root，你可以选择这个选项，管理器会自动获取你的设备信息，然后自动修补官方固件，然后刷入；你可以考虑使用 `fastboot boot` BK-KSU 的 GKI 内核来获取临时 root 安装管理器，然后再使用这个选项；这种方式也是 BK-KSU 升级最主要的方式；
 3. 安装到另一个分区；如果你的设备支持 A/B 分区，你可以选择这个选项，管理器会自动修补官方固件，然后安装到另一个分区；这种方式适用于 OTA 后的设备，你可以在 OTA 后直接安装到另一个分区，然后重启设备即可；
 
 ### 使用命令行
 
-如果你不想使用管理器，你也可以使用命令行来安装 LKM；KernelSU 提供的 `ksud` 工具可以帮助你快速修补官方固件，然后刷入。
+如果你不想使用管理器，你也可以使用命令行来安装 LKM；BK-KSU 提供的 `ksud` 工具可以帮助你快速修补官方固件，然后刷入。
 
-这个工具支持 macOS、Linux 和 Windows，你可以在 [GitHub Release](https://github.com/tiann/KernelSU/releases) 下载对应的版本。
+这个工具支持 macOS、Linux 和 Windows，你可以在 [GitHub Release](https://github.com/bklynali/BK-KSU/releases) 下载对应的版本。
 
 使用方法：`ksud boot-patch` 具体的使用方法你可以查看命令行帮助。
 
 ```sh
 oriole:/ # ksud boot-patch -h
-Patch boot or init_boot images to apply KernelSU
+Patch boot or init_boot images to apply BK-KSU
 
 Usage: ksud boot-patch [OPTIONS]
 
@@ -150,20 +150,20 @@ ksud boot-patch -b <boot.img> --kmi android13-5.10
 
 GKI 的安装方法有如下几种，各自适用于不同的场景，请按需选择：
 
-1. 使用 KernelSU 提供的**通用内核镜像**使用 fastboot 安装
+1. 使用 BK-KSU 提供的**通用内核镜像**使用 fastboot 安装
 2. 使用内核刷写 App（如 KernelFlasher）安装
 3. 手动修补 boot.img 然后安装
 4. 使用自定义 Recovery（如 TWRP）安装
 
-## 使用 KernelSU 提供的 boot.img 安装 {#install-by-kernelsu-boot-image}
+## 使用 BK-KSU 提供的 boot.img 安装 {#install-by-BK-KSU-boot-image}
 
-如果你设备的 `boot.img` 采用常用的压缩格式，那么可以采用 KernelSU 提供的的通用内核镜像直接刷入，它不需要 TWRP 或者自行修补镜像。
+如果你设备的 `boot.img` 采用常用的压缩格式，那么可以采用 BK-KSU 提供的的通用内核镜像直接刷入，它不需要 TWRP 或者自行修补镜像。
 
 ### 找到合适的 boot.img {#found-propery-image}
 
-KernelSU 为 GKI 设备提供了通用的 boot.img，您应该将 boot.img 刷写到设备的 boot 分区。
+BK-KSU 为 GKI 设备提供了通用的 boot.img，您应该将 boot.img 刷写到设备的 boot 分区。
 
-您可以从 [GitHub Release](https://github.com/tiann/KernelSU/releases) 下载 boot.img, 请注意您应该使用正确版本的 boot.img。如果您不知道应该下载哪一个文件，请仔细阅读本文档中关于 [KMI](#kmi) 和[安全补丁级别](#security-patch-level)的描述。
+您可以从 [GitHub Release](https://github.com/bklynali/BK-KSU/releases) 下载 boot.img, 请注意您应该使用正确版本的 boot.img。如果您不知道应该下载哪一个文件，请仔细阅读本文档中关于 [KMI](#kmi) 和[安全补丁级别](#security-patch-level)的描述。
 
 通常情况下，同一个 KMI 和 安全补丁级别下会有三个不同格式的 boot 文件，它们除了内核压缩格式不同之外都一样。请检查您原有 boot.img 的内核压缩格式，您应该使用正确的格式，例如 `lz4`、`gz`；如果是用不正确的压缩格式，刷入 boot 后可能无法开机。
 
@@ -175,7 +175,7 @@ KernelSU 为 GKI 设备提供了通用的 boot.img，您应该将 boot.img 刷�
 
 ### 将 boot.img 刷入设备 {#flash-boot-image}
 
-使用 `adb` 连接您的设备，然后执行 `adb reboot bootloader` 进入 fastboot 模式，然后使用此命令刷入 KernelSU：
+使用 `adb` 连接您的设备，然后执行 `adb reboot bootloader` 进入 fastboot 模式，然后使用此命令刷入 BK-KSU：
 
 ```sh
 fastboot flash boot boot.img
@@ -202,8 +202,8 @@ fastboot reboot
 
 这种方法需要内核刷写 App 拥有 root 权限，你可以用如下几种方法实现：
 
-1. 你的设备已经获取了 root 权限，比如你已经安装好了 KernelSU 想升级到最新的版本，又或者你通过其他方法（如 Magisk）获取了 root。
-2. 如果你的手机没有 root，但手机支持 `fastboot boot boot.img` 这种临时启动的方法，你可以用 KernelSU 提供的 GKI 镜像临时启动你的设备，获取临时的 root 权限，然后使用内核刷写器刷入获取永久 root 权限。
+1. 你的设备已经获取了 root 权限，比如你已经安装好了 BK-KSU 想升级到最新的版本，又或者你通过其他方法（如 Magisk）获取了 root。
+2. 如果你的手机没有 root，但手机支持 `fastboot boot boot.img` 这种临时启动的方法，你可以用 BK-KSU 提供的 GKI 镜像临时启动你的设备，获取临时的 root 权限，然后使用内核刷写器刷入获取永久 root 权限。
 
 
 如果您以前没有使用过内核刷写 App，建议使用以下应用：
@@ -214,7 +214,7 @@ fastboot reboot
 
 ## 手动修补 boot.img {#patch-boot-image}
 
-对于某些设备来说，其 boot.img 格式不那么常见，比如不是 `lz4`, `gz` 和未压缩；最典型的就是 Pixel，它 boot.img 的格式是 `lz4_legacy` 压缩，ramdisk 可能是 `gz` 也可能是 `lz4_legacy` 压缩；此时如果你直接刷入 KernelSU 提供的 boot.img，手机可能无法开机；这时候，你可以通过手动修补 boot.img 来实现。
+对于某些设备来说，其 boot.img 格式不那么常见，比如不是 `lz4`, `gz` 和未压缩；最典型的就是 Pixel，它 boot.img 的格式是 `lz4_legacy` 压缩，ramdisk 可能是 `gz` 也可能是 `lz4_legacy` 压缩；此时如果你直接刷入 BK-KSU 提供的 boot.img，手机可能无法开机；这时候，你可以通过手动修补 boot.img 来实现。
 
 任何情况下都推荐使用 `magiskboot` 来修补 boot 镜像，有两个方法：
 
@@ -230,8 +230,8 @@ Magisk 官方提供的 `magiskboot` 只能运行在 Android/Linux 设备上，�
 ### 准备 {#patch-preparation}
 
 1. 获取你手机的原厂 boot.img；你可以通过你手机的线刷包解压后之间获取，如果你是卡刷包，那你也许需要 [payload-dumper-go](https://github.com/ssut/payload-dumper-go)
-2. 下载 KernelSU 提供的与你设备 KMI 版本一致的 AnyKernel3 刷机包；如果您不知道应该下载哪一个文件，请仔细阅读本文档中关于 [KMI](#kmi) 和[安全补丁级别](#security-patch-level)的描述。
-3. 解压缩 AnyKernel3 刷机包，获取其中的 `Image` 文件，此文件为 KernelSU 的内核文件。
+2. 下载 BK-KSU 提供的与你设备 KMI 版本一致的 AnyKernel3 刷机包；如果您不知道应该下载哪一个文件，请仔细阅读本文档中关于 [KMI](#kmi) 和[安全补丁级别](#security-patch-level)的描述。
+3. 解压缩 AnyKernel3 刷机包，获取其中的 `Image` 文件，此文件为 BK-KSU 的内核文件。
 
 ### 在 Android 设备上使用 magiskboot {#using-magiskboot-on-Android-devices}
 
@@ -247,7 +247,7 @@ Magisk 官方提供的 `magiskboot` 只能运行在 Android/Linux 设备上，�
 ### 在 macOS/Windows/Linux 上使用 magiskboot {#using-magiskboot-on-PC}
 
 1. 在 [magiskboot_build](https://github.com/ookiineko/magiskboot_build/releases/tag/last-ci) 下载适合你操作系统的 `magiskboot` 二进制文件。
-2. 在你的 PC 上准备好设备原厂的 boot.img 和 KernelSU 的 Image。
+2. 在你的 PC 上准备好设备原厂的 boot.img 和 BK-KSU 的 Image。
 3. `chmod +x magiskboot`
 4. 在你 PC 上合适的目录执行 `./magiskboot unpack boot.img` 来解包 `boot.img`, 你会得到一个 `kernel` 文件，这个文件是你设备原厂的 kernel。
 5. 使用 `Image` 替换 `kernel`: `mv -f Image kernel`
@@ -263,7 +263,7 @@ Magisk 官方的 `magiskboot` 可以在 Linux 设备上执行，如果你是 Lin
 
 步骤：
 
-1. 在 KernelSU 的 [Release 页面](https://github.com/tiann/KernelSU/releases) 下载与你手机版本匹配的以 AnyKernel3 开头的 zip 刷机包；如果你不知道下载哪一个，请仔细查阅上述文档中关于 **KMI** 和**安全补丁级别**的描述；下载错误的刷机包很可能导致无法开机，请注意备份。
+1. 在 BK-KSU 的 [Release 页面](https://github.com/bklynali/BK-KSU/releases) 下载与你手机版本匹配的以 AnyKernel3 开头的 zip 刷机包；如果你不知道下载哪一个，请仔细查阅上述文档中关于 **KMI** 和**安全补丁级别**的描述；下载错误的刷机包很可能导致无法开机，请注意备份。
 2. 重启手机进入 TWRP。
 3. 使用 adb 将 AnyKernel3-*.zip 放到手机 /sdcard 然后在 TWRP 图形界面选择安装；或者你也可以直接 `adb sideload AnyKernel-*.zip` 安装。
 
@@ -271,17 +271,17 @@ PS. 这种方法适用于任何情况下的安装（不限于初次安装或者�
 
 ## 其他变通方法 {#other-methods}
 
-其实所有这些安装方法的主旨只有一个，那就是**替换原厂的内核为 KernelSU 提供的内核**；只要能实现这个目的，就可以安装；比如以下是其他可行的方法：
+其实所有这些安装方法的主旨只有一个，那就是**替换原厂的内核为 BK-KSU 提供的内核**；只要能实现这个目的，就可以安装；比如以下是其他可行的方法：
 
-1. 首先安装 Magisk，通过 Magisk 获取 root 权限后使用内核刷写器刷入 KernelSU 的 AnyKernel 包。
-2. 使用某些 PC 上的刷机工具箱刷入 KernelSU 提供的内核。
+1. 首先安装 Magisk，通过 Magisk 获取 root 权限后使用内核刷写器刷入 BK-KSU 的 AnyKernel 包。
+2. 使用某些 PC 上的刷机工具箱刷入 BK-KSU 提供的内核。
 
 如果这些方法导致无法开机，请优先尝试用 `magiskboot` 的方法。
 
 ## 安装后：模块支持 {#post-installation-module-support}
 
 ::: warning 修改系统文件需要 METAMODULE
-如果您想使用修改 `/system` 文件的模块，需要在安装 KernelSU 后安装一个 **metamodule**。仅使用脚本、sepolicy 或 system.prop 的模块无需 metamodule。
+如果您想使用修改 `/system` 文件的模块，需要在安装 BK-KSU 后安装一个 **metamodule**。仅使用脚本、sepolicy 或 system.prop 的模块无需 metamodule。
 :::
 
 **要获得 `/system` 修改支持**，请参阅 [Metamodule 指南](metamodule.md) 了解：
