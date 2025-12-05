@@ -1,6 +1,6 @@
 # Configuração de Módulo
 
-O KernelSU fornece um sistema de configuração integrado que permite que os módulos armazenem configurações de chave-valor persistentes ou temporárias. As configurações são armazenadas em formato binário em `/data/adb/ksu/module_configs/<module_id>/` com as seguintes características:
+O BK-KSU fornece um sistema de configuração integrado que permite que os módulos armazenem configurações de chave-valor persistentes ou temporárias. As configurações são armazenadas em formato binário em `/data/adb/ksu/module_configs/<module_id>/` com as seguintes características:
 
 ## Tipos de Configuração
 
@@ -108,7 +108,7 @@ Ao recuperar a lista de módulos, se a configuração `override.description` exi
 
 ### Declarando Recursos Gerenciados
 
-Os módulos podem declarar quais recursos do KernelSU eles gerenciam usando o padrão de configuração `manage.<feature>`. Os recursos suportados correspondem ao enum interno `FeatureId` do KernelSU:
+Os módulos podem declarar quais recursos do BK-KSU eles gerenciam usando o padrão de configuração `manage.<feature>`. Os recursos suportados correspondem ao enum interno `FeatureId` do BK-KSU:
 
 **Recursos Suportados:**
 - `su_compat` - Modo de compatibilidade SU
@@ -132,10 +132,10 @@ ksud module config delete manage.su_compat
 - Para parar de gerenciar um recurso, exclua completamente a chave de configuração
 
 Os recursos gerenciados são expostos através da API de lista de módulos como um campo `managedFeatures` (string separada por vírgulas). Isso permite:
-- O gerenciador do KernelSU detectar quais módulos gerenciam quais recursos do KernelSU
+- O gerenciador do BK-KSU detectar quais módulos gerenciam quais recursos do BK-KSU
 - Prevenção de conflitos quando vários módulos tentam gerenciar o mesmo recurso
-- Melhor coordenação entre módulos e funcionalidade central do KernelSU
+- Melhor coordenação entre módulos e funcionalidade central do BK-KSU
 
 ::: warning APENAS RECURSOS SUPORTADOS
-Use apenas os nomes de recursos predefinidos listados acima (`su_compat`, `kernel_umount`, `enhanced_security`). Eles correspondem aos recursos internos reais do KernelSU. Usar outros nomes de recursos não causará erros, mas não terá nenhum propósito funcional.
+Use apenas os nomes de recursos predefinidos listados acima (`su_compat`, `kernel_umount`, `enhanced_security`). Eles correspondem aos recursos internos reais do BK-KSU. Usar outros nomes de recursos não causará erros, mas não terá nenhum propósito funcional.
 :::

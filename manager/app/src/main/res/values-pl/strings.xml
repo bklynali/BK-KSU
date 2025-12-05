@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">KernelSU</string>
+    <string name="app_name" translatable="false">BK-KSU</string>
     <string name="home">Strona główna</string>
     <string name="home_not_installed">Nie zainstalowano</string>
     <string name="home_click_to_install">Kliknij, aby zainstalować</string>
@@ -9,7 +9,7 @@
     <string name="home_superuser_count">Superużytkownicy: %d</string>
     <string name="home_module_count">Moduły: %d</string>
     <string name="home_unsupported">Nieobsługiwany</string>
-    <string name="home_unsupported_reason">KernelSU obsługuje obecnie tylko jądra GKI.</string>
+    <string name="home_unsupported_reason">BK-KSU obsługuje obecnie tylko jądra GKI.</string>
     <string name="home_kernel">Wersja jądra</string>
     <string name="home_manager_version">Wersja menedżera</string>
     <string name="home_fingerprint">Odcisk</string>
@@ -46,11 +46,11 @@
     <string name="safe_mode">Tryb bezpieczny</string>
     <string name="reboot_to_apply">Uruchom ponownie, aby zastosować zmiany</string>
     <string name="module_magisk_conflict">Moduły są niedostępne z powodu konfliktu z Magiskiem!</string>
-    <string name="home_learn_kernelsu">Poznaj KernelSU</string>
-    <string name="home_learn_kernelsu_url">https://kernelsu.org/guide/what-is-kernelsu.html</string>
-    <string name="home_click_to_learn_kernelsu">Dowiedz się jak zainstalować KernelSU i jak korzystać z modułów.</string>
+    <string name="home_learn_BK_KSU">Poznaj BK-KSU</string>
+    <string name="home_learn_BK_KSU_url">https://BK-KSU.org/guide/what-is-BK-KSU.html</string>
+    <string name="home_click_to_learn_BK_KSU">Dowiedz się jak zainstalować BK-KSU i jak korzystać z modułów.</string>
     <string name="home_support_title">Wesprzyj nas</string>
-    <string name="home_support_content">KernelSU jest i zawsze będzie darmowy oraz otwarty. Niemniej jednak możesz nam pokazać, że Ci zależy, wysyłając darowiznę.</string>
+    <string name="home_support_content">BK-KSU jest i zawsze będzie darmowy oraz otwarty. Niemniej jednak możesz nam pokazać, że Ci zależy, wysyłając darowiznę.</string>
     <string name="about_source_code"><![CDATA[Przejrzyj kod źródłowy na %1$s<br/>Dołącz do kanału %2$s]]></string>
     <string name="profile" translatable="false">Profil aplikacji</string>
     <string name="profile_default">Domyślny</string>
@@ -68,7 +68,7 @@
     <string name="failed_to_update_app_profile">Nie udało się zaktualizować profilu aplikacji dla %s</string>
     <string name="settings_umount_modules_default">Odmontuj moduły</string>
     <string name="settings_umount_modules_default_summary">Globalna wartość domyślna opcji \"Odmontuj moduły\" w profilu aplikacji. Jeśli jest włączona, wycofuje wszystkie modyfikacje dokonane przez moduły dla aplikacji, które nie mają ustawionego profilu.</string>
-    <string name="profile_umount_modules_summary">Włączenie tej opcji umożliwi KernelSU przywrócenie wszelkich zmodyfikowanych plików przez moduły dla tej aplikacji.</string>
+    <string name="profile_umount_modules_summary">Włączenie tej opcji umożliwi BK-KSU przywrócenie wszelkich zmodyfikowanych plików przez moduły dla tej aplikacji.</string>
     <string name="profile_selinux_domain">Domena</string>
     <string name="profile_selinux_rules">Reguły</string>
     <string name="module_update">Zaktualizuj</string>
@@ -79,7 +79,7 @@
     <string name="force_stop_app">Wymuś zatrzymanie</string>
     <string name="restart_app">Restartuj</string>
     <string name="failed_to_update_sepolicy">Nie udało się zaktualizować reguł SELinux dla %s</string>
-    <string name="require_kernel_version">Obecna wersja KernelSU %1$d jest zbyt stara, aby menedżer działał poprawnie. Prosimy o aktualizację do wersji %2$d lub nowszej!</string>
+    <string name="require_kernel_version">Obecna wersja BK-KSU %1$d jest zbyt stara, aby menedżer działał poprawnie. Prosimy o aktualizację do wersji %2$d lub nowszej!</string>
     <string name="module_changelog">Dziennik zmian</string>
     <string name="enable_web_debugging">Debugowanie WebView</string>
     <string name="enable_web_debugging_summary">Może być użyte do debugowania WebUI. Włącz tylko w razie potrzeby.</string>
@@ -122,9 +122,9 @@
     <string name="settings_restore_stock_image">Przywróć obraz fabryczny</string>
     <string name="settings_uninstall_temporary">Odinstaluj tymczasowo</string>
     <string name="settings_uninstall">Odinstaluj</string>
-    <string name="settings_uninstall_temporary_message">Tymczasowo odinstaluj KernelSU, przywróć do oryginalnego stanu po następnym ponownym uruchomieniu.</string>
-    <string name="settings_uninstall_permanent_message">Całkowite i trwałe odinstalowanie KernelSU (root i wszystkich modułów).</string>
-    <string name="settings_restore_stock_image_message">Przywróć obraz fabryczny (jeśli istnieje kopia zapasowa), zwykle używany przed OTA; jeśli chcesz odinstalować KernelSU, użyj opcji \"Odinstaluj całkowicie\".</string>
+    <string name="settings_uninstall_temporary_message">Tymczasowo odinstaluj BK-KSU, przywróć do oryginalnego stanu po następnym ponownym uruchomieniu.</string>
+    <string name="settings_uninstall_permanent_message">Całkowite i trwałe odinstalowanie BK-KSU (root i wszystkich modułów).</string>
+    <string name="settings_restore_stock_image_message">Przywróć obraz fabryczny (jeśli istnieje kopia zapasowa), zwykle używany przed OTA; jeśli chcesz odinstalować BK-KSU, użyj opcji \"Odinstaluj całkowicie\".</string>
     <string name="flashing">Flashowanie</string>
     <string name="flash_success">Flashowanie ukończone pomyślnie</string>
     <string name="flash_failed">Flashowanie nieudane</string>
@@ -142,7 +142,7 @@
     <string name="install_upload_lkm_file">Użyj lokalnego pliku LKM</string>
     <string name="install_only_support_ko_file">Obsługiwane są wyłącznie pliki .ko</string>
     <string name="settings_disable_kernel_umount">Wyłącz odmontowywanie jądra</string>
-    <string name="settings_disable_kernel_umount_summary">Wyłącz odmontowywanie z poziomu jądra, kontrolowane przez KernelSU.</string>
+    <string name="settings_disable_kernel_umount_summary">Wyłącz odmontowywanie z poziomu jądra, kontrolowane przez BK-KSU.</string>
     <string name="processing">Przetwarzanie…</string>
     <string name="refresh_pulling">Przeciągnij w dół, aby odświeżyć</string>
     <string name="refresh_release">Uwolnij, aby odświeżyć</string>
