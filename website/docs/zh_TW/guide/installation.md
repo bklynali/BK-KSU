@@ -2,10 +2,10 @@
 
 ## 檢查您的裝置是否受支援 {#check-if-your-device-is-supported}
 
-從 [GitHub Releases](https://github.com/tiann/KernelSU/releases) 下載 KernelSU 管理器，然後安裝至裝置並開啟：
+從 [GitHub Releases](https://github.com/bklynali/BK-KSU/releases) 下載 BK-KSU 管理器，然後安裝至裝置並開啟：
 
-- 如果顯示「不支援」，則表示您的裝置不支援 KernelSU，您需要自行編譯核心才能繼續使用，KernelSU 官方也永遠不會提供一個您可以寫入的 Boot 映像。
-- 如果顯示「未安裝」，那麼 KernelSU 支援您的裝置。
+- 如果顯示「不支援」，則表示您的裝置不支援 BK-KSU，您需要自行編譯核心才能繼續使用，BK-KSU 官方也永遠不會提供一個您可以寫入的 Boot 映像。
+- 如果顯示「未安裝」，那麼 BK-KSU 支援您的裝置。
 
 ::: info 提示
 對於顯示「不支援」的裝置，這裡有一個[非官方支援裝置清單](unofficially-support-devices.md)，您可以使用這個清單裡的核心自行編譯。
@@ -57,7 +57,7 @@ w      .x         .y       -zzz           -k            -something
 
 ## 安裝簡介 {#introduction}
 
-自 `0.9.0` 版本以後，在 GKI 裝置上，KernelSU 支援兩種運作模式：
+自 `0.9.0` 版本以後，在 GKI 裝置上，BK-KSU 支援兩種運作模式：
 
 1. `GKI`：使用**通用核心鏡像**（GKI）取代掉裝置原有的核心。
 2. `LKM`：使用**可載入核心模組**（LKM）的方式載入到裝置核心中，不會替換掉裝置原有的核心。
@@ -66,7 +66,7 @@ w      .x         .y       -zzz           -k            -something
 
 ### GKI 模式 {#gki-mode}
 
-GKI 模式會替換掉裝置原有的核心，使用 KernelSU 提供的通用核心鏡像。 GKI 模式的優點是：
+GKI 模式會替換掉裝置原有的核心，使用 BK-KSU 提供的通用核心鏡像。 GKI 模式的優點是：
 
 1. 通用型高，適用於大多數裝置；例如開啟了 KNOX 的三星裝置、或是 LKM 模式無法運作的裝置。還有一些冷門的魔改裝置，也只能使用 GKI 模式。
 2. 不依賴官方韌體即可使用；不需要等待官方韌體更新，只要 KMI 一致，就可以使用。
@@ -75,8 +75,8 @@ GKI 模式會替換掉裝置原有的核心，使用 KernelSU 提供的通用核
 
 LKM 模式不會替換掉裝置原有的核心，而是使用可載入核心模組的方式載入到裝置核心中。 LKM 模式的優點是：
 
-1. 不會取代裝置原有的核心：如果你對裝置原有的核心有特殊需求，或是你希望在使用第三方核心的同時使用 KernelSU，可以使用 LKM 模式。
-2. 升級和 OTA 較為方便：升級 KernelSU 時，可以直接在管理器內部安裝，無需再手動寫入；系統 OTA 後，可以直接安裝到第二個槽位，也無需再手動寫入。
+1. 不會取代裝置原有的核心：如果你對裝置原有的核心有特殊需求，或是你希望在使用第三方核心的同時使用 BK-KSU，可以使用 LKM 模式。
+2. 升級和 OTA 較為方便：升級 BK-KSU 時，可以直接在管理器內部安裝，無需再手動寫入；系統 OTA 後，可以直接安裝到第二個槽位，也無需再手動寫入。
 3. 適用於一些特殊場景：例如使用臨時 root 權限也可以載入 LKM，由於不需要替換 boot 分區，因此不會觸發 avb，不會使裝置意外變磚。
 4. LKM 可以被暫時卸載：如果你暫時想取消 root，可以卸載 LKM，這個過程不需要寫入分區，甚至也不用重啟裝置。如果你想重新取得 root，只需要重啟裝置即可。
 
@@ -95,7 +95,7 @@ LKM 模式不會替換掉裝置原有的核心，而是使用可載入核心模�
 
 使用 LKM 的模式，需要取得官方韌體，然後在官方韌體的基礎上修補；如果你使用的是第三方核心，可以把第三方核心的 boot.img 作為官方韌體。
 
-取得官方韌體的方法有很多，如果你的裝置支援 `fastboot boot`，那麼我們最推薦以及最簡單的方法是使用 `fastboot boot` 臨時啟動 KernelSU 提供的 GKI 核心，並參考[使用管理器](#use-the-manager)安裝。
+取得官方韌體的方法有很多，如果你的裝置支援 `fastboot boot`，那麼我們最推薦以及最簡單的方法是使用 `fastboot boot` 臨時啟動 BK-KSU 提供的 GKI 核心，並參考[使用管理器](#use-the-manager)安裝。
 
 如果你的裝置不支援 `fastboot boot`，那麼你可能需要手動去下載官方韌體包，然後從中提取 boot。
 
@@ -106,20 +106,20 @@ LKM 模式不會替換掉裝置原有的核心，而是使用可載入核心模�
 開啟管理器，點選右上角的安裝圖標，會出現若干個選項：
 
 1. 選擇並修補一個文件：如果你手機目前沒有 root 權限，你可以選擇這個選項，然後選擇你的官方韌體，管理器會自動修補它。你只需要寫入這個修補後的文件，即可永久取得 root 權限。
-2. 直接安裝：如果你手機已經 root，你可以選擇這個選項，管理器會自動獲取你的裝置資訊，然後自動修補官方韌體，然後寫入。你可以考慮使用 `fastboot boot` KernelSU 的 GKI 核心來取得臨時 root 安裝管理器，然後再使用這個選項。**這種方式也是 KernelSU 升級最主要的方式**。
+2. 直接安裝：如果你手機已經 root，你可以選擇這個選項，管理器會自動獲取你的裝置資訊，然後自動修補官方韌體，然後寫入。你可以考慮使用 `fastboot boot` BK-KSU 的 GKI 核心來取得臨時 root 安裝管理器，然後再使用這個選項。**這種方式也是 BK-KSU 升級最主要的方式**。
 3. 安裝到另一個分割區：如果你的裝置支援 A/B 分區，你可以選擇這個選項，管理器會自動修補官方韌體，然後安裝到另一個分區。這種方式適用於 OTA 後的裝置，你可以在 OTA 後直接安裝到另一個分割區，然後重新啟動裝置即可。
 
 ### 使用命令列{#use-the-command-line}
 
-如果你不想使用管理器，你也可以使用命令列來安裝 LKM。KernelSU 提供的 `ksud` 可以幫助你快速修補官方韌體，然後寫入。
+如果你不想使用管理器，你也可以使用命令列來安裝 LKM。BK-KSU 提供的 `ksud` 可以幫助你快速修補官方韌體，然後寫入。
 
-這個工具支援 macOS、Linux 和 Windows，你可以在 [GitHub Release](https://github.com/tiann/KernelSU/releases) 下載對應的版本。
+這個工具支援 macOS、Linux 和 Windows，你可以在 [GitHub Release](https://github.com/bklynali/BK-KSU/releases) 下載對應的版本。
 
 使用方法：`ksud boot-patch`。 你可以查看命令列的提示了解具體的使用方法。
 
 ```sh
 husky:/ # ksud boot-patch -h
-Patch boot or init_boot images to apply KernelSU
+Patch boot or init_boot images to apply BK-KSU
 
 Usage: ksud boot-patch [OPTIONS]
 
@@ -146,20 +146,20 @@ ksud boot-patch -b <boot.img> --kmi android13-5.10
 ## GKI 安裝{#gki-mode-installation}
 GKI 的安裝方式有以下幾種，各自適用於不同的場景，請依需求選擇：
 
-1. 使用 KernelSU 提供的 boot.img 透過 Fastboot 安裝
+1. 使用 BK-KSU 提供的 boot.img 透過 Fastboot 安裝
 2. 使用核心寫入程式 (例如 KernelFlasher) 安裝
 3. 使用自訂 Recovery (例如 TWRP) 安裝
 4. 手動修補 boot.img 並安裝
 
-## 使用 KernelSU 提供的 boot.img 安裝 {#install-with-boot-img-provided-by-kernelsu}
+## 使用 BK-KSU 提供的 boot.img 安裝 {#install-with-boot-img-provided-by-BK-KSU}
 
-如果你的裝置的 `boot.img` 使用常見的壓縮格式，你可以直接寫入 KernelSU 提供的 GKI 核心映像，這種方法無需 TWRP，也無需您的手機有 Root 權限；適用於您初次安裝 KernelSU。
+如果你的裝置的 `boot.img` 使用常見的壓縮格式，你可以直接寫入 BK-KSU 提供的 GKI 核心映像，這種方法無需 TWRP，也無需您的手機有 Root 權限；適用於您初次安裝 BK-KSU。
 
 ### 找到合適的 boot.img {#find-proper-boot-img}
 
-KernelSU 為 GKI 裝置提供了標準 boot.img，您需要將 boot.img 寫入至裝置的 Boot 分區。
+BK-KSU 為 GKI 裝置提供了標準 boot.img，您需要將 boot.img 寫入至裝置的 Boot 分區。
 
-您可以從 [GitHub Release](https://github.com/tiann/KernelSU/releases) 下載 boot.img，請注意，您應該使用正確版本的 boot.img。如果你不知道你該下載哪個檔案，請詳細閱讀文檔中的 [KMI](#kmi) 與[安全性修補程式等級](#security-patch-level)。
+您可以從 [GitHub Release](https://github.com/bklynali/BK-KSU/releases) 下載 boot.img，請注意，您應該使用正確版本的 boot.img。如果你不知道你該下載哪個檔案，請詳細閱讀文檔中的 [KMI](#kmi) 與[安全性修補程式等級](#security-patch-level)。
 
 通常，在相同的 KMI 和安全性修補程式等級下，會存在三種不同格式的啟動檔案。除了核心壓縮格式之外，它們都是相同的。請檢查您原來的 boot.img 的核心壓縮格式。您應該使用正確的格式，例如 `lz4` 、 `gz`，如果你使用了不正確的壓縮格式，你可能會在寫入後無法開機。
 
@@ -171,7 +171,7 @@ KernelSU 為 GKI 裝置提供了標準 boot.img，您需要將 boot.img 寫入�
 
 ### 將 boot.img 寫入至裝置 {#flash-boot-img-to-device}
 
-使用 `adb` 連接您的裝置，然後執行 `adb reboot bootloader` 進入 fastboot 模式，然後使用此命令寫入 KernelSU：
+使用 `adb` 連接您的裝置，然後執行 `adb reboot bootloader` 進入 fastboot 模式，然後使用此命令寫入 BK-KSU：
 
 ```sh
 fastboot flash boot boot.img
@@ -191,7 +191,7 @@ fastboot reboot
 
 ## 使用核心寫入程式安裝 {#install-with-kernel-flasher}
 
-先決條件：您的裝置必須已經 Root。例如您已經安裝了 Magisk 並取得 Root 存取權，或者您已經安裝了舊版本的 KernelSU 需升級到其他版本的 KernelSU；如果您的裝置並未 Root，請嘗試其他方法。
+先決條件：您的裝置必須已經 Root。例如您已經安裝了 Magisk 並取得 Root 存取權，或者您已經安裝了舊版本的 BK-KSU 需升級到其他版本的 BK-KSU；如果您的裝置並未 Root，請嘗試其他方法。
 
 步驟：
 
@@ -204,11 +204,11 @@ fastboot reboot
 2. [Franco Kernel Manager](https://play.google.com/store/apps/details?id=com.franco.kernel)
 3. [Ex Kernel Manager](https://play.google.com/store/apps/details?id=flar2.exkernelmanager)
 
-P.S. 這種方法在更新 KernelSU 時比較方便，無需電腦即可完成 (注意備份！)。
+P.S. 這種方法在更新 BK-KSU 時比較方便，無需電腦即可完成 (注意備份！)。
 
 ## 手動修補 boot.img {#patch-boot-image}
 
-對於某些裝置來說，其 boot.img 格式並不是很常見，不屬於 `lz4`，`gz` 和未壓縮；最典型的就是 Pixel，它的 boot.img 格式是 `lz4_legacy` 壓縮，ramdisk 可能是 `gz` 也可能是 `lz4_legacy` 壓縮；此時如果您直接寫入 KernelSU 提供的 boot.img，手機可能無法開機。這時，您可以透過手動修補 boot.img 來完成。
+對於某些裝置來說，其 boot.img 格式並不是很常見，不屬於 `lz4`，`gz` 和未壓縮；最典型的就是 Pixel，它的 boot.img 格式是 `lz4_legacy` 壓縮，ramdisk 可能是 `gz` 也可能是 `lz4_legacy` 壓縮；此時如果您直接寫入 BK-KSU 提供的 boot.img，手機可能無法開機。這時，您可以透過手動修補 boot.img 來完成。
 
 永遠建議使用 `magiskboot` 來修補映像，一般有兩種修補方法：
 
@@ -220,8 +220,8 @@ P.S. 這種方法在更新 KernelSU 時比較方便，無需電腦即可完成 (
 ### 準備 {#preparation}
 
 1. 取得您手機的原廠 boot.img，您可以從您的裝置製造商取得，您也可能需要 [payload-dumper-go](https://github.com/ssut/payload-dumper-go)。
-2. 下載 KernelSU 提供的與您的裝置 KMI 一致的 AnyKernel3 Zip 檔 (可參閱[使用自訂 Recovery 安裝](#install-with-custom-recovery))。
-3. 解壓縮 AnyKernel3 Zip 檔，取得其中的 `Image` 檔，此檔案為具有 KernelSU 的核心。
+2. 下載 BK-KSU 提供的與您的裝置 KMI 一致的 AnyKernel3 Zip 檔 (可參閱[使用自訂 Recovery 安裝](#install-with-custom-recovery))。
+3. 解壓縮 AnyKernel3 Zip 檔，取得其中的 `Image` 檔，此檔案為具有 BK-KSU 的核心。
 
 ### 在 Android 上使用 magiskboot {#using-magiskboot-on-Android-devices}
 
@@ -248,7 +248,7 @@ P.S. 這種方法在更新 KernelSU 時比較方便，無需電腦即可完成 (
 
 步驟：
 
-1. 在 KernelSU 的 [Release 頁面](https://github.com/tiann/KernelSU/releases) 下載與您手機版本相符的以 AnyKernel3 開頭的 Zip 檔；例如，手機核心版本為 `android12-5.10.66`，那麼您應該下載 `AnyKernel3-android12-5.10.66_yyyy-MM.zip` 這個檔案 (其中 `yyyy` 為年份，`MM` 為月份)。
+1. 在 BK-KSU 的 [Release 頁面](https://github.com/bklynali/BK-KSU/releases) 下載與您手機版本相符的以 AnyKernel3 開頭的 Zip 檔；例如，手機核心版本為 `android12-5.10.66`，那麼您應該下載 `AnyKernel3-android12-5.10.66_yyyy-MM.zip` 這個檔案 (其中 `yyyy` 為年份，`MM` 為月份)。
 2. 重新開機手機至 TWRP。
 3. 使用 Adb 將 AnyKernel3-*.zip 放置到手機 `/sdcard` 然後在 TWRP 圖形使用者介面選擇並安裝；或者您也可以直接 `adb sideload AnyKernel-*.zip` 安裝。
 
@@ -256,17 +256,17 @@ PS. 這種方法適用於任何狀況下的安裝 (不限於初次安裝或後�
 
 ## GKI的其他替代方法 {#other-methods}
 
-其實所有這些安裝方法的主旨只有一個，那就是**將原廠核心取代為 KernelSU 提供的核心**。只要能實現這個目的，就可以安裝，比如以下是其他可行的方法：
+其實所有這些安裝方法的主旨只有一個，那就是**將原廠核心取代為 BK-KSU 提供的核心**。只要能實現這個目的，就可以安裝，比如以下是其他可行的方法：
 
-1. 首先安裝 Magisk，透過 Magisk 取得 Root 權限後使用核心寫入程式寫入 KernelSU 的 AnyKernel Zip。
-2. 使用某些 PC 上的寫入工具組寫入 KernelSU 提供的核心。
+1. 首先安裝 Magisk，透過 Magisk 取得 Root 權限後使用核心寫入程式寫入 BK-KSU 的 AnyKernel Zip。
+2. 使用某些 PC 上的寫入工具組寫入 BK-KSU 提供的核心。
 
 但是，如果不起作用，請嘗試 Magiskboot 方法。
 
 ## 安裝後：模組支援 {#post-installation}
 
 ::: warning 用於系統檔案修改的 METAMODULE
-如果您想使用修改 `/system` 檔案的模組，您需要在安裝 KernelSU 後安裝 **metamodule**。僅使用腳本、sepolicy 或 system.prop 的模組無需 metamodule 即可運作。
+如果您想使用修改 `/system` 檔案的模組，您需要在安裝 BK-KSU 後安裝 **metamodule**。僅使用腳本、sepolicy 或 system.prop 的模組無需 metamodule 即可運作。
 :::
 
 **若需 `/system` 修改支援**，請參閱 [Metamodule 指南](metamodule.md)以：

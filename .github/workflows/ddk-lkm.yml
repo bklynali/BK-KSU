@@ -1,4 +1,4 @@
-name: Build KernelSU Kernel Module
+name: Build BK-KSU Kernel Module
 
 on:
   workflow_call:
@@ -27,7 +27,7 @@ jobs:
 
     - name: Build kernelsu.ko
       run: |
-        git config --global --add safe.directory /__w/KernelSU/KernelSU
+        git config --global --add safe.directory /__w/BK-KSU/BK-KSU
 
         cd kernel
 
