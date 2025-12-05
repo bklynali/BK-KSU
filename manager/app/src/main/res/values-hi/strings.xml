@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="reboot_to_apply">प्रभाव में होने के लिए रीबूट करें</string>
-    <string name="home_click_to_learn_kernelsu">जानें कि KernelSU कैसे स्थापित करें और मॉड्यूल का उपयोग कैसे करें</string>
+    <string name="home_click_to_learn_BK_KSU">जानें कि BK-KSU कैसे स्थापित करें और मॉड्यूल का उपयोग कैसे करें</string>
     <string name="selinux_status_unknown">अज्ञात</string>
     <string name="show_system_apps">सिस्टम एप्प दिखाए</string>
     <string name="module_uninstall_success">%s अनइंस्टॉल सफल हुआ</string>
@@ -15,7 +15,7 @@
     <string name="selinux_status_permissive">पर्मिसिव</string>
     <string name="reboot_download">डाउनलोड में रिबूट करें</string>
     <string name="settings_umount_modules_default">डिफ़ॉल्ट रूप से मॉड्यूल अनमाउन्ट करें</string>
-    <string name="profile_umount_modules_summary">इस विकल्प को चालू करने से KernelSU को इस एप्लिकेशन के लिए मॉड्यूल द्वारा किसी भी मोडिफाइड फ़ाइल को रिस्टोर करें।</string>
+    <string name="profile_umount_modules_summary">इस विकल्प को चालू करने से BK-KSU को इस एप्लिकेशन के लिए मॉड्यूल द्वारा किसी भी मोडिफाइड फ़ाइल को रिस्टोर करें।</string>
     <string name="profile_namespace_individual">Individual</string>
     <string name="module_failed_to_enable">%s मॉड्यूल चालू करने में विफल</string>
     <string name="force_stop_app">जबर्दस्ती बंद करें</string>
@@ -33,11 +33,11 @@
     <string name="profile_default">डिफॉल्ट</string>
     <string name="launch_app">लॉन्च करें</string>
     <string name="safe_mode">सेफ मोड</string>
-    <string name="require_kernel_version">मैनेजर के ठीक से काम करने के लिए वर्तमान KernelSU वर्जन %d बहुत कम है। कृपया वर्जन %d या उच्चतर में अपग्रेड करें!</string>
+    <string name="require_kernel_version">मैनेजर के ठीक से काम करने के लिए वर्तमान BK-KSU वर्जन %d बहुत कम है। कृपया वर्जन %d या उच्चतर में अपग्रेड करें!</string>
     <string name="reboot_recovery">रिकवरी में रिबूट करें</string>
     <string name="reboot_userspace">सॉफ्ट रिबूट</string>
     <string name="profile_name">प्रोफाइल का नाम</string>
-    <string name="home_support_content">KernelSU मुफ़्त और ओपन सोर्स और हमेशा रहेगा। हालाँकि आप दान देकर हमें दिखा सकते हैं कि आप संरक्षण करते हैं।</string>
+    <string name="home_support_content">BK-KSU मुफ़्त और ओपन सोर्स और हमेशा रहेगा। हालाँकि आप दान देकर हमें दिखा सकते हैं कि आप संरक्षण करते हैं।</string>
     <string name="uninstall">अनइंस्टॉल करें</string>
     <string name="profile_namespace">Namspace माउंट करें</string>
     <string name="module_install">इंस्टाल करें</string>
@@ -49,7 +49,7 @@
     <string name="about">हमारे बारे में</string>
     <string name="home_working_version">वर्जन: %d</string>
     <string name="reboot">रीबूट करें</string>
-    <string name="home_unsupported_reason">KernelSU अभी केवल GKI कर्नल्स को सपोर्ट करता है</string>
+    <string name="home_unsupported_reason">BK-KSU अभी केवल GKI कर्नल्स को सपोर्ट करता है</string>
     <string name="home_selinux_status">SELinux स्थिति</string>
     <string name="hide_system_apps">सिस्टम एप्प छिपाए</string>
     <string name="module_version">वर्जन</string>
@@ -61,7 +61,7 @@
     <string name="refresh">रिफ्रेश</string>
     <string name="module_downloading">%s मॉड्यूल डाउनलोड हो रहा है</string>
     <string name="module_update">अपडेट</string>
-    <string name="home_learn_kernelsu">KernelSU सीखें</string>
+    <string name="home_learn_BK_KSU">BK-KSU सीखें</string>
     <string name="module_uninstall_confirm">क्या आप सच में मॉड्यूल %s को अनइंस्टॉल करना चाहते हैं\?</string>
     <string name="module_uninstall_failed">%s अनइंस्टल करने में असफल</string>
     <string name="superuser">सुपरयूजर</string>
@@ -73,7 +73,7 @@
     <string name="home_kernel">कर्नल</string>
     <string name="home_not_installed">इंस्टाल नहीं हुआ</string>
     <string name="failed_to_update_app_profile">%s के लिए ऐप प्रोफ़ाइल अपडेट करने में विफल</string>
-    <string name="home_learn_kernelsu_url">https://kernelsu.org/guide/what-is-kernelsu.html</string>
+    <string name="home_learn_BK_KSU_url">https://BK-KSU.org/guide/what-is-BK-KSU.html</string>
     <string name="failed_to_update_sepolicy">%s के लिए SELinux नियमों को अपटेड करने में विफल</string>
     <string name="reboot_bootloader">बुटलोडर में रिबूट करें</string>
     <string name="about_source_code">%1$s पर स्रोत कोड देखें<br/>हमारे %2$s चैनल से जुड़ें</string>
