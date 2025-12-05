@@ -3,27 +3,27 @@ layout: home
 title: Giải pháp root dựa trên kernel dành cho Android
 
 hero:
-  name: KernelSU
+  name: BK-KSU
   text: Giải pháp root dựa trên kernel dành cho Android
   tagline: ""
   image:
     src: /logo.png
-    alt: KernelSU
+    alt: BK-KSU
   actions:
     - theme: brand
       text: Bắt Đầu
-      link: /guide/what-is-kernelsu
+      link: /guide/what-is-BK-KSU
     - theme: alt
       text: Xem trên GitHub
-      link: https://github.com/tiann/KernelSU
+      link: https://github.com/bklynali/BK-KSU
 
 features:
   - title: Dựa trên Kernel
-    details: KernelSU đang hoạt động ở chế độ kernel Linux, nó có nhiều quyền kiểm soát hơn đối với các ứng dụng userspace.
+    details: BK-KSU đang hoạt động ở chế độ kernel Linux, nó có nhiều quyền kiểm soát hơn đối với các ứng dụng userspace.
   - title: Kiểm soát truy cập bằng whitelist
     details: Chỉ ứng dụng được cấp quyền root mới có thể truy cập `su`, các ứng dụng khác không thể nhận được su.
   - title: Quyền root bị hạn chế
-    details: KernelSU cho phép bạn tùy chỉnh uid, gid, group, capabilities và các quy tắc SELinux của su. Giới hạn sức mạnh của root.
+    details: BK-KSU cho phép bạn tùy chỉnh uid, gid, group, capabilities và các quy tắc SELinux của su. Giới hạn sức mạnh của root.
   - title: Hệ thống Metamodule
     details: Cơ sở hạ tầng module có thể cắm cho phép sửa đổi /system theo cách systemless. Cài đặt metamodule như meta-overlayfs để bật tính năng mount module.
 

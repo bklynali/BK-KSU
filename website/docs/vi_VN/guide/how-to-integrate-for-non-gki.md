@@ -1,17 +1,17 @@
-# Làm thế nào để tích hợp KernelSU vào thiết bị không sử dụng GKI ?
+# Làm thế nào để tích hợp BK-KSU vào thiết bị không sử dụng GKI ?
 
 ::: warning
 Tài liệu này chỉ để tham khảo lưu trữ và không còn được duy trì.
-Kể từ KernelSU v1.0, chúng tôi đã ngừng hỗ trợ chính thức cho các thiết bị không phải GKI.
+Kể từ BK-KSU v1.0, chúng tôi đã ngừng hỗ trợ chính thức cho các thiết bị không phải GKI.
 :::
 
-KernelSU có thể được tích hợp vào kernel không phải GKI và hiện tại nó đã được backport xuống 4.14, thậm chí cũng có thể chạy trên kernel thấp hơn 4.14.
+BK-KSU có thể được tích hợp vào kernel không phải GKI và hiện tại nó đã được backport xuống 4.14, thậm chí cũng có thể chạy trên kernel thấp hơn 4.14.
 
-Do các kernel không phải GKI bị phân mảnh nên chúng tôi không có cách build thống nhất, vì vậy chúng tôi không thể cung cấp các boot image không phải GKI. Nhưng bạn có thể tự build kernel với KernelSU được tích hợp vào.
+Do các kernel không phải GKI bị phân mảnh nên chúng tôi không có cách build thống nhất, vì vậy chúng tôi không thể cung cấp các boot image không phải GKI. Nhưng bạn có thể tự build kernel với BK-KSU được tích hợp vào.
 
-Đầu tiên, bạn phải build được kernel từ nguồn có khả năng boot được , nếu kernel không có mã nguồn mở thì rất khó để chạy KernelSU cho thiết bị của bạn.
+Đầu tiên, bạn phải build được kernel từ nguồn có khả năng boot được , nếu kernel không có mã nguồn mở thì rất khó để chạy BK-KSU cho thiết bị của bạn.
 
-Nếu bạn có thể build kernel khởi động được, có hai cách để tích hợp KernelSU vào mã nguồn kernel:
+Nếu bạn có thể build kernel khởi động được, có hai cách để tích hợp BK-KSU vào mã nguồn kernel:
 
 1. Tự động với `kprobe`
 2. Thủ công
@@ -19,26 +19,26 @@ Nếu bạn có thể build kernel khởi động được, có hai cách để 
 
 ## Tích hợp vào kprobe
 
-KernelSU sử dụng kprobe để thực hiện hook kernel, nếu *kprobe* chạy tốt trong kernel của bạn thì nên sử dụng cách này.
+BK-KSU sử dụng kprobe để thực hiện hook kernel, nếu *kprobe* chạy tốt trong kernel của bạn thì nên sử dụng cách này.
 
-Đầu tiên, thêm KernelSU vào mã nguồn kernel của bạn:
+Đầu tiên, thêm BK-KSU vào mã nguồn kernel của bạn:
 
 - Thẻ mới nhất (ổn định)
 
 ```sh
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -
 ```
 
 - Nhánh chính (dev)
 
 ```sh
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -s main
 ```
 
 - Chọn thẻ (chẳng hạn như v0.5.2)
 
 ```sh
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.5.2
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -s v0.5.2
 ```
 
 Sau đó, bạn nên kiểm tra xem *kprobe* có được bật trong config của bạn hay không, nếu không, vui lòng thêm các cấu hình sau vào:
@@ -49,23 +49,23 @@ CONFIG_HAVE_KPROBES=y
 CONFIG_KPROBE_EVENTS=y
 ```
 
-Rồi build lại kernel của bạn, KernelSU sẽ hoạt động ok.
+Rồi build lại kernel của bạn, BK-KSU sẽ hoạt động ok.
 
 Trong trường hợp kprobe chưa được bật, bạn có thể thêm `CONFIG_MODULES=y` vào kernel config. (Nếu vẫn không có hiệu lực thì hãy sử dụng `make menuconfig` rồi tìm các thành phần khác mà kprobe phụ thuộc).
 
-Nhưng nếu bạn gặp bootloop khi tích hợp KernelSU thì có khả năng ***kprobe bị hỏng trong kernel***, bạn nên fix lỗi kprobe trong mã nguồn hoặc dùng cách 2.
+Nhưng nếu bạn gặp bootloop khi tích hợp BK-KSU thì có khả năng ***kprobe bị hỏng trong kernel***, bạn nên fix lỗi kprobe trong mã nguồn hoặc dùng cách 2.
 
 ## Chỉnh sửa mã nguồn kernel thủ công
 
 Nếu kprobe không thể hoạt động trong kernel của bạn (có thể là lỗi do upstream hoặc kernel dưới bản 4.8), thì bạn có thể thử cách này:
 
-Đầu tiên, thêm KernelSU vào mã nguồn kernel của bạn:
+Đầu tiên, thêm BK-KSU vào mã nguồn kernel của bạn:
 
 ```sh
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -
 ```
 
-Sau đó, thêm lệnh gọi KernelSU vào mã nguồn kernel, đây là một patch bạn có thể tham khảo:
+Sau đó, thêm lệnh gọi BK-KSU vào mã nguồn kernel, đây là một patch bạn có thể tham khảo:
 
 ```diff
 diff --git a/fs/exec.c b/fs/exec.c
@@ -178,7 +178,7 @@ Bạn sẽ tìm thấy bốn chức năng trong mã nguồn kernel:
 3. vfs_read, thường nằm trong `fs/read_write.c`
 4. vfs_statx, thường có trong `fs/stat.c`
 
-Cuối cùng, chỉnh sửa `KernelSU/kernel/ksu.c` và bỏ `enable_sucompat()` sau đó xây dựng lại kernel của bạn, KernelSU sẽ hoạt động tốt.
+Cuối cùng, chỉnh sửa `BK-KSU/kernel/ksu.c` và bỏ `enable_sucompat()` sau đó xây dựng lại kernel của bạn, BK-KSU sẽ hoạt động tốt.
 
 ### How to backport path_umount
 
@@ -229,4 +229,4 @@ You can make the "Umount modules" feature work on pre-GKI kernels by manually ba
   * This is important for filesystems which use unnamed block devices.
 ```
 
-Finally, build your kernel again, and KernelSU should work correctly.
+Finally, build your kernel again, and BK-KSU should work correctly.
