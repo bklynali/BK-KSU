@@ -1,33 +1,33 @@
-# 如何为非 GKI 内核集成 KernelSU {#introduction}
+# 如何为非 GKI 内核集成 BK-KSU {#introduction}
 
 ::: warning
 该文档仅供存档参考，不再维护更新。
-自 KernelSU v1.0 版本之后，我们放弃了对非 GKI 设备的官方支持。
+自 BK-KSU v1.0 版本之后，我们放弃了对非 GKI 设备的官方支持。
 :::
 
-KernelSU 可以被集成到非 GKI 内核中，现在它最低支持到内核 4.14 版本；理论上也可以支持更低的版本。
+BK-KSU 可以被集成到非 GKI 内核中，现在它最低支持到内核 4.14 版本；理论上也可以支持更低的版本。
 
-由于非 GKI 内核的碎片化极其严重，因此通常没有统一的方法来编译它，所以我们也无法为非 GKI 设备提供 boot 镜像。但你完全可以自己集成 KernelSU 然后编译内核使用。
+由于非 GKI 内核的碎片化极其严重，因此通常没有统一的方法来编译它，所以我们也无法为非 GKI 设备提供 boot 镜像。但你完全可以自己集成 BK-KSU 然后编译内核使用。
 
 首先，你必须有能力从你设备的内核源码编译出一个可以开机并且能正常使用的内核，如果内核不开源，这通常难以做到。
 
-如果你已经做好了上述准备，那有两个方法来集成 KernelSU 到你的内核之中。
+如果你已经做好了上述准备，那有两个方法来集成 BK-KSU 到你的内核之中。
 
 1. 借助 `kprobe` 自动集成
 2. 手动修改内核源码
 
 ## 使用 kprobe 集成 {#using-kprobes}
 
-KernelSU 使用 kprobe 机制来做内核的相关 hook，如果 *kprobe* 可以在你编译的内核中正常运行，那么推荐用这个方法来集成。
+BK-KSU 使用 kprobe 机制来做内核的相关 hook，如果 *kprobe* 可以在你编译的内核中正常运行，那么推荐用这个方法来集成。
 
-首先，把 KernelSU 添加到你的内核源码树，在内核的根目录执行以下命令：
+首先，把 BK-KSU 添加到你的内核源码树，在内核的根目录执行以下命令：
 
 ```sh
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.9.5
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -s v0.9.5
 ```
 
 :::info
-[KernelSU 1.0 及更高版本已经不再支持非 GKI 内核](https://github.com/tiann/KernelSU/issues/1705)，最后的支持版本为 `v0.9.5`，请注意使用正确的版本。
+[BK-KSU 1.0 及更高版本已经不再支持非 GKI 内核](https://github.com/bklynali/BK-KSU/issues/1705)，最后的支持版本为 `v0.9.5`，请注意使用正确的版本。
 :::
 
 然后，你需要检查你的内核是否开启了 *kprobe* 相关的配置，如果没有开启，需要添加以下配置：
@@ -42,31 +42,31 @@ CONFIG_KPROBE_EVENTS=y
 
 如果你发现 KPROBES 仍未生效，很有可能是因为它的依赖项`CONFIG_MODULES`没有被启用（如果还是未生效请键入`make menuconfig`搜索 KPROBES 的其它依赖并启用）
 
-如果你在集成 KernelSU 之后手机无法启动，那么很可能你的内核中 **kprobe 工作不正常**，你需要修复这个 bug 或者用第二种方法。
+如果你在集成 BK-KSU 之后手机无法启动，那么很可能你的内核中 **kprobe 工作不正常**，你需要修复这个 bug 或者用第二种方法。
 
 :::tip 如何验证是否是 kprobe 的问题？
 
-注释掉 `KernelSU/kernel/ksu.c` 中 `ksu_sucompat_init()` 和 `ksu_ksud_init()`，如果正常开机，那么就是 kprobe 的问题；或者你可以手动尝试使用 kprobe 功能，如果不正常，手机会直接重启。
+注释掉 `BK-KSU/kernel/ksu.c` 中 `ksu_sucompat_init()` 和 `ksu_ksud_init()`，如果正常开机，那么就是 kprobe 的问题；或者你可以手动尝试使用 kprobe 功能，如果不正常，手机会直接重启。
 :::
 
 ## 手动修改内核源码 {#modify-kernel-source-code}
 
 如果 kprobe 工作不正常（通常是上游的 bug 或者内核版本过低），那你可以尝试这种方法：
 
-首先，把 KernelSU 添加到你的内核源码树，在内核的根目录执行以下命令：
+首先，把 BK-KSU 添加到你的内核源码树，在内核的根目录执行以下命令：
 
 ```sh
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.9.5
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -s v0.9.5
 ```
 
-请注意，某些设备的 defconfig 文件可能在`arch/arm64/configs/设备代号_defconfig`或位于`arch/arm64/configs/vendor/设备代号_defconfig`。在您的 defconfig 文件中，将`CONFIG_KSU`设置为`y`以启用 KernelSU，或设置为`n`以禁用。比如在某个 defconfig 中：
+请注意，某些设备的 defconfig 文件可能在`arch/arm64/configs/设备代号_defconfig`或位于`arch/arm64/configs/vendor/设备代号_defconfig`。在您的 defconfig 文件中，将`CONFIG_KSU`设置为`y`以启用 BK-KSU，或设置为`n`以禁用。比如在某个 defconfig 中：
 `arch/arm64/configs/...` 
 ```sh
-+# KernelSU
++# BK-KSU
 +CONFIG_KSU=y
 ```
 
-然后，将 KernelSU 调用添加到内核源代码中，这里有几个补丁可以参考：
+然后，将 BK-KSU 调用添加到内核源代码中，这里有几个补丁可以参考：
 
 ::: code-group
 
@@ -257,7 +257,7 @@ index 2ff887661237..e758d7db7663 100644
 
 ### 安全模式 
 
-要使用 KernelSU 内置的安全模式，你还需要修改 `drivers/input/input.c` 中的 `input_handle_event` 方法：
+要使用 BK-KSU 内置的安全模式，你还需要修改 `drivers/input/input.c` 中的 `input_handle_event` 方法：
 
 :::tip
 强烈建议开启此功能，对用户救砖会非常有帮助！

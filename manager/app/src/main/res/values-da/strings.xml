@@ -4,7 +4,7 @@
     <string name="home_module_count">Moduler: %d</string>
     <string name="home_unsupported">Ikke understøttet</string>
     <string name="home_kernel">Kernel-version</string>
-    <string name="home_unsupported_reason">KernelSU understøtter nu kun GKI-kerner.</string>
+    <string name="home_unsupported_reason">BK-KSU understøtter nu kun GKI-kerner.</string>
     <string name="home_manager_version">Manager version</string>
     <string name="home_selinux_status">SELinux-status</string>
     <string name="selinux_status_disabled">Deaktiveret</string>
@@ -29,9 +29,9 @@
     <string name="send_log">Send logfiler</string>
     <string name="safe_mode">Sikker tilstand</string>
     <string name="reboot_to_apply">Genstart for at tage effekt</string>
-    <string name="home_learn_kernelsu">Lær KernelSU</string>
-    <string name="home_learn_kernelsu_url">https://kernelsu.org/guide/what-is-kernelsu.html</string>
-    <string name="home_click_to_learn_kernelsu">Lær hvordan man installerer KernelSU og moduler.</string>
+    <string name="home_learn_BK_KSU">Lær BK-KSU</string>
+    <string name="home_learn_BK_KSU_url">https://BK-KSU.org/guide/what-is-BK-KSU.html</string>
+    <string name="home_click_to_learn_BK_KSU">Lær hvordan man installerer BK-KSU og moduler.</string>
     <string name="about_source_code"><![CDATA[View source code at %1$s<br/>Join our %2$s channel]]></string>
     <string name="profile_default">Standard</string>
     <string name="profile_template">Skabelon</string>
@@ -43,7 +43,7 @@
     <string name="profile_selinux_context">SELinux-kontext</string>
     <string name="profile_umount_modules">Afmonteret moduler</string>
     <string name="settings_umount_modules_default">Afmontere moduler</string>
-    <string name="profile_umount_modules_summary">Hvis denne indstilling aktiveres, kan KernelSU gendanne alle ændrede filer af modulerne til denne app.</string>
+    <string name="profile_umount_modules_summary">Hvis denne indstilling aktiveres, kan BK-KSU gendanne alle ændrede filer af modulerne til denne app.</string>
     <string name="module_update">Opdatering</string>
     <string name="module_downloading">Downloader modulet: %s</string>
     <string name="new_version_available">Ny version %s er tilgængelig, klik for at opgradere!</string>
@@ -68,7 +68,7 @@
     <string name="show_system_apps">Vis system-apps</string>
     <string name="module_magisk_conflict">Moduler er utilgængelige på grund af en konflikt med Magisk!</string>
     <string name="home_support_title">Støt Os</string>
-    <string name="home_support_content">KernelSU er, og vil altid være, gratis og åben kildekode. Du kan dog vise os, at du holder af os, ved at give en donation.</string>
+    <string name="home_support_content">BK-KSU er, og vil altid være, gratis og åben kildekode. Du kan dog vise os, at du holder af os, ved at give en donation.</string>
     <string name="profile_custom">Brugerdefineret</string>
     <string name="profile_name">Profilnavn</string>
     <string name="profile_namespace_individual">Individuel</string>
@@ -77,7 +77,7 @@
     <string name="profile_selinux_domain">Domæne</string>
     <string name="profile_selinux_rules">Regler</string>
     <string name="restart_app">Genstart</string>
-    <string name="require_kernel_version">Den nuværende KernelSU-version %d er for lav til, at manageren fungerer korrekt. Opgrader venligst til version %d eller højere!</string>
+    <string name="require_kernel_version">Den nuværende BK-KSU-version %d er for lav til, at manageren fungerer korrekt. Opgrader venligst til version %d eller højere!</string>
     <string name="save_log">Gem logs</string>
     <string name="module_install_prompt_with_name">Følgende moduler installeres: %1$s</string>
     <string name="module_sort_action_first">Sorter (Handling først)</string>
@@ -125,9 +125,9 @@
     <string name="settings_uninstall_temporary">Afinstaller midlertidigt</string>
     <string name="settings_uninstall_permanent">Afinstaller permanent</string>
     <string name="settings_restore_stock_image">Gendan systemets standardbillede</string>
-    <string name="settings_uninstall_temporary_message">Afinstaller KernelSU midlertidigt, og gendan til den oprindelige tilstand efter næste genstart.</string>
-    <string name="settings_uninstall_permanent_message">Afinstallation af KernelSU (root og alle moduler) fuldstændigt og permanent.</string>
-    <string name="settings_restore_stock_image_message">Gendan det originale fabriksbillede (hvis en sikkerhedskopi eksisterer), hvilket normalt bruges før en OTA-opdatering; hvis du skal afinstallere KernelSU, skal du bruge \"Afinstaller permanent\".</string>
+    <string name="settings_uninstall_temporary_message">Afinstaller BK-KSU midlertidigt, og gendan til den oprindelige tilstand efter næste genstart.</string>
+    <string name="settings_uninstall_permanent_message">Afinstallation af BK-KSU (root og alle moduler) fuldstændigt og permanent.</string>
+    <string name="settings_restore_stock_image_message">Gendan det originale fabriksbillede (hvis en sikkerhedskopi eksisterer), hvilket normalt bruges før en OTA-opdatering; hvis du skal afinstallere BK-KSU, skal du bruge \"Afinstaller permanent\".</string>
     <string name="flashing">Flashing</string>
     <string name="flash_success">Flash-succes</string>
     <string name="flash_failed">Flash mislykkedes</string>
@@ -139,7 +139,7 @@
     <string name="install_upload_lkm_file">Brug lokal KLM-fil</string>
     <string name="install_only_support_ko_file">Kun .ko-filer understøttes</string>
     <string name="settings_disable_kernel_umount">Deaktiver kerne umount</string>
-    <string name="settings_disable_kernel_umount_summary">Deaktiver umount-adfærd på kerneniveau, der styres af KernelSU.</string>
+    <string name="settings_disable_kernel_umount_summary">Deaktiver umount-adfærd på kerneniveau, der styres af BK-KSU.</string>
     <string name="settings_enable_enhanced_security">Aktivér forbedret sikkerhed</string>
     <string name="settings_enable_enhanced_security_summary">Aktivér strengere sikkerhedspolitikker.</string>
     <string name="settings_mode_default">Standard</string>

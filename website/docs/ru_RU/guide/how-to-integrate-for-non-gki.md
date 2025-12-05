@@ -1,29 +1,29 @@
-# Как интегрировать KernelSU для не GKI ядер? {#introduction}
+# Как интегрировать BK-KSU для не GKI ядер? {#introduction}
 
 ::: warning
 Этот документ предназначен только для архивных ссылок и больше не обновляется.
-Начиная с KernelSU v1.0, мы отказались от официальной поддержки устройств не-GKI.
+Начиная с BK-KSU v1.0, мы отказались от официальной поддержки устройств не-GKI.
 :::
 
-KernelSU может быть интегрирован в ядра, отличные от GKI, и был перенесен на версии 4.14 и ниже.
+BK-KSU может быть интегрирован в ядра, отличные от GKI, и был перенесен на версии 4.14 и ниже.
 
-В связи с фрагментацией ядер, отличных от GKI, у нас нет единого способа их сборки, поэтому мы не можем предоставить загрузочные образы, отличные от GKI. Однако вы можете собрать ядро самостоятельно с помощью интегрированной программы KernelSU.
+В связи с фрагментацией ядер, отличных от GKI, у нас нет единого способа их сборки, поэтому мы не можем предоставить загрузочные образы, отличные от GKI. Однако вы можете собрать ядро самостоятельно с помощью интегрированной программы BK-KSU.
 
-Во-первых, вы должны уметь собирать загрузочное ядро из исходных текстов ядра. Если ядро не является открытым, то запустить KernelSU для вашего устройства будет затруднительно.
+Во-первых, вы должны уметь собирать загрузочное ядро из исходных текстов ядра. Если ядро не является открытым, то запустить BK-KSU для вашего устройства будет затруднительно.
 
-Если вы можете собрать загрузочное ядро, то существует два способа интеграции KernelSU в исходный код ядра:
+Если вы можете собрать загрузочное ядро, то существует два способа интеграции BK-KSU в исходный код ядра:
 
 1. Автоматически с помощью `kprobe`
 2. Вручную
 
 ## Интеграция с kprobe {#using-kprobes}
 
-KernelSU использует kprobe для выполнения хуков ядра, если *kprobe* хорошо работает в вашем ядре, то рекомендуется использовать именно этот способ.
+BK-KSU использует kprobe для выполнения хуков ядра, если *kprobe* хорошо работает в вашем ядре, то рекомендуется использовать именно этот способ.
 
-Сначала добавьте KernelSU в дерево исходных текстов ядра:
+Сначала добавьте BK-KSU в дерево исходных текстов ядра:
 
 ```sh
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -
 ```
 
 Затем необходимо проверить, включена ли функция *kprobe* в конфигурации ядра, если нет, то добавьте в нее эти настройки:
@@ -34,15 +34,15 @@ CONFIG_HAVE_KPROBES=y
 CONFIG_KPROBE_EVENTS=y
 ```
 
-И снова соберите ядро, KernelSU должен работать нормально.
+И снова соберите ядро, BK-KSU должен работать нормально.
 
 Если вы обнаружите, что KPROBES по-прежнему не активирован, попробуйте включить `CONFIG_MODULES`. (Если это все равно не даст результата, используйте `make menuconfig` для поиска других зависимостей KPROBES).
 
-Если же при интеграции KernelSU возникает зацикливание загрузки, то, возможно, в вашем ядре *kprobe неисправен*, следует исправить ошибку kprobe или воспользоваться вторым способом.
+Если же при интеграции BK-KSU возникает зацикливание загрузки, то, возможно, в вашем ядре *kprobe неисправен*, следует исправить ошибку kprobe или воспользоваться вторым способом.
 
 :::tip Как проверить, не сломан ли kprobe？
 
-закомментируйте `ksu_sucompat_init()` и `ksu_ksud_init()` в файле `KernelSU/kernel/ksu.c`, если устройство загружается нормально, то может быть нарушена работа kprobe.
+закомментируйте `ksu_sucompat_init()` и `ksu_ksud_init()` в файле `BK-KSU/kernel/ksu.c`, если устройство загружается нормально, то может быть нарушена работа kprobe.
 :::
 
 ## Ручная модификация исходного кода ядра {#modify-kernel-source-code}
@@ -54,22 +54,22 @@ CONFIG_KPROBE_EVENTS=y
 - Последний тэг(стабильный)
 
 ```sh
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -
 ```
 
 - Основная ветвь(разработка)
 
 ```sh
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -s main
 ```
 
 - Выбранный тэг(Например, версия v0.5.2)
 
 ```sh
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.5.2
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -s v0.5.2
 ```
 
-Затем добавьте вызовы KernelSU в исходный код ядра, вот патч, на который можно сослаться:
+Затем добавьте вызовы BK-KSU в исходный код ядра, вот патч, на который можно сослаться:
 
 ```diff
 diff --git a/fs/exec.c b/fs/exec.c
@@ -236,7 +236,7 @@ index 2ff887661237..e758d7db7663 100644
  		return -EINVAL;
 ```
 
-Чтобы включить встроенный в KernelSU безопасный режим, необходимо также изменить `input_handle_event` в файле `drivers/input/input.c`:
+Чтобы включить встроенный в BK-KSU безопасный режим, необходимо также изменить `input_handle_event` в файле `drivers/input/input.c`:
 
 :::tip
 Настоятельно рекомендуется включить эту функцию, она очень помогает предотвратить циклическую загрузку!
@@ -266,7 +266,7 @@ index 45306f9ef247..815091ebfca4 100755
  		add_input_randomness(type, code, value);
 ```
 
-Наконец, снова соберите ядро, KernelSU должен работать хорошо.
+Наконец, снова соберите ядро, BK-KSU должен работать хорошо.
 
 ### How to backport path_umount
 
@@ -317,4 +317,4 @@ You can make the "Umount modules" feature work on pre-GKI kernels by manually ba
   * This is important for filesystems which use unnamed block devices.
 ```
 
-Finally, build your kernel again, and KernelSU should work correctly.
+Finally, build your kernel again, and BK-KSU should work correctly.

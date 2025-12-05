@@ -1,6 +1,6 @@
 # モジュール設定
 
-KernelSU は、モジュールが永続的または一時的なキー値設定を保存できる組み込みの設定システムを提供します。設定は `/data/adb/ksu/module_configs/<module_id>/` にバイナリ形式で保存され、以下の特性があります:
+BK-KSU は、モジュールが永続的または一時的なキー値設定を保存できる組み込みの設定システムを提供します。設定は `/data/adb/ksu/module_configs/<module_id>/` にバイナリ形式で保存され、以下の特性があります:
 
 ## 設定タイプ
 
@@ -108,7 +108,7 @@ ksud module config set override.description "マネージャーに表示され�
 
 ### 管理対象機能の宣言
 
-モジュールは `manage.<feature>` 設定パターンを使用して、管理する KernelSU 機能を宣言できます。サポートされている機能は、KernelSU 内部の `FeatureId` 列挙型に対応しています:
+モジュールは `manage.<feature>` 設定パターンを使用して、管理する BK-KSU 機能を宣言できます。サポートされている機能は、BK-KSU 内部の `FeatureId` 列挙型に対応しています:
 
 **サポートされている機能:**
 - `su_compat` - SU 互換モード
@@ -132,10 +132,10 @@ ksud module config delete manage.su_compat
 - 機能の管理を停止するには、設定キーを完全に削除します
 
 管理対象機能は、モジュールリスト API を通じて `managedFeatures` フィールド(カンマ区切りの文字列)として公開されます。これにより以下が可能になります:
-- KernelSU マネージャーがどのモジュールがどの KernelSU 機能を管理しているかを検出
+- BK-KSU マネージャーがどのモジュールがどの BK-KSU 機能を管理しているかを検出
 - 複数のモジュールが同じ機能を管理しようとした際の競合を防止
-- モジュールとコア KernelSU 機能間のより良い調整
+- モジュールとコア BK-KSU 機能間のより良い調整
 
 ::: warning サポートされている機能のみ
-上記にリストされた事前定義された機能名(`su_compat`、`kernel_umount`、`enhanced_security`)のみを使用してください。これらは実際の KernelSU 内部機能に対応しています。他の機能名を使用してもエラーにはなりませんが、機能的な目的はありません。
+上記にリストされた事前定義された機能名(`su_compat`、`kernel_umount`、`enhanced_security`)のみを使用してください。これらは実際の BK-KSU 内部機能に対応しています。他の機能名を使用してもエラーにはなりませんが、機能的な目的はありません。
 :::

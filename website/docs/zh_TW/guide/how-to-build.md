@@ -1,8 +1,8 @@
-# 如何建置 KernelSU? {#how-to-build-kernelsu}
+# 如何建置 BK-KSU? {#how-to-build-BK-KSU}
 
 ::: warning
 該文件僅供存檔參考，不再維護更新。
-自 KernelSU v3.0 版本之後，為了更快的迭代和建置速度，我們放棄了對 GKI 映像模式的官方支援。推薦使用 `Ylarod/ddk` 建置 LKM 使用。
+自 BK-KSU v3.0 版本之後，為了更快的迭代和建置速度，我們放棄了對 GKI 映像模式的官方支援。推薦使用 `Ylarod/ddk` 建置 LKM 使用。
 :::
 
 首先,您需要閱讀核心建置的 Android 官方文件：
@@ -11,7 +11,7 @@
 2. [標準核心映像 (GKI) 發行組建](https://source.android.com/docs/core/architecture/kernel/gki-release-builds)
 
 ::: warning 警告
-此文件適用於 GKI 裝置，如果您是舊版核心，請參閱[如何為非 GKI 裝置整合 KernelSU](how-to-integrate-for-non-gki)
+此文件適用於 GKI 裝置，如果您是舊版核心，請參閱[如何為非 GKI 裝置整合 BK-KSU](how-to-integrate-for-non-gki)
 :::
 
 ## 建置核心 {#build-kernel}
@@ -53,24 +53,24 @@ rm common/android/abi_gki_protected_exports_*
 ```
 :::
 
-## 與 KernelSU 一起建置核心 {#build-kernel-with-kernelsu}
+## 與 BK-KSU 一起建置核心 {#build-kernel-with-BK-KSU}
 
-如果您可以成功建置核心，那麼建置 KernelSU 就會非常輕鬆，依自己的需求在核心原始碼根目錄中執行以下任一命令：
+如果您可以成功建置核心，那麼建置 BK-KSU 就會非常輕鬆，依自己的需求在核心原始碼根目錄中執行以下任一命令：
 
 ::: code-group
 
 ```sh[最新 tag (穩定版本)]
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -
 ```
 
 ```sh[main 分支 (開發版本)]
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -s main
 ```
 
 ```sh[選取 tag (例如 v0.5.2)]
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.5.2
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -s v0.5.2
 ```
 
 :::
 
-然後重新建置核心，您將會得到一個帶有 KernelSU 的核心映像！
+然後重新建置核心，您將會得到一個帶有 BK-KSU 的核心映像！

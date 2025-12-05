@@ -1,8 +1,8 @@
-# Bagaimana caranya untuk build KernelSU?
+# Bagaimana caranya untuk build BK-KSU?
 
 ::: warning
 Dokumen ini hanya untuk referensi arsip dan tidak lagi diperbarui.
-Sejak KernelSU v3.0, kami telah menghentikan dukungan resmi untuk mode gambar GKI demi iterasi dan kecepatan build yang lebih cepat. Disarankan untuk menggunakan `Ylarod/ddk` untuk membangun LKM.
+Sejak BK-KSU v3.0, kami telah menghentikan dukungan resmi untuk mode gambar GKI demi iterasi dan kecepatan build yang lebih cepat. Disarankan untuk menggunakan `Ylarod/ddk` untuk membangun LKM.
 :::
 
 Pertama, Anda harus membaca dokumen resmi Android untuk membangun kernel:
@@ -10,7 +10,7 @@ Pertama, Anda harus membaca dokumen resmi Android untuk membangun kernel:
 1. [Building Kernels](https://source.android.com/docs/setup/build/building-kernels)
 2. [GKI Release Builds](https://source.android.com/docs/core/architecture/kernel/gki-release-builds)
 
-> Halaman ini untuk perangkat GKI, jika Anda menggunakan kernel lama, silakan lihat [cara mengintegrasikan KernelSU untuk kernel lama](how-to-integrate-for-non-gki)
+> Halaman ini untuk perangkat GKI, jika Anda menggunakan kernel lama, silakan lihat [cara mengintegrasikan BK-KSU untuk kernel lama](how-to-integrate-for-non-gki)
 
 ## Build Kernel
 
@@ -43,26 +43,26 @@ Mulai dari Android 13, kernel dibuild oleh `bazel`:
 tools/bazel build --config=fast //common:kernel_aarch64_dist
 ```
 
-## Build Kernel dengan KernelSU
+## Build Kernel dengan BK-KSU
 
-Jika Anda dapat build kernel dengan sukses, maka build KernelSU sangatlah mudah, jalankan perintah ini di root dir kernel source:
+Jika Anda dapat build kernel dengan sukses, maka build BK-KSU sangatlah mudah, jalankan perintah ini di root dir kernel source:
 
 - Latest tag(stable)
 
 ```sh
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -
 ```
 
 - main branch(dev)
 
 ```sh
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -s main
 ```
 
 - Select tag(Such as v0.5.2)
 
 ```sh
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.5.2
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -s v0.5.2
 ```
 
-Dan kemudian build ulang kernel dan Anda akan mendapatkan image kernel dengan KernelSU!
+Dan kemudian build ulang kernel dan Anda akan mendapatkan image kernel dengan BK-KSU!

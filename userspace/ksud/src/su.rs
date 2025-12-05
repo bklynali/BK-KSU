@@ -39,7 +39,7 @@ pub fn grant_root(global_mnt: bool) -> Result<()> {
 }
 
 fn print_usage(program: &str, opts: &Options) {
-    let brief = format!("KernelSU\n\nUsage: {program} [options] [-] [user [argument...]]");
+    let brief = format!("BK-KSU\n\nUsage: {program} [options] [-] [user [argument...]]");
     print!("{}", opts.usage(&brief));
 }
 
@@ -163,7 +163,7 @@ pub fn root_shell() -> Result<()> {
     }
 
     if matches.opt_present("v") {
-        println!("{}:KernelSU", defs::VERSION_NAME);
+        println!("{}:BK-KSU", defs::VERSION_NAME);
         return Ok(());
     }
 

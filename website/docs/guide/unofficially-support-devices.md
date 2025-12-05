@@ -2,15 +2,15 @@
 
 ::: warning
 This document is for archival reference only and is no longer maintained.
-Since KernelSU v1.0, we have dropped official support for non-GKI devices.
+Since BK-KSU v1.0, we have dropped official support for non-GKI devices.
 :::
 
 ::: warning
-In this page, there are kernels for non-GKI devices supporting KernelSU maintained by other developers.
+In this page, there are kernels for non-GKI devices supporting BK-KSU maintained by other developers.
 :::
 
 ::: warning
-This page is intended only to help you find the source code corresponding to your device. It **DOES NOT** mean that the source code has been reviewed by KernelSU developers. You should use it at your own risk.
+This page is intended only to help you find the source code corresponding to your device. It **DOES NOT** mean that the source code has been reviewed by BK-KSU developers. You should use it at your own risk.
 :::
 
 <script setup>

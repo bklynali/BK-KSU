@@ -2,10 +2,10 @@
 
 ## Verifique se o seu dispositivo é compatível
 
-Baixe o gerenciador do KernelSU em [GitHub Releases](https://github.com/tiann/KernelSU/releases) e instale-o no seu dispositivo:
+Baixe o gerenciador do BK-KSU em [GitHub Releases](https://github.com/bklynali/BK-KSU/releases) e instale-o no seu dispositivo:
 
-- Se o app mostrar `Sem suporte`, significa que **você precisará compilar o kernel por conta própria**. O KernelSU não fornecerá e nunca fornecerá um arquivo boot.img para você instalar.
-- Se o app mostrar `Não instalado`, então seu dispositivo é oficialmente suportado pelo KernelSU.
+- Se o app mostrar `Sem suporte`, significa que **você precisará compilar o kernel por conta própria**. O BK-KSU não fornecerá e nunca fornecerá um arquivo boot.img para você instalar.
+- Se o app mostrar `Não instalado`, então seu dispositivo é oficialmente suportado pelo BK-KSU.
 
 ::: info INFORMAÇÕES
 Para dispositivos que mostram `Sem suporte`, você pode conferir a lista de [Dispositivos com suporte não oficial](unofficially-support-devices.md). Você mesmo pode compilar o kernel.
@@ -57,16 +57,16 @@ Se você descobrir que a versão do seu kernel é `android12-5.10.101`, mas a ve
 
 ## Introdução
 
-Desde a versão [0.9.0](https://github.com/tiann/KernelSU/releases/tag/v0.9.0), o KernelSU suporta dois modos de execução em dispositivos GKI:
+Desde a versão [0.9.0](https://github.com/bklynali/BK-KSU/releases/tag/v0.9.0), o BK-KSU suporta dois modos de execução em dispositivos GKI:
 
-1. `GKI`: Substitue o kernel original do dispositivo pelo **Generic Kernel Image** (GKI) fornecido pelo KernelSU.
+1. `GKI`: Substitue o kernel original do dispositivo pelo **Generic Kernel Image** (GKI) fornecido pelo BK-KSU.
 2. `LKM`: Carregue o **Loadable Kernel Module** (LKM) no kernel do dispositivo sem substituir o kernel original.
 
 Esses dois modos são adequados para diferentes cenários, e você pode escolher o mais adequado conforme suas necessidades.
 
 ### Modo GKI {#gki-mode}
 
-No modo GKI, o kernel original do dispositivo será substituído pela imagem genérica do kernel fornecida pelo KernelSU. As vantagens do modo GKI são:
+No modo GKI, o kernel original do dispositivo será substituído pela imagem genérica do kernel fornecida pelo BK-KSU. As vantagens do modo GKI são:
 
 1. Forte universalidade, adequada para a maioria dos dispositivos. Por exemplo, a Samsung ativou dispositivos KNOX, e o modo LKM não pode funcionar. Existem também alguns dispositivos modificados de nicho que só podem usar o modo GKI.
 2. Pode ser usado sem depender de firmware oficial, e não há necessidade de esperar por atualizações oficiais de firmware, desde que o KMI seja consistente, ele pode ser usado.
@@ -75,8 +75,8 @@ No modo GKI, o kernel original do dispositivo será substituído pela imagem gen
 
 No modo LKM, o kernel original do dispositivo não será substituído, mas o módulo do kernel carregável será carregado no kernel do dispositivo. As vantagens do modo LKM são:
 
-1. Não substituirá o kernel original do dispositivo. Se você tiver os requisitos especiais para o kernel original do dispositivo ou quiser usar o KernelSU enquanto usa um kernel de terceiros, poderá usar o modo LKM.
-2. É mais conveniente atualizar o OTA. Ao atualizar o KernelSU, você pode instalá-lo diretamente no gerenciador sem flashar manualmente. Após o sistema OTA, você pode instalá-lo diretamente no segundo slot sem flashar manualmente.
+1. Não substituirá o kernel original do dispositivo. Se você tiver os requisitos especiais para o kernel original do dispositivo ou quiser usar o BK-KSU enquanto usa um kernel de terceiros, poderá usar o modo LKM.
+2. É mais conveniente atualizar o OTA. Ao atualizar o BK-KSU, você pode instalá-lo diretamente no gerenciador sem flashar manualmente. Após o sistema OTA, você pode instalá-lo diretamente no segundo slot sem flashar manualmente.
 3. Adequado para alguns cenários especiais. Por exemplo, o LKM também pode ser carregado com privilégios root temporários. Como não é necessário substituir a partição boot, ele não acionará o AVB e não causará o bloqueio do dispositivo.
 4. O LKM pode ser desinstalado temporariamente. Se você deseja desativar temporariamente o acesso root, você pode desinstalar o LKM. Este processo não requer o flash de partições, nem mesmo a reinicialização do dispositivo. Se quiser ativar o root novamente, basta reiniciar o dispositivo.
 
@@ -94,7 +94,7 @@ Se o seu aparelho for um celular, recomendamos que você priorize o modo LKM. Se
 
 Para usar o modo LKM, você precisa obter o firmware oficial e corrigi-lo com base no firmware oficial. Se você usar um kernel de terceiros, poderá usar o `boot.img` do kernel de terceiros como firmware oficial.
 
-Existem muitas maneiras de obter o firmware oficial. Se o seu dispositivo suportar `fastboot boot`, então recomendamos **o método mais simples e indicado**, que consiste em usar `fastboot boot` para inicializar temporariamente o kernel GKI fornecido pelo KernelSU, depois instalar o gerenciador e, finalmente, instalá-lo diretamente pelo gerenciador. Este método não exige o download manual do firmware oficial nem a extração manual do boot.
+Existem muitas maneiras de obter o firmware oficial. Se o seu dispositivo suportar `fastboot boot`, então recomendamos **o método mais simples e indicado**, que consiste em usar `fastboot boot` para inicializar temporariamente o kernel GKI fornecido pelo BK-KSU, depois instalar o gerenciador e, finalmente, instalá-lo diretamente pelo gerenciador. Este método não exige o download manual do firmware oficial nem a extração manual do boot.
 
 Se o seu dispositivo não suportar `fastboot boot`, pode ser necessário baixar manualmente o pacote de firmware oficial e extrair o boot dele.
 
@@ -105,20 +105,20 @@ Ao contrário do modo GKI, o modo LKM modifica o `ramdisk`. Portanto, em disposi
 Abra o gerenciador, clique no ícone de instalação no canto superior direito e diversas opções aparecerão:
 
 1. Selecione um arquivo. Se o seu dispositivo não tiver privilégios root, você pode escolher esta opção e, em seguida, selecionar o seu firmware oficial. O gerenciador corrigirá automaticamente o firmware. Após isso, basta fazer o flash deste arquivo corrigido para obter privilégios root permanentemente.
-2. Instalação direta. Se o seu dispositivo já estiver rooteado, você pode escolher esta opção. O gerenciador obterá automaticamente as informações do seu dispositivo, corrigirá o firmware oficial e realizará o flash automaticamente. Você também pode usar o comando `fastboot boot` junto com o kernel GKI do KernelSU para obter root temporário e instalar o gerenciador, e então usar esta opção. Esta também é a principal forma de atualizar o KernelSU.
+2. Instalação direta. Se o seu dispositivo já estiver rooteado, você pode escolher esta opção. O gerenciador obterá automaticamente as informações do seu dispositivo, corrigirá o firmware oficial e realizará o flash automaticamente. Você também pode usar o comando `fastboot boot` junto com o kernel GKI do BK-KSU para obter root temporário e instalar o gerenciador, e então usar esta opção. Esta também é a principal forma de atualizar o BK-KSU.
 3. Instalar no slot inativo. Se o seu dispositivo suportar partição A/B, você pode escolher esta opção. O gerenciador corrigirá automaticamente o firmware oficial e o instalará em outra partição. Esse método é adequado para dispositivos após o OTA, você pode instalá-lo diretamente em outra partição após o OTA e, em seguida, reiniciar o dispositivo.
 
 ### Use a linha de comando
 
-Se não quiser usar o gerenciador, você também pode usar a linha de comando para instalar o LKM. A ferramenta `ksud` fornecida pelo KernelSU pode ajudá-lo a corrigir rapidamente o firmware oficial e depois fazer o flash.
+Se não quiser usar o gerenciador, você também pode usar a linha de comando para instalar o LKM. A ferramenta `ksud` fornecida pelo BK-KSU pode ajudá-lo a corrigir rapidamente o firmware oficial e depois fazer o flash.
 
-Esta ferramenta oferece suporte ao macOS, Linux e Windows. Você pode baixar a versão correspondente em [GitHub Release](https://github.com/tiann/KernelSU/releases).
+Esta ferramenta oferece suporte ao macOS, Linux e Windows. Você pode baixar a versão correspondente em [GitHub Release](https://github.com/bklynali/BK-KSU/releases).
 
 Uso: `ksud boot-patch` você pode verificar a ajuda da linha de comando para opções específicas.
 
 ```sh
 oriole:/ # ksud boot-patch -h
-Patch boot ou imagens init_boot para aplicar o KernelSU
+Patch boot ou imagens init_boot para aplicar o BK-KSU
 
 Uso: ksud boot-patch [OPTIONS]
 
@@ -150,20 +150,20 @@ ksud boot-patch -b <boot.img> --kmi android13-5.10
 
 Existem vários métodos de instalação para o modo GKI, cada um adequado para um cenário diferente, portanto escolha conforme necessário.
 
-1. Instalar com fastboot usando o boot.img fornecido pelo KernelSU.
+1. Instalar com fastboot usando o boot.img fornecido pelo BK-KSU.
 2. Instalar com um app kernel flash, como o [Kernel Flasher](https://github.com/capntrips/KernelFlasher/releases).
 3. Corrigir manualmente o boot.img e instalá-lo.
 4. Instalar com Recovery personalizado (por exemplo, TWRP).
 
-## Instalar com o boot.img fornecido pelo KernelSU
+## Instalar com o boot.img fornecido pelo BK-KSU
 
-Se o `boot.img` do seu dispositivo usa um formato de compactação comumente usado, você pode usar as imagens GKI fornecidas pelo KernelSU para atualizá-lo diretamente. Não requer TWRP ou autocorreção da imagem.
+Se o `boot.img` do seu dispositivo usa um formato de compactação comumente usado, você pode usar as imagens GKI fornecidas pelo BK-KSU para atualizá-lo diretamente. Não requer TWRP ou autocorreção da imagem.
 
 ### Encontre o boot.img adequado
 
-O KernelSU fornece um boot.img genérico para dispositivos GKI, e você deve fazer o flash do boot.img na partição boot do dispositivo.
+O BK-KSU fornece um boot.img genérico para dispositivos GKI, e você deve fazer o flash do boot.img na partição boot do dispositivo.
 
-Você pode baixar o boot.img em [GitHub Release](https://github.com/tiann/KernelSU/releases). Por favor, observe que você deve usar a versão correta do boot.img. Se você não sabe qual arquivo baixar, leia atentamente a descrição do [KMI](#kmi) e [Nível do patch de segurança](#security-patch-level) neste documento.
+Você pode baixar o boot.img em [GitHub Release](https://github.com/bklynali/BK-KSU/releases). Por favor, observe que você deve usar a versão correta do boot.img. Se você não sabe qual arquivo baixar, leia atentamente a descrição do [KMI](#kmi) e [Nível do patch de segurança](#security-patch-level) neste documento.
 
 Normalmente, existem três arquivos de inicialização em formatos diferentes para o mesmo KMI e nível de patch de segurança. Eles são idênticos, exceto pelo formato de compactação do kernel. Por favor, verifique o formato de compactação do kernel de seu boot.img original. Você deve usar o formato correto, como `lz4` ou `gz`. Se você usar um formato de compactação incorreto, poderá encontrar bootloop após o flash do boot.img.
 
@@ -175,7 +175,7 @@ Normalmente, existem três arquivos de inicialização em formatos diferentes pa
 
 ### Flash o boot.img para o dispositivo
 
-Use o `adb` para conectar seu dispositivo, execute `adb reboot bootloader` para entrar no modo fastboot e use este comando para flashar o KernelSU:
+Use o `adb` para conectar seu dispositivo, execute `adb reboot bootloader` para entrar no modo fastboot e use este comando para flashar o BK-KSU:
 
 ```sh
 fastboot flash boot boot.img
@@ -202,8 +202,8 @@ Etapa:
 
 Dessa forma, é necessário que o app Kernel Flasher tenha privilégios root. Você pode usar os seguintes métodos para conseguir isso:
 
-1. Seu dispositivo está rooteado. Por exemplo, você instalou o KernelSU e deseja atualizar para a versão mais recente ou fez o root por meio de outros métodos (como Magisk).
-2. Se o seu dispositivo não estiver rooteado, mas suportar o método de inicialização temporária como `fastboot boot boot.img`, você pode usar a imagem GKI fornecida pelo KernelSU para inicializar temporariamente o seu dispositivo, obter privilégios root temporário e, em seguida, usar o Kernel Flasher para obter privilégios root permanente.
+1. Seu dispositivo está rooteado. Por exemplo, você instalou o BK-KSU e deseja atualizar para a versão mais recente ou fez o root por meio de outros métodos (como Magisk).
+2. Se o seu dispositivo não estiver rooteado, mas suportar o método de inicialização temporária como `fastboot boot boot.img`, você pode usar a imagem GKI fornecida pelo BK-KSU para inicializar temporariamente o seu dispositivo, obter privilégios root temporário e, em seguida, usar o Kernel Flasher para obter privilégios root permanente.
 
 Aqui estão alguns apps que podem ser usados para realizar o flash do kernel:
 
@@ -211,11 +211,11 @@ Aqui estão alguns apps que podem ser usados para realizar o flash do kernel:
 2. [Franco Kernel Manager](https://play.google.com/store/apps/details?id=com.franco.kernel)
 3. [Ex Kernel Manager](https://play.google.com/store/apps/details?id=flar2.exkernelmanager)
 
-Observação: Este método é mais conveniente ao atualizar o KernelSU e pode ser feito sem um computador (faça um backup primeiro).
+Observação: Este método é mais conveniente ao atualizar o BK-KSU e pode ser feito sem um computador (faça um backup primeiro).
 
 ## Corrigir boot.img manualmente {#patch-boot-image}
 
-Para alguns dispositivos, o formato boot.img não é tão comum como `lz4`, `gz` e `uncompressed`. Um exemplo típico é o Pixel, cujo boot.img é compactado no formato `lz4_legacy`, enquanto o ramdisk pode estar em `gz` ou também comprimido em `lz4_legacy`. Atualmente, se você flashar diretamente o boot.img fornecido pelo KernelSU, o dispositivo pode não conseguir inicializar. Nesse caso, é necessário corrigir manualmente o boot.img para conseguir isso.
+Para alguns dispositivos, o formato boot.img não é tão comum como `lz4`, `gz` e `uncompressed`. Um exemplo típico é o Pixel, cujo boot.img é compactado no formato `lz4_legacy`, enquanto o ramdisk pode estar em `gz` ou também comprimido em `lz4_legacy`. Atualmente, se você flashar diretamente o boot.img fornecido pelo BK-KSU, o dispositivo pode não conseguir inicializar. Nesse caso, é necessário corrigir manualmente o boot.img para conseguir isso.
 
 É sempre recomendado usar `magiskboot` para corrigir imagens, existem duas maneiras:
 
@@ -231,8 +231,8 @@ Android-Image-Kitchen não é recomendado por enquanto, porque ele não lida cor
 ### Preparação
 
 1. Obtenha o boot.img padrão do dispositivo. Você pode obtê-lo com os fabricantes do seu dispositivo. Talvez você precise do [payload-dumper-go](https://github.com/ssut/payload-dumper-go).
-2. Baixe o arquivo ZIP AnyKernel3 fornecido pelo KernelSU que corresponde à versão KMI do seu dispositivo. Você pode consultar [Instalar com Recovery personalizado](#install-with-custom-recovery).
-3. Descompacte o pacote AnyKernel3 e obtenha o arquivo `Image`, que é o arquivo do kernel do KernelSU.
+2. Baixe o arquivo ZIP AnyKernel3 fornecido pelo BK-KSU que corresponde à versão KMI do seu dispositivo. Você pode consultar [Instalar com Recovery personalizado](#install-with-custom-recovery).
+3. Descompacte o pacote AnyKernel3 e obtenha o arquivo `Image`, que é o arquivo do kernel do BK-KSU.
 
 ### Usando o magiskboot em dispositivos Android {#using-magiskboot-on-Android-devices}
 
@@ -264,7 +264,7 @@ Pré-requisito: Seu dispositivo deve ter um Recovery personalizado, como TWRP. S
 
 Etapas:
 
-1. Em [GitHub Releases](https://github.com/tiann/KernelSU/releases), baixe o pacote ZIP começando com AnyKernel3 que corresponde à versão do seu dispositivo. Por exemplo, a versão do kernel do dispositivo é `android12-5.10.66`, então você deve baixar o arquivo `AnyKernel3-android12-5.10.66_yyyy-MM.zip` (onde `yyyy` é o ano e `MM` é o mês).
+1. Em [GitHub Releases](https://github.com/bklynali/BK-KSU/releases), baixe o pacote ZIP começando com AnyKernel3 que corresponde à versão do seu dispositivo. Por exemplo, a versão do kernel do dispositivo é `android12-5.10.66`, então você deve baixar o arquivo `AnyKernel3-android12-5.10.66_yyyy-MM.zip` (onde `yyyy` é o ano e `MM` é o mês).
 2. Reinicie o dispositivo no TWRP.
 3. Use o ADB para colocar AnyKernel3-*.zip no dispositivo em `/sdcard` e escolha instalá-lo na interface do TWRP, ou você pode diretamente executar `adb sideload AnyKernel-*.zip` para instalar.
 
@@ -272,17 +272,17 @@ Observação: Este método é adequado para qualquer instalação (não limitado
 
 ## Outros métodos
 
-Na verdade, todos esses métodos de instalação têm apenas uma ideia principal, que é **substituir o kernel original pelo fornecido pelo KernelSU**, desde que isso possa ser alcançado, ele pode ser instalado. A seguir estão outros métodos possíveis:
+Na verdade, todos esses métodos de instalação têm apenas uma ideia principal, que é **substituir o kernel original pelo fornecido pelo BK-KSU**, desde que isso possa ser alcançado, ele pode ser instalado. A seguir estão outros métodos possíveis:
 
-1. Primeiro instale o Magisk, obtenha privilégios root através do Magisk e então use o Kernel Flasher para fazer o flash no ZIP AnyKernel3 do KernelSU.
-2. Use algum kit de ferramentas de flash em PC para flashar no kernel fornecido pelo KernelSU.
+1. Primeiro instale o Magisk, obtenha privilégios root através do Magisk e então use o Kernel Flasher para fazer o flash no ZIP AnyKernel3 do BK-KSU.
+2. Use algum kit de ferramentas de flash em PC para flashar no kernel fornecido pelo BK-KSU.
 
 No entanto, se não funcionar, por favor, tente o método `magiskboot`.
 
 ## Pós-instalação: Suporte a Módulos {#post-installation}
 
 ::: warning METAMODULE PARA MODIFICAÇÃO DE ARQUIVOS DO SISTEMA
-Se você deseja usar módulos que modificam arquivos `/system`, você precisa instalar um **metamodule** após instalar o KernelSU. Módulos que usam apenas scripts, sepolicy ou system.prop funcionam sem um metamodule.
+Se você deseja usar módulos que modificam arquivos `/system`, você precisa instalar um **metamodule** após instalar o BK-KSU. Módulos que usam apenas scripts, sepolicy ou system.prop funcionam sem um metamodule.
 :::
 
 **Para suporte à modificação de `/system`**, consulte o [Guia de Metamodule](metamodule.md) para:

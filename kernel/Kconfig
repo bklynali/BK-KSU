@@ -1,7 +1,7 @@
-menu "KernelSU"
+menu "BK-KSU"
 
 config KSU
-	tristate "KernelSU function support"
+	tristate "BK-KSU function support"
 	depends on KPROBES
 	default y
 	help
@@ -11,10 +11,10 @@ config KSU
 	  module will be called kernelsu.
 
 config KSU_DEBUG
-	bool "KernelSU debug mode"
+	bool "BK-KSU debug mode"
 	depends on KSU
 	default n
 	help
-	  Enable KernelSU debug mode.
+	  Enable BK-KSU debug mode.
 
 endmenu

@@ -101,7 +101,7 @@ pub fn init() -> Result<()> {
     // Setup kernel log first
     setup_kmsg();
 
-    log::info!("Hello, KernelSU!");
+    log::info!("Hello, BK-KSU!");
 
     // mount /proc and /sys to access kernel interface
     let _dontdrop = prepare_mount();
@@ -110,7 +110,7 @@ pub fn init() -> Result<()> {
     unlimit_kmsg();
 
     if has_kernelsu() {
-        log::info!("KernelSU may be already loaded in kernel, skip!");
+        log::info!("BK-KSU may be already loaded in kernel, skip!");
     } else {
         log::info!("Loading kernelsu.ko..");
         if let Err(e) = load_module("/kernelsu.ko") {
@@ -145,7 +145,7 @@ fn has_kernelsu_legacy() -> bool {
         );
     }
 
-    log::info!("KernelSU version: {}", version);
+    log::info!("BK-KSU version: {}", version);
 
     version != 0
 }
@@ -196,7 +196,7 @@ fn has_kernelsu_v2() -> bool {
         0
     };
 
-    log::info!("KernelSU version: {}", version);
+    log::info!("BK-KSU version: {}", version);
 
     version != 0
 }

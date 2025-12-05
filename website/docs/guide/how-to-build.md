@@ -2,7 +2,7 @@
 
 ::: warning
 This document is for archival reference only and is no longer maintained.
-Since KernelSU v3.0, we have dropped official support for GKI image mode for faster iteration and build speed. It is recommended to use `Ylarod/ddk` to build LKM.
+Since BK-KSU v3.0, we have dropped official support for GKI image mode for faster iteration and build speed. It is recommended to use `Ylarod/ddk` to build LKM.
 :::
 
 First, you should read the official Android documentation for building kernels:
@@ -53,24 +53,24 @@ rm common/android/abi_gki_protected_exports_*
 ```
 :::
 
-## Build kernel with KernelSU
+## Build kernel with BK-KSU
 
-If you can successfully build the kernel, adding support for KernelSU will be relatively easy. In the root of kernel source directory, run any of the options listed below:
+If you can successfully build the kernel, adding support for BK-KSU will be relatively easy. In the root of kernel source directory, run any of the options listed below:
 
 ::: code-group
 
 ```sh[Latest tag (stable)]
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -
 ```
 
 ```sh[main branch (dev)]
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -s main
 ```
 
 ```sh[Select tag (such as v0.5.2)]
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.5.2
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -s v0.5.2
 ```
 
 :::
 
-Then, rebuild the kernel and you will get a kernel image with KernelSU!
+Then, rebuild the kernel and you will get a kernel image with BK-KSU!

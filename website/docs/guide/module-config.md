@@ -1,6 +1,6 @@
 # Module Configuration
 
-KernelSU provides a built-in configuration system that allows modules to store persistent or temporary key-value settings. Configurations are stored in a binary format at `/data/adb/ksu/module_configs/<module_id>/` with the following characteristics:
+BK-KSU provides a built-in configuration system that allows modules to store persistent or temporary key-value settings. Configurations are stored in a binary format at `/data/adb/ksu/module_configs/<module_id>/` with the following characteristics:
 
 ## Configuration Types
 
@@ -108,7 +108,7 @@ When the module list is retrieved, if the `override.description` config exists, 
 
 ### Declaring Managed Features
 
-Modules can declare which KernelSU features they manage using the `manage.<feature>` configuration pattern. The supported features correspond to KernelSU's internal `FeatureId` enum:
+Modules can declare which BK-KSU features they manage using the `manage.<feature>` configuration pattern. The supported features correspond to BK-KSU's internal `FeatureId` enum:
 
 **Supported Features:**
 - `su_compat` - SU compatibility mode
@@ -132,10 +132,10 @@ ksud module config delete manage.su_compat
 - To stop managing a feature, delete the configuration key entirely
 
 Managed features are exposed through the module list API as a `managedFeatures` field (comma-separated string). This allows:
-- KernelSU manager to detect which modules manage which KernelSU features
+- BK-KSU Manager to detect which modules manage which BK-KSU features
 - Prevention of conflicts when multiple modules try to manage the same feature
-- Better coordination between modules and core KernelSU functionality
+- Better coordination between modules and core BK-KSU functionality
 
 ::: warning SUPPORTED FEATURES ONLY
-Only use the predefined feature names listed above (`su_compat`, `kernel_umount`, `enhanced_security`). These correspond to actual KernelSU internal features. Using other feature names will not cause errors but serves no functional purpose.
+Only use the predefined feature names listed above (`su_compat`, `kernel_umount`, `enhanced_security`). These correspond to actual BK-KSU internal features. Using other feature names will not cause errors but serves no functional purpose.
 :::

@@ -18,16 +18,16 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/tiann/KernelSU' }
+      { icon: 'github', link: 'https://github.com/bklynali/BK-KSU' }
     ],
 
     footer: {
         message: '係依據 GPL3 授權發行。',
-        copyright: 'Copyright © 2022-目前 KernelSU 開發人員。'
+        copyright: 'Copyright © 2022-目前 BK-KSU 開發人員。'
     },
 
     editLink: {
-        pattern: 'https://github.com/tiann/KernelSU/edit/main/website/docs/:path',
+        pattern: 'https://github.com/bklynali/BK-KSU/edit/main/website/docs/:path',
         text: '在 GitHub 中編輯本頁面'
     }
   }
@@ -35,7 +35,7 @@ export default defineConfig({
 
 function nav() {
   return [
-    { text: '指南', link: '/zh_TW/guide/what-is-kernelsu' },
+    { text: '指南', link: '/zh_TW/guide/what-is-BK-KSU' },
   ]
 }
 
@@ -44,11 +44,11 @@ function sidebarGuide() {
     {
         text: 'Guide',
         items: [
-          { text: '什麼是 KernelSU？', link: '/zh_TW/guide/what-is-kernelsu' },
-          { text: 'KernelSU 與 Magisk 的差異', link: '/zh_TW/guide/difference-with-magisk' },
+          { text: '什麼是 BK-KSU？', link: '/zh_TW/guide/what-is-BK-KSU' },
+          { text: 'BK-KSU 與 Magisk 的差異', link: '/zh_TW/guide/difference-with-magisk' },
           { text: '安裝', link: '/zh_TW/guide/installation' },
           { text: '如何建置？', link: '/zh_TW/guide/how-to-build' },
-          { text: '如何為非 GKI 核心整合 KernelSU', link: '/zh_TW/guide/how-to-integrate-for-non-gki'},
+          { text: '如何為非 GKI 核心整合 BK-KSU', link: '/zh_TW/guide/how-to-integrate-for-non-gki'},
           { text: '非官方支援裝置', link: '/zh_TW/guide/unofficially-support-devices.md' },
           { text: '模組指南', link: '/zh_TW/guide/module.md' },
           { text: '元模組', link: '/zh_TW/guide/metamodule.md' },

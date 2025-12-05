@@ -18,16 +18,16 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/tiann/KernelSU' }
+      { icon: 'github', link: 'https://github.com/bklynali/BK-KSU' }
     ],
 
     footer: {
         message: 'Выпускается под лицензией GPL3.',
-        copyright: 'Авторские права © 2022-текущее Разработчики KernelSU.'
+        copyright: 'Авторские права © 2022-текущее Разработчики BK-KSU.'
     },
 
     editLink: {
-        pattern: 'https://github.com/tiann/KernelSU/edit/main/website/docs/:path',
+        pattern: 'https://github.com/bklynali/BK-KSU/edit/main/website/docs/:path',
         text: 'Редактировать эту страницу на GitHub'
     }
   }
@@ -35,7 +35,7 @@ export default defineConfig({
 
 function nav() {
   return [
-    { text: 'Руководство', link: '/ru_RU/guide/what-is-kernelsu' },
+    { text: 'Руководство', link: '/ru_RU/guide/what-is-BK-KSU' },
   ]
 }
 
@@ -44,7 +44,7 @@ function sidebarGuide() {
     {
         text: 'Руководство',
         items: [
-          { text: 'Что такое KernelSU?', link: '/ru_RU/guide/what-is-kernelsu' },
+          { text: 'Что такое BK-KSU?', link: '/ru_RU/guide/what-is-BK-KSU' },
           { text: 'Установка', link: '/ru_RU/guide/installation' },
           { text: 'Как собрать?', link: '/ru_RU/guide/how-to-build' },
           { text: 'Реализация в устройствах, не относящихся к GKI', link: '/ru_RU/guide/how-to-integrate-for-non-gki'},

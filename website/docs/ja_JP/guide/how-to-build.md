@@ -1,8 +1,8 @@
-# KernelSU のビルド方法は？
+# BK-KSU のビルド方法は？
 
 ::: warning
 このドキュメントはアーカイブ参照のみを目的としており、更新されなくなりました。
-KernelSU v3.0以降、より高速な反復とビルド速度のため、GKIイメージモードの公式サポートを終了しました。`Ylarod/ddk` を使用してLKMをビルドすることをお勧めします。
+BK-KSU v3.0以降、より高速な反復とビルド速度のため、GKIイメージモードの公式サポートを終了しました。`Ylarod/ddk` を使用してLKMをビルドすることをお勧めします。
 :::
 
 まず、Android の公式ドキュメントを読むべきです：
@@ -11,7 +11,7 @@ KernelSU v3.0以降、より高速な反復とビルド速度のため、GKIイ�
 2. [GKI リリースビルド](https://source.android.com/docs/core/architecture/kernel/gki-release-builds)
 
 ::: 警告
-このページは GKI デバイス用です。もし古いカーネルを使用している場合は、[古いカーネルへの KernelSU の統合方法](how-to-integrate-for-non-gki)を参照してください。
+このページは GKI デバイス用です。もし古いカーネルを使用している場合は、[古いカーネルへの BK-KSU の統合方法](how-to-integrate-for-non-gki)を参照してください。
 :::
 
 ## カーネルビルド
@@ -43,21 +43,21 @@ Android 13 からは、カーネルは `bazel` によってビルドされます
 ```sh
 tools/bazel build --config=fast //common:kernel_aarch64_dist
 ```
-## KernelSU を使ったカーネルビルド
+## BK-KSU を使ったカーネルビルド
 
-もしカーネルを正常にビルドできた場合、KernelSU をビルドするのは簡単です。カーネルソースのルートディレクトリで任意のものを選択して実行します：
+もしカーネルを正常にビルドできた場合、BK-KSU をビルドするのは簡単です。カーネルソースのルートディレクトリで任意のものを選択して実行します：
 
 ::: code-group
 ```sh[最新タグ(安定版)]
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -
 ```
 ```sh[ main ブランチ (開発用)]
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -s main
 ```
 ```sh[タグを選択 (例：v0.5.2)]
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.5.2
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -s v0.5.2
 ```
 
 :::
 
-その後でカーネルを再ビルドすると、KernelSU が組み込まれたカーネルイメージが得られます！
+その後でカーネルを再ビルドすると、BK-KSU が組み込まれたカーネルイメージが得られます！

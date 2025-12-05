@@ -2,10 +2,10 @@
 
 ## Check if your device is supported
 
-Download KernelSU manager from [GitHub Releases](https://github.com/tiann/KernelSU/releases) and install it on your device:
+Download BK-KSU Manager from [GitHub Releases](https://github.com/bklynali/BK-KSU/releases) and install it on your device:
 
-- If the app shows `Unsupported`, it means that **you should compile the kernel yourself**, KernelSU won't and never provide a boot.img file for you to flash.
-- If the app shows `Not installed`, then your device is officially supported by KernelSU.
+- If the app shows `Unsupported`, it means that **you should compile the kernel yourself**, BK-KSU won't and never provide a boot.img file for you to flash.
+- If the app shows `Not installed`, then your device is officially supported by BK-KSU.
 
 ::: info
 For devices showing `Unsupported`, you can check the list of [Unofficially supported devices](unofficially-support-devices.md). You can compile the kernel yourself.
@@ -57,16 +57,16 @@ If you find that your kernel version is `android12-5.10.101`, but your Android s
 
 ## Introduction
 
-Since version [0.9.0](https://github.com/tiann/KernelSU/releases/tag/v0.9.0), KernelSU supports two running modes on GKI devices:
+Since version [0.9.0](https://github.com/bklynali/BK-KSU/releases/tag/v0.9.0), BK-KSU supports two running modes on GKI devices:
 
-1. `GKI`: Replace the original kernel of the device with the **Generic Kernel Image** (GKI) provided by KernelSU.
+1. `GKI`: Replace the original kernel of the device with the **Generic Kernel Image** (GKI) provided by BK-KSU.
 2. `LKM`: Load the **Loadable Kernel Module** (LKM) into the device kernel without replacing the original kernel.
 
 These two modes are suitable for different scenarios, and you can choose the one according to your needs.
 
 ### GKI mode {#gki-mode}
 
-In GKI mode, the original kernel of the device will be replaced with the generic kernel image provided by KernelSU. The advantages of GKI mode are:
+In GKI mode, the original kernel of the device will be replaced with the generic kernel image provided by BK-KSU. The advantages of GKI mode are:
 
 1. Strong universality, suitable for most devices. For example, Samsung has enabled KNOX devices, and LKM mode cannot work. There are also some niche modified devices that can only use GKI mode.
 2. Can be used without relying on official firmware, and there is no need to wait for official firmware updates, as long as the KMI is consistent, it can be used.
@@ -75,8 +75,8 @@ In GKI mode, the original kernel of the device will be replaced with the generic
 
 In LKM mode, the original kernel of the device won't be replaced, but the loadable kernel module will be loaded into the device kernel. The advantages of LKM mode are:
 
-1. Won't replace the original kernel of the device. If you have special requirements for the original kernel of the device, or you want to use KernelSU while using a third-party kernel, you can use LKM mode.
-2. It's more convenient to upgrade and OTA. When upgrading KernelSU, you can directly install it in the manager without flashing manually. After the system OTA, you can directly install it to the second slot without manual flashing.
+1. Won't replace the original kernel of the device. If you have special requirements for the original kernel of the device, or you want to use BK-KSU while using a third-party kernel, you can use LKM mode.
+2. It's more convenient to upgrade and OTA. When upgrading BK-KSU, you can directly install it in the manager without flashing manually. After the system OTA, you can directly install it to the second slot without manual flashing.
 3. Suitable for some special scenarios. For example, LKM can also be loaded with temporary root permissions. Since it doesn't need to replace the boot partition, it won't trigger AVB and won't cause the device to be bricked.
 4. LKM can be temporarily uninstalled. If you want to temporarily disable root access, you can uninstall LKM. This process doesn't require flashing partitions, or even rebooting the device. If you want to enable root again, just reboot the device.
 
@@ -94,7 +94,7 @@ If your device is a mobile phone, we recommend that you prioritize LKM mode. If 
 
 To use LKM mode, you need to get the official firmware and patch it based on the official firmware. If you use a third-party kernel, you can use the `boot.img` of the third-party kernel as the official firmware.
 
-There are many ways to get the official firmware. If your device supports `fastboot boot`, we recommend **the most recommended and simplest** method is to use `fastboot boot` to temporarily boot the GKI kernel provided by KernelSU, then install the manager, and finally install it directly in the manager. This method doesn't require manually downloading the official firmware or manually extracting the boot.
+There are many ways to get the official firmware. If your device supports `fastboot boot`, we recommend **the most recommended and simplest** method is to use `fastboot boot` to temporarily boot the GKI kernel provided by BK-KSU, then install the manager, and finally install it directly in the manager. This method doesn't require manually downloading the official firmware or manually extracting the boot.
 
 If your device doesn't support `fastboot boot`, you may need to manually download the official firmware package and extract the boot from it.
 
@@ -105,20 +105,20 @@ Unlike GKI mode, LKM mode modifies the `ramdisk`. Therefore, on devices with And
 Open the manager, click the installation icon in the upper right corner, and several options will appear:
 
 1. Select a file. If your device doesn't have root privileges, you can choose this option and then select your official firmware. The manager will automatically patch it. After that, just flash this patched file to obtain root privileges permanently.
-2. Direct install. If your device is already rooted, you can choose this option. The manager will automatically get your device information, and then automatically patch the official firmware, and flash it automatically. You can consider using `fastboot boot` KernelSU's GKI kernel to get temporary root and install the manager, and then use this option. This is also the main way to upgrade KernelSU.
+2. Direct install. If your device is already rooted, you can choose this option. The manager will automatically get your device information, and then automatically patch the official firmware, and flash it automatically. You can consider using `fastboot boot` BK-KSU's GKI kernel to get temporary root and install the manager, and then use this option. This is also the main way to upgrade BK-KSU.
 3. Install to inactive slot. If your device supports A/B partition, you can choose this option. The manager will automatically patch the official firmware and install it to another partition. This method is suitable for devices after OTA, you can directly install it to another partition after OTA, and then restart the device.
 
 ### Use the command line
 
-If you don't want to use the manager, you can also use the command line to install LKM. The `ksud` tool provided by KernelSU can help you quickly patch the official firmware and then flash it.
+If you don't want to use the manager, you can also use the command line to install LKM. The `ksud` tool provided by BK-KSU can help you quickly patch the official firmware and then flash it.
 
-This tool supports macOS, Linux, and Windows. You can download the corresponding version from [GitHub Release](https://github.com/tiann/KernelSU/releases).
+This tool supports macOS, Linux, and Windows. You can download the corresponding version from [GitHub Release](https://github.com/bklynali/BK-KSU/releases).
 
 Usage: `ksud boot-patch` you can check the command line help for specific options.
 
 ```sh
 oriole:/ # ksud boot-patch -h
-Patch boot or init_boot images to apply KernelSU
+Patch boot or init_boot images to apply BK-KSU
 
 Usage: ksud boot-patch [OPTIONS]
 
@@ -150,20 +150,20 @@ ksud boot-patch -b <boot.img> --kmi android13-5.10
 
 There are several installation methods for GKI mode, each suitable for a different scenario, so please choose accordingly:
 
-1. Install with fastboot using the boot.img provided by KernelSU.
+1. Install with fastboot using the boot.img provided by BK-KSU.
 2. Install with a kernel flash app, such as [Kernel Flasher](https://github.com/capntrips/KernelFlasher/releases).
 3. Repair the boot.img manually and install it.
 4. Install with custom Recovery (e.g., TWRP).
 
-## Install with boot.img provided by KernelSU
+## Install with boot.img provided by BK-KSU
 
-If your device's `boot.img` uses a commonly used compression format, you can use the GKI images provided by KernelSU to flash it directly. This doesn't require TWRP or self-patching the image.
+If your device's `boot.img` uses a commonly used compression format, you can use the GKI images provided by BK-KSU to flash it directly. This doesn't require TWRP or self-patching the image.
 
 ### Find proper boot.img
 
-KernelSU provides a generic boot.img for GKI devices, and you should flash the boot.img to the device's boot partition.
+BK-KSU provides a generic boot.img for GKI devices, and you should flash the boot.img to the device's boot partition.
 
-You can download boot.img from [GitHub Release](https://github.com/tiann/KernelSU/releases). Please note that you should use the correct version of boot.img. If you don't know which file to download, carefully read the description of [KMI](#kmi) and [Security patch level](#security-patch-level) in this document.
+You can download boot.img from [GitHub Release](https://github.com/bklynali/BK-KSU/releases). Please note that you should use the correct version of boot.img. If you don't know which file to download, carefully read the description of [KMI](#kmi) and [Security patch level](#security-patch-level) in this document.
 
 Normally, there are three boot files in different formats for the same KMI and security patch level. They're identical except for the kernel compression format. Please check the kernel compression format of your original boot.img. You should use the correct format, such as `lz4`, `gz`. If you use an incorrect compression format, you may encounter bootloop after flashing boot.img.
 
@@ -175,7 +175,7 @@ Normally, there are three boot files in different formats for the same KMI and s
 
 ### Flash boot.img to device
 
-Use `adb` to connect your device, then execute `adb reboot bootloader` to enter fastboot mode, and use this command to flash KernelSU:
+Use `adb` to connect your device, then execute `adb reboot bootloader` to enter fastboot mode, and use this command to flash BK-KSU:
 
 ```sh
 fastboot flash boot boot.img
@@ -202,8 +202,8 @@ Steps:
 
 This way requires the Kernel Flasher app to have root permissions. You can use the following methods to achieve this:
 
-1. Your device is rooted. For example, you have installed KernelSU and want to upgrade to the latest version or you have rooted through other methods (such as Magisk).
-2. If your device isn't rooted, but the device supports the temporary boot method of `fastboot boot boot.img`, you can use the GKI image provided by KernelSU to temporarily boot your device, obtain temporary root permissions, and then use the Kernel Flash app to obtain permanent root privileges.
+1. Your device is rooted. For example, you have installed BK-KSU and want to upgrade to the latest version or you have rooted through other methods (such as Magisk).
+2. If your device isn't rooted, but the device supports the temporary boot method of `fastboot boot boot.img`, you can use the GKI image provided by BK-KSU to temporarily boot your device, obtain temporary root permissions, and then use the Kernel Flash app to obtain permanent root privileges.
 
 Some of kernel flashing apps that can be used for this:
 
@@ -211,11 +211,11 @@ Some of kernel flashing apps that can be used for this:
 2. [Franco Kernel Manager](https://play.google.com/store/apps/details?id=com.franco.kernel)
 3. [Ex Kernel Manager](https://play.google.com/store/apps/details?id=flar2.exkernelmanager)
 
-Note: This method is more convenient when upgrading KernelSU and can be done without a computer (make a backup first).
+Note: This method is more convenient when upgrading BK-KSU and can be done without a computer (make a backup first).
 
 ## Patch boot.img manually {#patch-boot-image}
 
-For some devices, the boot.img format isn't as common as `lz4`, `gz`, and `uncompressed`. A typical example is the Pixel, where the boot.img is compressed in the `lz4_legacy` format, while the, ramdisk may be in `gz` or also compressed in `lz4_legacy`. Currently, if you directly flash the boot.img provided by KernelSU, the device may not be able to boot. In this case, you can manually patch the boot.img to achieve this.
+For some devices, the boot.img format isn't as common as `lz4`, `gz`, and `uncompressed`. A typical example is the Pixel, where the boot.img is compressed in the `lz4_legacy` format, while the, ramdisk may be in `gz` or also compressed in `lz4_legacy`. Currently, if you directly flash the boot.img provided by BK-KSU, the device may not be able to boot. In this case, you can manually patch the boot.img to achieve this.
 
 It's always recommended to use `magiskboot` to patch images, there are two ways:
 
@@ -231,8 +231,8 @@ Android-Image-Kitchen isn't recommended for now because it doesn't handle the bo
 ### Preparation
 
 1. Get your device's stock boot.img. You can get it from your device manufacturers. You may need [payload-dumper-go](https://github.com/ssut/payload-dumper-go).
-2. Download the AnyKernel3 ZIP file provided by KernelSU that matches the KMI version of your device. You can refer to [Install with custom Recovery](#install-with-custom-recovery).
-3. Unpack the AnyKernel3 package and get the `Image` file, which is the kernel file of KernelSU.
+2. Download the AnyKernel3 ZIP file provided by BK-KSU that matches the KMI version of your device. You can refer to [Install with custom Recovery](#install-with-custom-recovery).
+3. Unpack the AnyKernel3 package and get the `Image` file, which is the kernel file of BK-KSU.
 
 ### Using magiskboot on Android devices {#using-magiskboot-on-Android-devices}
 
@@ -264,7 +264,7 @@ Prerequisite: Your device must have a custom Recovery, such as TWRP. If there is
 
 Steps:
 
-1. On [GitHub Releases](https://github.com/tiann/KernelSU/releases), download the ZIP package starting with `AnyKernel3` that matches your device's version. For example, if the device's kernel version is `android12-5.10.66`, then you should download the `AnyKernel3-android12-5.10.66_yyyy-MM.zip` file (where `yyyy` is the year and `MM` is the month).
+1. On [GitHub Releases](https://github.com/bklynali/BK-KSU/releases), download the ZIP package starting with `AnyKernel3` that matches your device's version. For example, if the device's kernel version is `android12-5.10.66`, then you should download the `AnyKernel3-android12-5.10.66_yyyy-MM.zip` file (where `yyyy` is the year and `MM` is the month).
 2. Reboot the device into TWRP.
 3. Use ADB to place AnyKernel3-*.zip into the device's `/sdcard` location and choose to install it in the TWRP GUI, or you can directly run `adb sideload AnyKernel-*.zip` to install.
 
@@ -272,17 +272,17 @@ Note: This method is suitable for any installation (not limited to initial insta
 
 ## Other methods
 
-In fact, all of these installation methods have only one main idea, which is to **replace the original kernel for the one provided by KernelSU**, as long as this can be achieved, it can be installed. The following are other possible methods:
+In fact, all of these installation methods have only one main idea, which is to **replace the original kernel for the one provided by BK-KSU**, as long as this can be achieved, it can be installed. The following are other possible methods:
 
-1. First, install Magisk, get root privileges through Magisk, and then use the Kernel Flasher to flash the AnyKernel3 ZIP from KernelSU.
-2. Use any flashing toolkit on PC to flash the kernel provided by KernelSU.
+1. First, install Magisk, get root privileges through Magisk, and then use the Kernel Flasher to flash the AnyKernel3 ZIP from BK-KSU.
+2. Use any flashing toolkit on PC to flash the kernel provided by BK-KSU.
 
 However, if it doesn't work, please try `magiskboot` approach.
 
 ## Post-Installation: Module Support
 
 ::: warning METAMODULE FOR SYSTEM FILE MODIFICATION
-If you want to use modules that modify `/system` files, you need to install a **metamodule** after installing KernelSU. Modules that only use scripts, sepolicy, or system.prop work without a metamodule.
+If you want to use modules that modify `/system` files, you need to install a **metamodule** after installing BK-KSU. Modules that only use scripts, sepolicy, or system.prop work without a metamodule.
 :::
 
 **For `/system` modification support**, please see the [Metamodule Guide](metamodule.md) to:

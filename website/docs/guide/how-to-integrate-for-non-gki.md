@@ -2,32 +2,32 @@
 
 ::: warning
 This document is for archival reference only and is no longer maintained.
-Since KernelSU v1.0, we have dropped official support for non-GKI devices.
+Since BK-KSU v1.0, we have dropped official support for non-GKI devices.
 :::
 
-KernelSU can be integrated into non-GKI kernels and was backported to 4.14 and earlier versions.
+BK-KSU can be integrated into non-GKI kernels and was backported to 4.14 and earlier versions.
 
-Due to the fragmentation of non-GKI kernels, we don't have a universal way to build them; therefore, we cannot provide a non-GKI boot.img. However, you can build the kernel with KernelSU integrated on your own.
+Due to the fragmentation of non-GKI kernels, we don't have a universal way to build them; therefore, we cannot provide a non-GKI boot.img. However, you can build the kernel with BK-KSU integrated on your own.
 
-First, you should be able to build a bootable kernel from kernel source code. If the kernel isn't open source, then it is difficult to run KernelSU for your device.
+First, you should be able to build a bootable kernel from kernel source code. If the kernel isn't open source, then it is difficult to run BK-KSU for your device.
 
-If you're able to build a bootable kernel, there are two ways to integrate KernelSU into the kernel source code:
+If you're able to build a bootable kernel, there are two ways to integrate BK-KSU into the kernel source code:
 
 1. Automatically with `kprobe`
 2. Manually
 
 ## Integrate with kprobe
 
-KernelSU uses kprobe for its kernel hooks. If kprobe runs reliably on your kernel, we recommend integrating KernelSU this way.
+BK-KSU uses kprobe for its kernel hooks. If kprobe runs reliably on your kernel, we recommend integrating BK-KSU this way.
 
-First, add KernelSU to your kernel source tree:
+First, add BK-KSU to your kernel source tree:
 
 ```sh
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.9.5
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -s v0.9.5
 ```
 
 ::: info
-[KernelSU 1.0 and later versions no longer support non-GKI kernels](https://github.com/tiann/KernelSU/issues/1705). The last supported version is `v0.9.5`, so make sure to use the correct version.
+[BK-KSU 1.0 and later versions no longer support non-GKI kernels](https://github.com/bklynali/BK-KSU/issues/1705). The last supported version is `v0.9.5`, so make sure to use the correct version.
 :::
 
 Then, you should check if kprobe is enabled in your kernel config. If it isn't, add these configs to it:
@@ -38,14 +38,14 @@ CONFIG_HAVE_KPROBES=y
 CONFIG_KPROBE_EVENTS=y
 ```
 
-Now, when you re-build your kernel, KernelSU should work correctly.
+Now, when you re-build your kernel, BK-KSU should work correctly.
 
 If you find that KPROBES is still not enabled, you can try enabling `CONFIG_MODULES`. If that doesn't solve the issue, use `make menuconfig` to search for other KPROBES dependencies.
 
-However, if you encounter a bootloop after integrating KernelSU, this may indicate that the **kprobe is broken in your kernel**, which means that you should fix the kprobe bug or use another way.
+However, if you encounter a bootloop after integrating BK-KSU, this may indicate that the **kprobe is broken in your kernel**, which means that you should fix the kprobe bug or use another way.
 
 ::: tip HOW TO CHECK IF KPROBE IS BROKEN？
-Comment out `ksu_sucompat_init()` and `ksu_ksud_init()` in `KernelSU/kernel/ksu.c`. If the device boots normally, kprobe may be broken.
+Comment out `ksu_sucompat_init()` and `ksu_ksud_init()` in `BK-KSU/kernel/ksu.c`. If the device boots normally, kprobe may be broken.
 :::
 
 ::: info HOW TO GET MODULE UMOUNT FEATURE WORKING ON PRE-GKI?
@@ -56,20 +56,20 @@ If your kernel is older than 5.9, you should backport `path_umount` to `fs/names
 
 If kprobe doesn't work on your kernel—either because of an upstream bug or because your kernel is older than 4.8—you can try the following approach:
 
-First, add KernelSU to your kernel source tree:
+First, add BK-KSU to your kernel source tree:
 
 ```sh
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.9.5
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -s v0.9.5
 ```
 
 Keep in mind that, on some devices, your defconfig may be located at `arch/arm64/configs` or in other cases, it may be at `arch/arm64/configs/vendor/your_defconfig`. Regardless of the defconfig you're using, make sure to enable `CONFIG_KSU` with `y` to enable or `n` to disable it. For example, if you choose to enable it, your defconfig should contain the following string:
 
 ```txt
-# KernelSU
+# BK-KSU
 CONFIG_KSU=y
 ```
 
-Next, add KernelSU calls to the kernel source. Below are some patches for reference:
+Next, add BK-KSU calls to the kernel source. Below are some patches for reference:
 
 ::: code-group
 
@@ -261,7 +261,7 @@ index 2ff887661237..e758d7db7663 100644
 
 ### Safe Mode
 
-To enable KernelSU's built-in Safe Mode, you should modify the `input_handle_event` function in `drivers/input/input.c`:
+To enable BK-KSU's built-in Safe Mode, you should modify the `input_handle_event` function in `drivers/input/input.c`:
 
 ::: tip
 It's strongly recommended to enable this feature, it's very useful for preventing bootloops!
@@ -379,4 +379,4 @@ You can make the "Umount modules" feature work on pre-GKI kernels by manually ba
   * This is important for filesystems which use unnamed block devices.
 ```
 
-Finally, build your kernel again, and KernelSU should work correctly.
+Finally, build your kernel again, and BK-KSU should work correctly.
