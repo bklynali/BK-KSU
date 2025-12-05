@@ -2,7 +2,7 @@
 
 ::: warning
 Tài liệu này chỉ để tham khảo lưu trữ và không còn được duy trì.
-Kể từ KernelSU v1.0, chúng tôi đã ngừng hỗ trợ chính thức cho các thiết bị không phải GKI.
+Kể từ BK-KSU v1.0, chúng tôi đã ngừng hỗ trợ chính thức cho các thiết bị không phải GKI.
 :::
 
 ::: warning
@@ -11,7 +11,7 @@ Kể từ KernelSU v1.0, chúng tôi đã ngừng hỗ trợ chính thức cho c
 :::
 
 ::: warning
-Trang này chỉ để cho bạn tìm thấy source cho thiết bị của bạn, nó **HOÀN TOÀN KHÔNG** được review bởi _lập trình viên của KernelSU_. Vậy nên hãy chấp nhận rủi ro khi sử dụng chúng.
+Trang này chỉ để cho bạn tìm thấy source cho thiết bị của bạn, nó **HOÀN TOÀN KHÔNG** được review bởi _lập trình viên của BK-KSU_. Vậy nên hãy chấp nhận rủi ro khi sử dụng chúng.
 
 :::
 

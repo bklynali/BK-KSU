@@ -4,7 +4,7 @@ import { readdir, writeFile } from 'fs/promises'
 import { resolve } from 'path'
 
 export default defineConfig( {
-    title: 'KernelSU',
+    title: 'BK-KSU',
     locales: locales.locales,
     head: [
         ['script', {
