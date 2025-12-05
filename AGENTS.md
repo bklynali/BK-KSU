@@ -1,4 +1,4 @@
-# KernelSU Agent Guide
+# BK-KSU Agent Guide
 
 ## Agent Quick Start
 
@@ -10,7 +10,7 @@
 
 ## Project Overview
 
-KernelSU is a kernel-based root solution for Android with a kernel module, Rust userspace daemons, a Kotlin Manager app, and docs/web assets.
+BK-KSU is a kernel-based root solution for Android with a kernel module, Rust userspace daemons, a Kotlin Manager app, and docs/web assets.
 
 ## Repository Structure
 

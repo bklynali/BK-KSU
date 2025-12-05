@@ -1,7 +1,7 @@
 {
   "name": "kernelsu",
   "version": "2.1.1",
-  "description": "Library for KernelSU's module WebUI",
+  "description": "Library for BK-KSU's module WebUI",
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tiann/KernelSU.git"
+    "url": "git+https://github.com/bklynali/BK-KSU.git"
   },
   "keywords": [
     "su",
@@ -20,7 +20,7 @@
   "author": "weishu",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/tiann/KernelSU/issues"
+    "url": "https://github.com/bklynali/BK-KSU/issues"
   },
-  "homepage": "https://github.com/tiann/KernelSU#readme"
+  "homepage": "https://github.com/bklynali/BK-KSU#readme"
 }

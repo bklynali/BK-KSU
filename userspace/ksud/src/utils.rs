@@ -209,9 +209,9 @@ pub fn uninstall(magiskboot_path: Option<PathBuf>) -> Result<()> {
         magiskboot: magiskboot_path,
         out_name: None,
     })?;
-    println!("- Uninstall KernelSU manager..");
+    println!("- Uninstall BK-KSU manager..");
     Command::new("pm")
-        .args(["uninstall", "me.weishu.kernelsu"])
+        .args(["uninstall", "com.bk.ksu"])
         .spawn()?;
     println!("- Rebooting in 5 seconds..");
     std::thread::sleep(std::time::Duration::from_secs(5));

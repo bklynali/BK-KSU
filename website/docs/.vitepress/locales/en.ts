@@ -18,16 +18,16 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/tiann/KernelSU' }
+      { icon: 'github', link: 'https://github.com/bklynali/BK-KSU' }
     ],
 
     footer: {
         message: 'Released under the GPL3 License.',
-        copyright: 'Copyright © 2022-present KernelSU developers.'
+        copyright: 'Copyright © 2022-present BK-KSU developers.'
     },
 
     editLink: {
-        pattern: 'https://github.com/tiann/KernelSU/edit/main/website/docs/:path',
+        pattern: 'https://github.com/bklynali/BK-KSU/edit/main/website/docs/:path',
         text: 'Edit this page on GitHub'
     }
   }
@@ -35,7 +35,7 @@ export default defineConfig({
 
 function nav() {
   return [
-    { text: 'Guide', link: '/guide/what-is-kernelsu' },
+    { text: 'Guide', link: '/guide/what-is-BK-KSU' },
   ]
 }
 
@@ -44,7 +44,7 @@ function sidebarGuide() {
     {
         text: 'Guide',
         items: [
-          { text: 'What is KernelSU?', link: '/guide/what-is-kernelsu' },
+          { text: 'What is BK-KSU?', link: '/guide/what-is-BK-KSU' },
           { text: 'Difference with Magisk', link: '/guide/difference-with-magisk' },
           { text: 'Installation', link: '/guide/installation' },
           { text: 'How to build', link: '/guide/how-to-build' },

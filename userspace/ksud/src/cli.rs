@@ -8,7 +8,7 @@ use log::LevelFilter;
 use crate::boot_patch::{BootPatchArgs, BootRestoreArgs};
 use crate::{apk_sign, assets, debug, defs, init_event, ksucalls, module, module_config, utils};
 
-/// KernelSU userspace cli
+/// BK-KSU userspace cli
 #[derive(Parser, Debug)]
 #[command(author, version = defs::VERSION_NAME, about, long_about = None)]
 struct Args {
@@ -18,7 +18,7 @@ struct Args {
 
 #[derive(clap::Subcommand, Debug)]
 enum Commands {
-    /// Manage KernelSU modules
+    /// Manage BK-KSU modules
     Module {
         #[command(subcommand)]
         command: Module,
@@ -33,13 +33,13 @@ enum Commands {
     /// Trigger `boot-complete` event
     BootCompleted,
 
-    /// Install KernelSU userspace component to system
+    /// Install BK-KSU userspace component to system
     Install {
         #[arg(long, default_value = None)]
         magiskboot: Option<PathBuf>,
     },
 
-    /// Uninstall KernelSU modules and itself(LKM Only)
+    /// Uninstall BK-KSU modules and itself(LKM Only)
     Uninstall {
         /// magiskboot path, if not specified, will search from $PATH
         #[arg(long, default_value = None)]
@@ -64,10 +64,10 @@ enum Commands {
         command: Feature,
     },
 
-    /// Patch boot or init_boot images to apply KernelSU
+    /// Patch boot or init_boot images to apply BK-KSU
     BootPatch(BootPatchArgs),
 
-    /// Restore boot or init_boot images patched by KernelSU
+    /// Restore boot or init_boot images patched by BK-KSU
     BootRestore(BootRestoreArgs),
 
     /// Show boot information
@@ -117,7 +117,7 @@ enum Debug {
     /// Set the manager app, kernel CONFIG_KSU_DEBUG should be enabled.
     SetManager {
         /// manager package name
-        #[arg(default_value_t = String::from("me.weishu.kernelsu"))]
+        #[arg(default_value_t = String::from("com.bk.ksu"))]
         apk: String,
     },
 
@@ -399,7 +399,7 @@ pub fn run() -> Result<()> {
     android_logger::init_once(
         Config::default()
             .with_max_level(LevelFilter::Trace) // limit log level
-            .with_tag("KernelSU"), // logs will show under mytag tag
+            .with_tag("BK-KSU"), // logs will show under mytag tag
     );
 
     // the kernel executes su with argv[0] = "su" and replace it with us
