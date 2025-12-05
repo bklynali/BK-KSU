@@ -1,8 +1,8 @@
-# 如何构建 KernelSU？
+# 如何构建 BK-KSU？
 
 ::: warning
 该文档仅供存档参考，不再维护更新。
-自 KernelSU v3.0 版本之后，为了更快的迭代和构建速度，我们放弃了对 GKI 镜像模式的官方支持。推荐使用 `Ylarod/ddk` 构建 LKM 使用。
+自 BK-KSU v3.0 版本之后，为了更快的迭代和构建速度，我们放弃了对 GKI 镜像模式的官方支持。推荐使用 `Ylarod/ddk` 构建 LKM 使用。
 :::
 
 首先，您应该阅读内核构建的 Android 官方文档：
@@ -11,7 +11,7 @@
 2. [通用内核映像 (GKI) 发布构建](https://source.android.com/docs/core/architecture/kernel/gki-release-builds)
 
 ::: warning
-本文档适用于 GKI 设备，如果你是旧内核，请参考[如何为非GKI设备集成 KernelSU](how-to-integrate-for-non-gki)
+本文档适用于 GKI 设备，如果你是旧内核，请参考[如何为非GKI设备集成 BK-KSU](how-to-integrate-for-non-gki)
 :::
 
 ## 构建内核
@@ -45,24 +45,24 @@ LTO=thin BUILD_CONFIG=common/build.config.gki.aarch64 build/build.sh
 tools/bazel build --config=fast //common:kernel_aarch64_dist
 ```
 
-## 使用 KernelSU 构建内核
+## 使用 BK-KSU 构建内核
 
-如果您可以成功构建内核，那么构建 KernelSU 就很容易，根据自己的需求在内核源代码根目录中运行以下任一命令：
+如果您可以成功构建内核，那么构建 BK-KSU 就很容易，根据自己的需求在内核源代码根目录中运行以下任一命令：
 
 ::: code-group
 
 ```sh[最新 tag(稳定版本)]
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -
 ```
 
 ```sh[main 分支(开发版本)]
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -s main
 ```
 
 ```sh[指定 tag(比如 v0.5.2)]
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.5.2
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -s v0.5.2
 ```
 
 :::
 
-然后重建内核，您将获得带有 KernelSU 的内核映像！
+然后重建内核，您将获得带有 BK-KSU 的内核映像！

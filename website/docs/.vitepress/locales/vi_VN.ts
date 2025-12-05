@@ -18,16 +18,16 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/tiann/KernelSU' }
+      { icon: 'github', link: 'https://github.com/bklynali/BK-KSU' }
     ],
 
     footer: {
         message: 'Phát hành dưới giấy phép GPL3.',
-        copyright: 'Bản Quyền © 2022-nay KernelSU developers.'
+        copyright: 'Bản Quyền © 2022-nay BK-KSU developers.'
     },
 
     editLink: {
-        pattern: 'https://github.com/tiann/KernelSU/edit/main/website/docs/:path',
+        pattern: 'https://github.com/bklynali/BK-KSU/edit/main/website/docs/:path',
         text: 'Chỉnh sửa trang này trên GitHub'
     }
   }
@@ -35,7 +35,7 @@ export default defineConfig({
 
 function nav() {
   return [
-    { text: 'Hướng Dẫn', link: '/vi_VN/guide/what-is-kernelsu' },
+    { text: 'Hướng Dẫn', link: '/vi_VN/guide/what-is-BK-KSU' },
   ]
 }
 
@@ -44,7 +44,7 @@ function sidebarGuide() {
     {
         text: 'Hướng Dẫn',
         items: [
-          { text: 'KernelSU là gì?', link: '/vi_VN/guide/what-is-kernelsu' },
+          { text: 'BK-KSU là gì?', link: '/vi_VN/guide/what-is-BK-KSU' },
           { text: 'Cách cài đặt', link: '/vi_VN/guide/installation' },
           { text: 'Cách để build?', link: '/vi_VN/guide/how-to-build' },
           { text: 'Tích hợp vào thiết bị không sử dụng GKI', link: '/vi_VN/guide/how-to-integrate-for-non-gki'},

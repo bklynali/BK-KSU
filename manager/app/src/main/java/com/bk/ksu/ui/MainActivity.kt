@@ -1,0 +1,346 @@
+package com.bk.ksu.ui
+
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.content.SharedPreferences
+import android.net.Uri
+import android.os.Build
+import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
+import androidx.activity.compose.LocalActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.PagerState
+import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.compositionLocalOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.core.net.toUri
+import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
+import androidx.navigation3.runtime.NavBackStack
+import androidx.navigation3.runtime.NavEntry
+import androidx.navigation3.runtime.NavKey
+import androidx.navigation3.runtime.entryProvider
+import androidx.navigation3.runtime.rememberNavBackStack
+import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
+import androidx.navigation3.ui.NavDisplay
+import androidx.navigationevent.NavigationEventInfo
+import androidx.navigationevent.compose.NavigationBackHandler
+import androidx.navigationevent.compose.rememberNavigationEventState
+import dev.chrisbanes.haze.HazeState
+import dev.chrisbanes.haze.HazeStyle
+import dev.chrisbanes.haze.HazeTint
+import dev.chrisbanes.haze.hazeSource
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.launch
+import com.bk.ksu.Natives
+import com.bk.ksu.R
+import com.bk.ksu.ui.component.BottomBar
+import com.bk.ksu.ui.component.rememberConfirmDialog
+import com.bk.ksu.ui.navigation3.DeepLinkResolver
+import com.bk.ksu.ui.navigation3.Navigator
+import com.bk.ksu.ui.navigation3.Route
+import com.bk.ksu.ui.screen.AboutScreen
+import com.bk.ksu.ui.screen.AppProfileScreen
+import com.bk.ksu.ui.screen.AppProfileTemplateScreen
+import com.bk.ksu.ui.screen.ExecuteModuleActionScreen
+import com.bk.ksu.ui.screen.FlashIt
+import com.bk.ksu.ui.screen.FlashScreen
+import com.bk.ksu.ui.screen.HomePager
+import com.bk.ksu.ui.screen.InstallScreen
+import com.bk.ksu.ui.screen.ModulePager
+import com.bk.ksu.ui.screen.ModuleRepoDetailScreen
+import com.bk.ksu.ui.screen.ModuleRepoScreen
+import com.bk.ksu.ui.screen.SettingPager
+import com.bk.ksu.ui.screen.SuperUserPager
+import com.bk.ksu.ui.screen.TemplateEditorScreen
+import com.bk.ksu.ui.theme.BKSUTheme
+import com.bk.ksu.ui.util.getFileName
+import com.bk.ksu.ui.util.install
+import com.bk.ksu.ui.webui.WebUIActivity
+import top.yukonga.miuix.kmp.basic.Scaffold
+import top.yukonga.miuix.kmp.theme.MiuixTheme
+
+class MainActivity : ComponentActivity() {
+
+    private val intentState = MutableStateFlow(0)
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+
+        super.onCreate(savedInstanceState)
+
+        val isManager = Natives.isManager
+        if (isManager && !Natives.requireNewKernel()) install()
+
+        setContent {
+            val context = LocalActivity.current ?: this
+            val prefs = context.getSharedPreferences("settings", MODE_PRIVATE)
+            var colorMode by remember { mutableIntStateOf(prefs.getInt("color_mode", 0)) }
+            var keyColorInt by remember { mutableIntStateOf(prefs.getInt("key_color", 0)) }
+            val keyColor = remember(keyColorInt) { if (keyColorInt == 0) null else Color(keyColorInt) }
+
+            val darkMode = when (colorMode) {
+                2, 5 -> true
+                0, 3 -> isSystemInDarkTheme()
+                else -> false
+            }
+
+            DisposableEffect(prefs, darkMode) {
+                enableEdgeToEdge(
+                    statusBarStyle = SystemBarStyle.auto(
+                        android.graphics.Color.TRANSPARENT,
+                        android.graphics.Color.TRANSPARENT
+                    ) { darkMode },
+                    navigationBarStyle = SystemBarStyle.auto(
+                        android.graphics.Color.TRANSPARENT,
+                        android.graphics.Color.TRANSPARENT
+                    ) { darkMode },
+                )
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    window.isNavigationBarContrastEnforced = false
+                }
+
+                val listener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+                    when (key) {
+                        "color_mode" -> colorMode = prefs.getInt("color_mode", 0)
+                        "key_color" -> keyColorInt = prefs.getInt("key_color", 0)
+                    }
+                }
+                prefs.registerOnSharedPreferenceChangeListener(listener)
+                onDispose { prefs.unregisterOnSharedPreferenceChangeListener(listener) }
+            }
+
+            BKSUTheme(colorMode = colorMode, keyColor = keyColor) {
+                val intent = LocalActivity.current?.intent
+                val backStack: NavBackStack<NavKey> = rememberNavBackStack(Route.Main)
+                val initialStack = remember(intentState.collectAsState().value) {
+                    DeepLinkResolver.resolve(intent)
+                }
+                LaunchedEffect(initialStack) {
+                    if (initialStack.isNotEmpty()) {
+                        backStack.clear()
+                        backStack.addAll(initialStack)
+                    }
+                }
+                val navigator = remember { Navigator(backStack) }
+
+                ZipFileIntentHandler(
+                    intentState = intentState,
+                    isManager = isManager,
+                    navigator = navigator
+                )
+                ShortcutIntentHandler(
+                    intentState = intentState,
+                    navigator = navigator
+                )
+
+                Scaffold {
+                    NavDisplay(
+                        backStack = backStack,
+                        entryDecorators = listOf(
+                            rememberSaveableStateHolderNavEntryDecorator(),
+                            rememberViewModelStoreNavEntryDecorator()
+                        ),
+                        onBack = {
+                            when (val top = backStack.lastOrNull()) {
+                                is Route.TemplateEditor -> {
+                                    if (!top.readOnly) {
+                                        navigator.setResult("template_edit", true)
+                                    } else {
+                                        navigator.pop()
+                                    }
+                                }
+
+                                else -> navigator.pop()
+                            }
+                        },
+                        entryProvider = entryProvider {
+                            entry<Route.Main> { MainScreen(navigator) }
+                            entry<Route.About> { AboutScreen(navigator) }
+                            entry<Route.AppProfileTemplate> { AppProfileTemplateScreen(navigator) }
+                            entry<Route.TemplateEditor> { key -> TemplateEditorScreen(navigator, key.template, key.readOnly) }
+                            entry<Route.AppProfile> { key -> AppProfileScreen(navigator, key.appInfo) }
+                            entry<Route.ModuleRepo> { ModuleRepoScreen(navigator) }
+                            entry<Route.ModuleRepoDetail> { key -> ModuleRepoDetailScreen(navigator, key.module) }
+                            entry<Route.Install> { InstallScreen(navigator) }
+                            entry<Route.Flash> { key -> FlashScreen(navigator, key.flashIt) }
+                            entry<Route.ExecuteModuleAction> { key -> ExecuteModuleActionScreen(navigator, key.moduleId) }
+                            entry<Route.Home> { MainScreen(navigator) }
+                            entry<Route.SuperUser> { MainScreen(navigator) }
+                            entry<Route.Module> { MainScreen(navigator) }
+                            entry<Route.Settings> { MainScreen(navigator) }
+                        }
+                    )
+                }
+            }
+        }
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        // Increment intentState to trigger LaunchedEffect re-execution
+        intentState.value += 1
+    }
+}
+
+
+val LocalPagerState = compositionLocalOf<PagerState> { error("No pager state") }
+
+@Composable
+fun MainScreen(navController: Navigator) {
+    val coroutineScope = rememberCoroutineScope()
+    val pagerState = rememberPagerState(initialPage = 0, pageCount = { 4 })
+    val isManager = Natives.isManager
+    val isFullFeatured = isManager && !Natives.requireNewKernel()
+    var userScrollEnabled by remember(isFullFeatured) { mutableStateOf(isFullFeatured) }
+    val hazeState = remember { HazeState() }
+    val hazeStyle = HazeStyle(
+        backgroundColor = MiuixTheme.colorScheme.surface,
+        tint = HazeTint(MiuixTheme.colorScheme.surface.copy(0.8f))
+    )
+
+    run {
+        val navEventState = rememberNavigationEventState(NavigationEventInfo.None)
+        val isTopMain = navController.backStack.lastOrNull() is Route.Main
+        val isPagerBackHandlerEnabled = isTopMain && navController.backStack.size == 1 && pagerState.currentPage != 0
+        NavigationBackHandler(
+            state = navEventState,
+            isBackEnabled = isPagerBackHandlerEnabled,
+            onBackCompleted = {
+                coroutineScope.launch {
+                    pagerState.animateScrollToPage(0)
+                }
+            }
+        )
+    }
+
+    CompositionLocalProvider(
+        LocalPagerState provides pagerState,
+    ) {
+        Scaffold(
+            bottomBar = {
+                BottomBar(hazeState, hazeStyle)
+            },
+        ) { innerPadding ->
+            HorizontalPager(
+                modifier = Modifier.hazeSource(state = hazeState),
+                state = pagerState,
+                beyondViewportPageCount = 1,
+                userScrollEnabled = userScrollEnabled,
+            ) {
+                when (it) {
+                    0 -> HomePager(navController, innerPadding.calculateBottomPadding())
+                    1 -> SuperUserPager(navController, innerPadding.calculateBottomPadding())
+                    2 -> ModulePager(navController, innerPadding.calculateBottomPadding())
+                    3 -> SettingPager(navController, innerPadding.calculateBottomPadding())
+                }
+            }
+        }
+    }
+}
+
+/**
+ * Handles ZIP file installation from external apps (e.g., file managers).
+ * - In normal mode: Shows a confirmation dialog before installation
+ * - In safe mode: Shows a Toast notification and prevents installation
+ */
+@SuppressLint("StringFormatInvalid", "LocalContextGetResourceValueCall")
+@Composable
+private fun ZipFileIntentHandler(
+    intentState: MutableStateFlow<Int>,
+    isManager: Boolean,
+    navigator: Navigator
+) {
+    val activity = LocalActivity.current ?: return
+    val context = LocalContext.current
+    var zipUri by remember { mutableStateOf<Uri?>(null) }
+    val isSafeMode = Natives.isSafeMode
+    val clearZipUri = { zipUri = null }
+
+    val installDialog = rememberConfirmDialog(
+        onConfirm = {
+            zipUri?.let { uri ->
+                navigator.push(Route.Flash(FlashIt.FlashModules(listOf(uri))))
+            }
+            clearZipUri()
+        },
+        onDismiss = clearZipUri
+    )
+
+    fun getDisplayName(uri: Uri): String {
+        return uri.getFileName(context) ?: uri.lastPathSegment ?: "Unknown"
+    }
+
+    val intentStateValue by intentState.collectAsState()
+    LaunchedEffect(intentStateValue) {
+        val currentIntent = activity.intent
+        val uri = currentIntent?.data ?: return@LaunchedEffect
+
+        if (!isManager || uri.scheme != "content" || currentIntent.type != "application/zip") {
+            return@LaunchedEffect
+        }
+
+        if (isSafeMode) {
+            Toast.makeText(
+                context,
+                context.getString(R.string.safe_mode_module_disabled), Toast.LENGTH_SHORT
+            )
+                .show()
+        } else {
+            zipUri = uri
+            installDialog.showConfirm(
+                title = context.getString(R.string.module),
+                content = context.getString(
+                    R.string.module_install_prompt_with_name,
+                    "\n${getDisplayName(uri)}"
+                )
+            )
+        }
+    }
+}
+
+@Composable
+private fun ShortcutIntentHandler(
+    intentState: MutableStateFlow<Int>,
+    navigator: Navigator
+) {
+    val activity = LocalActivity.current ?: return
+    val context = LocalContext.current
+    val intentStateValue by intentState.collectAsState()
+    LaunchedEffect(intentStateValue) {
+        val intent = activity.intent
+        val type = intent?.getStringExtra("shortcut_type") ?: return@LaunchedEffect
+        when (type) {
+            "module_action" -> {
+                val moduleId = intent.getStringExtra("module_id") ?: return@LaunchedEffect
+                navigator.push(Route.ExecuteModuleAction(moduleId))
+            }
+
+            "module_webui" -> {
+                val moduleId = intent.getStringExtra("module_id") ?: return@LaunchedEffect
+                val webIntent = Intent(context, WebUIActivity::class.java)
+                    .setData("kernelsu://webui/$moduleId".toUri())
+                context.startActivity(webIntent)
+            }
+
+            else -> return@LaunchedEffect
+        }
+    }
+}

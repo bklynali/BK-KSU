@@ -1,6 +1,6 @@
 # App Profile
 
-App Profile là một cơ chế do KernelSU cung cấp để tùy chỉnh cấu hình của các ứng dụng khác nhau.
+App Profile là một cơ chế do BK-KSU cung cấp để tùy chỉnh cấu hình của các ứng dụng khác nhau.
 
 Đối với các ứng dụng được cấp quyền root (tức là có thể sử dụng `su`), App Profile cũng có thể được gọi là Root Profile. Nó cho phép tùy chỉnh các quy tắc `uid`, `gid`, `groups`, `capabilities` và `SELinux` của lệnh `su`, do đó hạn chế các đặc quyền của người dùng root. Ví dụ: nó có thể chỉ cấp quyền mạng cho các ứng dụng tường lửa trong khi từ chối quyền truy cập tệp hoặc có thể cấp quyền shell thay vì quyền truy cập root đầy đủ cho các ứng dụng đóng băng: **giữ nguồn điện theo nguyên tắc đặc quyền tối thiểu.**
 
@@ -31,7 +31,7 @@ uid=2000(shell) gid=2000(shell) groups=2000(shell),1004(input),1007(log),1011(ad
 
 Ở đây, UID là `2000` và GID (ID nhóm chính) cũng là `2000`. Ngoài ra, nó thuộc một số nhóm bổ sung, chẳng hạn như `inet` (biểu thị khả năng tạo ổ cắm `AF_INET` và `AF_INET6`) và `sdcard_rw` (biểu thị quyền đọc/ghi đối với thẻ SD).
 
-Root Profile của KernelSU cho phép tùy chỉnh UID, GID và các nhóm cho quy trình gốc sau khi thực thi `su`. Ví dụ: Cấu hình gốc của ứng dụng gốc có thể đặt UID của nó thành `2000`, có nghĩa là khi sử dụng `su`, các quyền thực tế của ứng dụng sẽ ở cấp shell ADB. Nhóm `inet` có thể bị xóa, ngăn lệnh `su` truy cập mạng.
+Root Profile của BK-KSU cho phép tùy chỉnh UID, GID và các nhóm cho quy trình gốc sau khi thực thi `su`. Ví dụ: Cấu hình gốc của ứng dụng gốc có thể đặt UID của nó thành `2000`, có nghĩa là khi sử dụng `su`, các quyền thực tế của ứng dụng sẽ ở cấp shell ADB. Nhóm `inet` có thể bị xóa, ngăn lệnh `su` truy cập mạng.
 
 :::tip Ghi chú
 Hồ sơ ứng dụng chỉ kiểm soát các quyền của tiến trình gốc sau khi sử dụng `su`; nó không kiểm soát các quyền của ứng dụng. Nếu một ứng dụng đã yêu cầu quyền truy cập mạng, ứng dụng đó vẫn có thể truy cập mạng ngay cả khi không sử dụng `su`. Việc xóa nhóm `inet` khỏi `su` chỉ ngăn `su` truy cập mạng.
@@ -49,7 +49,7 @@ Bắt đầu với Linux 2.2, Linux chia các đặc quyền truyền thống đ
 
 Mỗi Khả năng đại diện cho một hoặc nhiều đặc quyền. Ví dụ: `CAP_DAC_READ_SEARCH` thể hiện khả năng bỏ qua việc kiểm tra quyền để đọc tệp cũng như quyền đọc và thực thi thư mục. Nếu người dùng có UID hiệu dụng là `0` (người dùng root) thiếu khả năng `CAP_DAC_READ_SEARCH` hoặc cao hơn, điều này có nghĩa là ngay cả khi họ là root, họ không thể tùy ý đọc tệp.
 
-Cấu hình gốc của KernelSU cho phép tùy chỉnh các Khả năng của tiến trình gốc sau khi thực thi `su`, nhờ đó đạt được việc cấp một phần "quyền root". Không giống như UID và GID đã nói ở trên, một số ứng dụng gốc nhất định yêu cầu UID là `0` sau khi sử dụng `su`. Trong những trường hợp như vậy, việc giới hạn Khả năng của người dùng root này bằng UID `0` có thể hạn chế các hoạt động được phép của họ.
+Cấu hình gốc của BK-KSU cho phép tùy chỉnh các Khả năng của tiến trình gốc sau khi thực thi `su`, nhờ đó đạt được việc cấp một phần "quyền root". Không giống như UID và GID đã nói ở trên, một số ứng dụng gốc nhất định yêu cầu UID là `0` sau khi sử dụng `su`. Trong những trường hợp như vậy, việc giới hạn Khả năng của người dùng root này bằng UID `0` có thể hạn chế các hoạt động được phép của họ.
 
 :::tip Rất Khuyến Nghị
 Capabilities của Linux [tài liệu chính thức](https://man7.org/linux/man-pages/man7/capabilities.7.html) cung cấp giải thích chi tiết về các khả năng mà mỗi Capabilities thể hiện. Nếu bạn có ý định tùy chỉnh Capabilities, bạn nên đọc tài liệu này trước.
@@ -74,7 +74,7 @@ Việc giải thích khái niệm đầy đủ về SELinux rất phức tạp v
 2. [Red Hat: What Is SELinux?](https://www.redhat.com/en/topics/linux/what-is-selinux)
 3. [ArchLinux: SELinux](https://wiki.archlinux.org/title/SELinux)
 
-Root Profile của KernelSU cho phép tùy chỉnh ngữ cảnh SELinux của tiến trình gốc sau khi thực thi `su`. Các quy tắc kiểm soát truy cập cụ thể có thể được đặt cho bối cảnh này để cho phép kiểm soát chi tiết hơn các quyền .
+Root Profile của BK-KSU cho phép tùy chỉnh ngữ cảnh SELinux của tiến trình gốc sau khi thực thi `su`. Các quy tắc kiểm soát truy cập cụ thể có thể được đặt cho bối cảnh này để cho phép kiểm soát chi tiết hơn các quyền .
 
 Trong các trường hợp điển hình, khi một ứng dụng thực thi `su`, nó sẽ chuyển quy trình sang miền SELinux với **quyền truy cập không hạn chế**, chẳng hạn như `u:r:su:s0`. Thông qua Root Profile, miền này có thể được chuyển sang miền tùy chỉnh, chẳng hạn như `u:r:app1:s0` và một loạt quy tắc có thể được xác định cho miền này:
 
@@ -106,13 +106,13 @@ Nếu bạn thực sự cần cấp quyền root cho ADB (ví dụ: với tư c�
 
 ### Umount Modules
 
-KernelSU cung cấp một cơ chế systemless để sửa đổi các phân vùng hệ thống, đạt được thông qua việc gắn overlayfs. Tuy nhiên, một số ứng dụng có thể nhạy cảm với hành vi đó. Do đó, chúng ta có thể dỡ bỏ các mô-đun được gắn trên các ứng dụng này bằng cách đặt tùy chọn "umount modules".
+BK-KSU cung cấp một cơ chế systemless để sửa đổi các phân vùng hệ thống, đạt được thông qua việc gắn overlayfs. Tuy nhiên, một số ứng dụng có thể nhạy cảm với hành vi đó. Do đó, chúng ta có thể dỡ bỏ các mô-đun được gắn trên các ứng dụng này bằng cách đặt tùy chọn "umount modules".
 
-Ngoài ra, giao diện cài đặt của trình quản lý KernelSU cung cấp một công tắc cho "umount modules by default". Theo mặc định, công tắc này được **bật**, có nghĩa là KernelSU hoặc một số mô-đun sẽ hủy tải các mô-đun cho ứng dụng này trừ khi áp dụng cài đặt bổ sung. Nếu bạn không thích cài đặt này hoặc nếu nó ảnh hưởng đến một số ứng dụng nhất định, bạn có các tùy chọn sau:
+Ngoài ra, giao diện cài đặt của trình quản lý BK-KSU cung cấp một công tắc cho "umount modules by default". Theo mặc định, công tắc này được **bật**, có nghĩa là BK-KSU hoặc một số mô-đun sẽ hủy tải các mô-đun cho ứng dụng này trừ khi áp dụng cài đặt bổ sung. Nếu bạn không thích cài đặt này hoặc nếu nó ảnh hưởng đến một số ứng dụng nhất định, bạn có các tùy chọn sau:
 
 1. Giữ nút chuyển cho "umount modules by default" và tắt riêng tùy chọn "umount modules" trong App Profile đối với các ứng dụng yêu cầu tải mô-đun (hoạt động như "whitelist").
 2. Tắt khóa chuyển cho "umount modules by default" và bật riêng tùy chọn "umount modules" trong App Profile cho các ứng dụng yêu cầu dỡ bỏ mô-đun (hoạt động như "blacklist").
 
 :::info
-Trong các thiết bị sử dụng kernel phiên bản 5.10 trở lên, kernel thực hiện việc dỡ tải các mô-đun. Tuy nhiên, đối với các thiết bị chạy phiên bản kernel dưới 5.10, công tắc này chỉ đơn thuần là một tùy chọn cấu hình và bản thân KernelSU không thực hiện bất kỳ hành động nào. Một số mô-đun, chẳng hạn như Zygisksu, có thể sử dụng công tắc này để xác định xem có cần thiết phải dỡ bỏ mô-đun hay không.
+Trong các thiết bị sử dụng kernel phiên bản 5.10 trở lên, kernel thực hiện việc dỡ tải các mô-đun. Tuy nhiên, đối với các thiết bị chạy phiên bản kernel dưới 5.10, công tắc này chỉ đơn thuần là một tùy chọn cấu hình và bản thân BK-KSU không thực hiện bất kỳ hành động nào. Một số mô-đun, chẳng hạn như Zygisksu, có thể sử dụng công tắc này để xác định xem có cần thiết phải dỡ bỏ mô-đun hay không.
 :::

@@ -2,18 +2,18 @@
 
 ::: warning
 Dokumen ini hanya untuk referensi arsip dan tidak lagi diperbarui.
-Sejak KernelSU v1.0, kami telah menghentikan dukungan resmi untuk perangkat non-GKI.
+Sejak BK-KSU v1.0, kami telah menghentikan dukungan resmi untuk perangkat non-GKI.
 :::
 
 :::peringatan
 
-di halaman ini, terdapat kernel untuk perangkat non-GKI yang mendukung KernelSU yang dikelola oleh pengembang lain.
+di halaman ini, terdapat kernel untuk perangkat non-GKI yang mendukung BK-KSU yang dikelola oleh pengembang lain.
 
 :::
 
 :::peringatan
 
-Halaman ini hanya untuk Anda yang ingin menemukan kode sumber yang sesuai dengan perangkat Anda, itu **BUKAN** berarti kode sumber telah ditinjau oleh _KernelSU Developers_. Anda harus menggunakannya dengan risiko Anda sendiri.
+Halaman ini hanya untuk Anda yang ingin menemukan kode sumber yang sesuai dengan perangkat Anda, itu **BUKAN** berarti kode sumber telah ditinjau oleh _BK-KSU Developers_. Anda harus menggunakannya dengan risiko Anda sendiri.
 
 :::
 
