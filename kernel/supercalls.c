@@ -285,11 +285,7 @@ static int do_set_app_profile(void __user *arg)
         return -EFAULT;
     }
 
-    if (!ksu_set_app_profile(&cmd.profile, true)) {
-        return -EFAULT;
-    }
-
-    return 0;
+    return ksu_set_app_profile(&cmd.profile, true);
 }
 
 static int do_get_feature(void __user *arg)
