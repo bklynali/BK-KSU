@@ -347,19 +347,23 @@ struct root_profile *ksu_get_root_profile(uid_t uid)
     return &default_root_profile;
 }
 
-bool ksu_get_allow_list(int *array, int *length, bool allow)
+bool ksu_get_allow_list(int *array, u16 *length, u16 *total, bool allow)
 {
     struct perm_data *p = NULL;
     struct list_head *pos = NULL;
-    int i = 0;
+    u16 i = 0, j = 0;
     list_for_each (pos, &allow_list) {
         p = list_entry(pos, struct perm_data, list);
         // pr_info("get_allow_list uid: %d allow: %d\n", p->uid, p->allow);
         if (p->profile.allow_su == allow) {
-            array[i++] = p->profile.current_uid;
+            if (j < *length) {
+                array[j++] = p->profile.current_uid;
+            }
+            ++i;
         }
     }
-    *length = i;
+    *length = j;
+    *total = i;
 
     return true;
 }
