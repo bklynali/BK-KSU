@@ -152,7 +152,7 @@ static int do_check_safemode(void __user *arg)
     return 0;
 }
 
-static int do_get_list_common(void __user *arg, bool allow)
+static int do_get_allow_list_common(void __user *arg, bool allow)
 {
     struct ksu_get_allow_list_cmd cmd;
     int *arr = NULL;
@@ -164,6 +164,9 @@ static int do_get_list_common(void __user *arg, bool allow)
 
     if (cmd.count) {
         arr = kmalloc(sizeof(int) * cmd.count, GFP_KERNEL);
+        if (!arr) {
+            return -ENOMEM;
+        }
     }
 
     bool success = ksu_get_allow_list(arr, &cmd.count, &cmd.total_count, allow);
@@ -174,14 +177,14 @@ static int do_get_list_common(void __user *arg, bool allow)
     }
 
     if (copy_to_user(arg, &cmd, sizeof(cmd))) {
-        pr_err("get_deny_list: copy_to_user failed\n");
+        pr_err("get_allow_list: copy_to_user cmd failed\n");
         err = -EFAULT;
         goto out;
     }
 
     if (cmd.count && copy_to_user(&((struct ksu_get_allow_list_cmd *)arg)->uids,
                                   arr, sizeof(int) * cmd.count)) {
-        pr_err("get_deny_list: copy_to_user failed\n");
+        pr_err("get_allow_list: copy_to_user uids failed\n");
         err = -EFAULT;
     }
 
@@ -194,12 +197,12 @@ out:
 
 static int do_get_deny_list(void __user *arg)
 {
-    return do_get_list_common(arg, false);
+    return do_get_allow_list_common(arg, false);
 }
 
 static int do_get_allow_list(void __user *arg)
 {
-    return do_get_list_common(arg, true);
+    return do_get_allow_list_common(arg, true);
 }
 
 static int do_uid_granted_root(void __user *arg)
