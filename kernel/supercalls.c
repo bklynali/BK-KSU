@@ -279,13 +279,19 @@ static int do_get_app_profile(void __user *arg)
 static int do_set_app_profile(void __user *arg)
 {
     struct ksu_set_app_profile_cmd cmd;
+    int ret;
 
     if (copy_from_user(&cmd, arg, sizeof(cmd))) {
         pr_err("set_app_profile: copy_from_user failed\n");
         return -EFAULT;
     }
 
-    return ksu_set_app_profile(&cmd.profile, true);
+    ret = ksu_set_app_profile(&cmd.profile);
+    if (!ret) {
+        ksu_persistent_allow_list();
+        ksu_mark_running_process();
+    }
+    return ret;
 }
 
 static int do_get_feature(void __user *arg)
