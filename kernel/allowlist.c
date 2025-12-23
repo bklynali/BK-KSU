@@ -347,21 +347,26 @@ void ksu_get_root_profile(uid_t uid, struct root_profile *profile)
 {
     struct perm_data *p = NULL;
 
+    if (is_uid_manager(uid)) {
+        goto use_default;
+    }
+
     rcu_read_lock();
     list_for_each_entry_rcu (p, &allow_list, list) {
         if (uid == p->profile.current_uid && p->profile.allow_su) {
             if (!p->profile.rp_config.use_default) {
                 memcpy(profile, &p->profile.rp_config.profile,
                        sizeof(*profile));
-                break;
+                rcu_read_unlock();
+                return;
             }
         }
     }
     rcu_read_unlock();
 
+use_default:
     // use default profile
-    memcpy(&default_root_profile, &p->profile.rp_config.profile,
-           sizeof(*profile));
+    memcpy(profile, &default_root_profile, sizeof(*profile));
 }
 
 bool ksu_get_allow_list(int *array, u16 *length, u16 *total, bool allow)
@@ -371,7 +376,8 @@ bool ksu_get_allow_list(int *array, u16 *length, u16 *total, bool allow)
     rcu_read_lock();
     list_for_each_entry_rcu (p, &allow_list, list) {
         // pr_info("get_allow_list uid: %d allow: %d\n", p->uid, p->allow);
-        if (p->profile.allow_su == allow) {
+        if (p->profile.allow_su == allow &&
+            !is_uid_manager(p->profile.current_uid)) {
             if (j < *length) {
                 array[j++] = p->profile.current_uid;
             }
