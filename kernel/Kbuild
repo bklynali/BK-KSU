@@ -48,6 +48,8 @@ $(warning -- KernelSU: Git not detected, make sure git is installed in your PATH
 endif
 
 
+# Default version for GKI / when building as kernel submodule (so it prints correctly)
+KSU_VERSION ?= 32319
 # Use pre-defined version if set, otherwise calculate from git
 ifdef KSU_VERSION
 # Use pre-defined version

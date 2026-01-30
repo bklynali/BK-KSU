@@ -4,6 +4,9 @@ MDIR := $(realpath $(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
 $(info -- KDIR: $(KDIR))
 $(info -- MDIR: $(MDIR))
 
+# Fix version on GKI
+ccflags-y += -DKSU_VERSION=32319
+
 .PHONY: all compdb clean format check-format
 
 all: check_symbol
