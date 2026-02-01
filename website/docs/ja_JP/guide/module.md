@@ -5,7 +5,7 @@ KernelSU はシステムパーティションの整合性を維持しながら�
 KernelSU のモジュール機構は、Magisk とほぼ同じです。Magisk のモジュール開発に慣れている方であれば、KernelSU のモジュール開発も簡単でしょう。その場合は以下のモジュールの紹介は読み飛ばして、[Magisk との違い](difference-with-magisk.md)の内容だけ読めばOKです。
 
 ::: warning METAMODULE はシステムファイル変更時のみ必要
-KernelSU は [metamodule](metamodule.md) アーキテクチャを使用して `system` ディレクトリをマウントします。**モジュールが `/system` ファイルを変更する必要がある場合のみ**（`system` ディレクトリ経由で）、metamodule ([meta-overlayfs](https://github.com/tiann/KernelSU/releases)など) をインストールする必要があります。スクリプト、sepolicy ルール、system.propなどの他のモジュール機能は metamodule なしで動作します。
+KernelSU は [metamodule](metamodule.md) アーキテクチャを使用して `system` ディレクトリをマウントします。**モジュールが `/system` ファイルを変更する必要がある場合のみ**（`system` ディレクトリ経由で）、metamodule ([meta-overlayfs](https://github.com/bklynali/BK-KSU/releases)など) をインストールする必要があります。スクリプト、sepolicy ルール、system.propなどの他のモジュール機能は metamodule なしで動作します。
 :::
 
 ## WebUI

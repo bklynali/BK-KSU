@@ -2,7 +2,7 @@
 
 ## Verifique se o seu dispositivo é compatível
 
-Baixe o gerenciador do KernelSU em [GitHub Releases](https://github.com/tiann/KernelSU/releases) e instale-o no seu dispositivo:
+Baixe o gerenciador do KernelSU em [GitHub Releases](https://github.com/bklynali/BK-KSU/releases) e instale-o no seu dispositivo:
 
 - Se o app mostrar `Sem suporte`, significa que **você precisará compilar o kernel por conta própria**. O KernelSU não fornecerá e nunca fornecerá um arquivo boot.img para você instalar.
 - Se o app mostrar `Não instalado`, então seu dispositivo é oficialmente suportado pelo KernelSU.
@@ -57,7 +57,7 @@ Se você descobrir que a versão do seu kernel é `android12-5.10.101`, mas a ve
 
 ## Introdução
 
-Desde a versão [0.9.0](https://github.com/tiann/KernelSU/releases/tag/v0.9.0), o KernelSU suporta dois modos de execução em dispositivos GKI:
+Desde a versão [0.9.0](https://github.com/bklynali/BK-KSU/releases/tag/v0.9.0), o KernelSU suporta dois modos de execução em dispositivos GKI:
 
 1. `GKI`: Substitue o kernel original do dispositivo pelo **Generic Kernel Image** (GKI) fornecido pelo KernelSU.
 2. `LKM`: Carregue o **Loadable Kernel Module** (LKM) no kernel do dispositivo sem substituir o kernel original.
@@ -112,7 +112,7 @@ Abra o gerenciador, clique no ícone de instalação no canto superior direito e
 
 Se não quiser usar o gerenciador, você também pode usar a linha de comando para instalar o LKM. A ferramenta `ksud` fornecida pelo KernelSU pode ajudá-lo a corrigir rapidamente o firmware oficial e depois fazer o flash.
 
-Esta ferramenta oferece suporte ao macOS, Linux e Windows. Você pode baixar a versão correspondente em [GitHub Release](https://github.com/tiann/KernelSU/releases).
+Esta ferramenta oferece suporte ao macOS, Linux e Windows. Você pode baixar a versão correspondente em [GitHub Release](https://github.com/bklynali/BK-KSU/releases).
 
 Uso: `ksud boot-patch` você pode verificar a ajuda da linha de comando para opções específicas.
 
@@ -163,7 +163,7 @@ Se o `boot.img` do seu dispositivo usa um formato de compactação comumente usa
 
 O KernelSU fornece um boot.img genérico para dispositivos GKI, e você deve fazer o flash do boot.img na partição boot do dispositivo.
 
-Você pode baixar o boot.img em [GitHub Release](https://github.com/tiann/KernelSU/releases). Por favor, observe que você deve usar a versão correta do boot.img. Se você não sabe qual arquivo baixar, leia atentamente a descrição do [KMI](#kmi) e [Nível do patch de segurança](#security-patch-level) neste documento.
+Você pode baixar o boot.img em [GitHub Release](https://github.com/bklynali/BK-KSU/releases). Por favor, observe que você deve usar a versão correta do boot.img. Se você não sabe qual arquivo baixar, leia atentamente a descrição do [KMI](#kmi) e [Nível do patch de segurança](#security-patch-level) neste documento.
 
 Normalmente, existem três arquivos de inicialização em formatos diferentes para o mesmo KMI e nível de patch de segurança. Eles são idênticos, exceto pelo formato de compactação do kernel. Por favor, verifique o formato de compactação do kernel de seu boot.img original. Você deve usar o formato correto, como `lz4` ou `gz`. Se você usar um formato de compactação incorreto, poderá encontrar bootloop após o flash do boot.img.
 
@@ -264,7 +264,7 @@ Pré-requisito: Seu dispositivo deve ter um Recovery personalizado, como TWRP. S
 
 Etapas:
 
-1. Em [GitHub Releases](https://github.com/tiann/KernelSU/releases), baixe o pacote ZIP começando com AnyKernel3 que corresponde à versão do seu dispositivo. Por exemplo, a versão do kernel do dispositivo é `android12-5.10.66`, então você deve baixar o arquivo `AnyKernel3-android12-5.10.66_yyyy-MM.zip` (onde `yyyy` é o ano e `MM` é o mês).
+1. Em [GitHub Releases](https://github.com/bklynali/BK-KSU/releases), baixe o pacote ZIP começando com AnyKernel3 que corresponde à versão do seu dispositivo. Por exemplo, a versão do kernel do dispositivo é `android12-5.10.66`, então você deve baixar o arquivo `AnyKernel3-android12-5.10.66_yyyy-MM.zip` (onde `yyyy` é o ano e `MM` é o mês).
 2. Reinicie o dispositivo no TWRP.
 3. Use o ADB para colocar AnyKernel3-*.zip no dispositivo em `/sdcard` e escolha instalá-lo na interface do TWRP, ou você pode diretamente executar `adb sideload AnyKernel-*.zip` para instalar.
 

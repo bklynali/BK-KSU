@@ -5,7 +5,7 @@ KernelSU menyediakan mekanisme modul yang mencapai efek memodifikasi direktori s
 Mekanisme modul KernelSU hampir sama dengan Magisk. Jika Anda terbiasa dengan pengembangan modul Magisk, mengembangkan modul KernelSU sangat mirip. Anda dapat melewati pengenalan modul di bawah ini dan hanya perlu membaca [difference-with-magisk](difference-with-magisk.md).
 
 ::: warning METAMODULE HANYA DIPERLUKAN UNTUK MODIFIKASI FILE SISTEM
-KernelSU menggunakan arsitektur [metamodule](metamodule.md) untuk me-mount direktori `system`. **Hanya jika modul Anda perlu memodifikasi file `/system`** (melalui direktori `system`) Anda perlu menginstal metamodule (seperti [meta-overlayfs](https://github.com/tiann/KernelSU/releases)). Fitur modul lainnya seperti skrip, aturan sepolicy, dan system.prop bekerja tanpa metamodule.
+KernelSU menggunakan arsitektur [metamodule](metamodule.md) untuk me-mount direktori `system`. **Hanya jika modul Anda perlu memodifikasi file `/system`** (melalui direktori `system`) Anda perlu menginstal metamodule (seperti [meta-overlayfs](https://github.com/bklynali/BK-KSU/releases)). Fitur modul lainnya seperti skrip, aturan sepolicy, dan system.prop bekerja tanpa metamodule.
 :::
 
 ## WebUI

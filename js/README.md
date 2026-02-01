@@ -1,4 +1,4 @@
-# Library for KernelSU's module WebUI
+# Library for BK-KSU's module WebUI
 
 ## Install
 
