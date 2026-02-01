@@ -74,7 +74,7 @@ fun AboutScreen() {
 
     val htmlString = stringResource(
         id = R.string.about_source_code,
-        "<b><a href=\"https://github.com/tiann/KernelSU\">GitHub</a></b>",
+        "<b><a href=\"https://github.com/bklynali/BK-KSU\">GitHub</a></b>",
         "<b><a href=\"https://t.me/KernelSU\">Telegram</a></b>"
     )
     val result = extractLinks(htmlString)
@@ -137,7 +137,7 @@ fun AboutScreen() {
                             .background(Color.White)
                     ) {
                         Image(
-                            painter = painterResource(id = R.drawable.ic_launcher_foreground),
+                            painter = painterResource(id = R.mipmap.ic_launcher_foreground),
                             contentDescription = "icon",
                             contentScale = FixedScale(1f)
                         )

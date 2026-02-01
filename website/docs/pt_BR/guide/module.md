@@ -5,7 +5,7 @@ O KernelSU fornece um mecanismo de módulo que consegue modificar o diretório d
 O mecanismo de módulos do KernelSU é quase o mesmo do Magisk. Se você já está familiarizado com o desenvolvimento de módulos Magisk, o desenvolvimento de módulos KernelSU é muito semelhante. Você pode pular a introdução dos módulos abaixo e só precisa ler [Diferenças com Magisk](difference-with-magisk.md).
 
 ::: warning METAMODULE NECESSÁRIO APENAS PARA MODIFICAÇÃO DE ARQUIVOS DO SISTEMA
-KernelSU usa uma arquitetura [metamodule](metamodule.md) para montar o diretório `system`. **Somente se seu módulo precisar modificar arquivos `/system`** (via diretório `system`), você precisa instalar um metamodule (como [meta-overlayfs](https://github.com/tiann/KernelSU/releases)). Outros recursos de módulos como scripts, regras sepolicy e system.prop funcionam sem um metamodule.
+KernelSU usa uma arquitetura [metamodule](metamodule.md) para montar o diretório `system`. **Somente se seu módulo precisar modificar arquivos `/system`** (via diretório `system`), você precisa instalar um metamodule (como [meta-overlayfs](https://github.com/bklynali/BK-KSU/releases)). Outros recursos de módulos como scripts, regras sepolicy e system.prop funcionam sem um metamodule.
 :::
 
 ## WebUI

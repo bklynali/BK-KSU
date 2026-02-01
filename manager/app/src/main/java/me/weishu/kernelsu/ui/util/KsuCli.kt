@@ -484,3 +484,101 @@ fun restartApp(packageName: String) {
     forceStopApp(packageName)
     launchApp(packageName)
 }
+
+suspend fun isZygiskEnabled(): Boolean = withContext(Dispatchers.IO) {
+    val shell = getRootShell()
+    val result = shell.newJob()
+        .add("test -f $ZYGISK_MARKER_FILE")
+        .exec()
+    result.isSuccess
+}
+
+fun setZygiskEnabled(enabled: Boolean): Boolean {
+    val shell = getRootShell()
+    val cmd = if (enabled) {
+        // Create the marker file with "1" inside when enabled
+        "echo 1 > $ZYGISK_MARKER_FILE"
+    } else {
+        // Remove the marker file when disabled
+        "rm -f $ZYGISK_MARKER_FILE"
+    }
+    val result = shell.newJob().add(cmd).exec()
+    Log.i(TAG, "setZygiskEnabled($enabled) result: $result")
+    return result.isSuccess
+}
+
+suspend fun getZygiskModules(): List<String> = withContext(Dispatchers.IO) {
+    val shell = getRootShell()
+    val result = shell.newJob()
+        .add("${getKsuDaemonPath()} zygisk list-modules")
+        .to(ArrayList(), null).exec()
+    result.out.filter { it.isNotBlank() }.map { it.trim() }
+}
+
+fun getZygiskImplementation(property: String): String {
+    val modulesPath = "/data/adb/modules"
+    val zygiskModuleIds = arrayOf("rezygisk", "zygisksu", "neozygisk")
+    
+    for (moduleId in zygiskModuleIds) {
+        val moduleDir = "$modulesPath/$moduleId"
+        val disableFile = "$moduleDir/disable"
+        val removeFile = "$moduleDir/remove"
+        val propFile = "$moduleDir/module.prop"
+        
+        val shell = getRootShell()
+        
+        // Check if module directory exists and is not disabled/removed
+        val checkDir = shell.newJob()
+            .add("test -d $moduleDir")
+            .exec()
+        if (!checkDir.isSuccess) continue
+        
+        val checkDisabled = shell.newJob()
+            .add("test -f $disableFile")
+            .exec()
+        if (checkDisabled.isSuccess) continue
+        
+        val checkRemoved = shell.newJob()
+            .add("test -f $removeFile")
+            .exec()
+        if (checkRemoved.isSuccess) continue
+        
+        // Read the property from module.prop
+        val readProp = shell.newJob()
+            .add("grep -E '^$property=' $propFile 2>/dev/null | cut -d'=' -f2 | tr -d '\"'")
+            .to(ArrayList(), null)
+            .exec()
+        
+        if (readProp.isSuccess && readProp.out.isNotEmpty()) {
+            val value = readProp.out.first().trim()
+            if (value.isNotBlank()) {
+                Log.i(TAG, "Zygisk $property: $value")
+                return value
+            }
+        }
+    }
+    
+    // If no external implementation found, check if zygisk is enabled
+    // If enabled, return BK-KSU Build Zygisk for name property
+    val shell = getRootShell()
+    val zygiskEnabledCheck = shell.newJob()
+        .add("test -f $ZYGISK_MARKER_FILE")
+        .exec()
+    
+    if (zygiskEnabledCheck.isSuccess && property == "name") {
+        Log.i(TAG, "Zygisk $property: BK-KSU Build Zygisk")
+        return "BK-KSU Build Zygisk"
+    }
+    
+    Log.i(TAG, "Zygisk $property: None")
+    return "None"
+}
+
+fun zygiskRequired(moduleDir: String): Boolean {
+    val shell = getRootShell()
+    val zygiskDir = "$moduleDir/zygisk"
+    val result = shell.newJob()
+        .add("test -d $zygiskDir && [ \"$(ls -A $zygiskDir 2>/dev/null | wc -l)\" -gt 0 ]")
+        .exec()
+    return result.isSuccess
+}

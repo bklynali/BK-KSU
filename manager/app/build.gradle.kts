@@ -105,6 +105,7 @@ android {
     buildToolsVersion = androidBuildToolsVersion
 
     defaultConfig {
+        applicationId = "com.bk.ksu"
         minSdk = androidMinSdkVersion
         targetSdk = androidTargetSdkVersion
         versionCode = managerVersionCode

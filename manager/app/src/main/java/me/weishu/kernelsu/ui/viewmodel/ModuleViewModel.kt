@@ -26,6 +26,7 @@ import me.weishu.kernelsu.ui.util.HanziToPinyin
 import me.weishu.kernelsu.ui.util.isNetworkAvailable
 import me.weishu.kernelsu.ui.util.listModules
 import me.weishu.kernelsu.ui.util.module.sanitizeVersionString
+import me.weishu.kernelsu.ui.util.zygiskRequired
 import org.json.JSONArray
 import org.json.JSONObject
 import java.text.Collator
@@ -53,8 +54,7 @@ class ModuleViewModel : ViewModel() {
         val hasWebUi: Boolean,
         val hasActionScript: Boolean,
         val metamodule: Boolean,
-        val actionIconPath: String?,
-        val webUiIconPath: String?,
+        val zygiskRequired: Boolean = false,
     )
 
     @Immutable
@@ -182,6 +182,8 @@ class ModuleViewModel : ViewModel() {
                     .asSequence()
                     .map { array.getJSONObject(it) }
                     .map { obj ->
+                            val moduleId = obj.getString("id")
+                            val moduleDir = "/data/adb/modules/$moduleId"
                         ModuleInfo(
                             obj.getString("id"),
                             obj.optString("name"),
@@ -196,8 +198,7 @@ class ModuleViewModel : ViewModel() {
                             obj.optBoolean("web"),
                             obj.optBoolean("action"),
                             (obj.optInt("metamodule") != 0) or obj.optBoolean("metamodule"),
-                            obj.optString("actionIcon").takeIf { it.isNotBlank() },
-                            obj.optString("webuiIcon").takeIf { it.isNotBlank() }
+			    zygiskRequired(moduleDir)
                         )
                     }.toList()
             }.getOrElse {

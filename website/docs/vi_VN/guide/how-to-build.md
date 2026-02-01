@@ -52,19 +52,19 @@ Nếu bạn có thể build kernel thành công thì việc xây dựng KernelSU
 - Thẻ mới nhất (ổn định)
 
 ```sh
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -
 ```
 
 - nhánh chính (dev)
 
 ```sh
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -s main
 ```
 
 - Chọn thẻ (chẳng hạn như v0.5.2)
 
 ```sh
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.5.2
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -s v0.5.2
 ```
 
 Và sau đó build lại kernel và bạn sẽ có được image kernel với KernelSU!

@@ -60,15 +60,15 @@ rm common/android/abi_gki_protected_exports_*
 ::: code-group
 
 ```sh[最新 tag (穩定版本)]
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -
 ```
 
 ```sh[main 分支 (開發版本)]
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -s main
 ```
 
 ```sh[選取 tag (例如 v0.5.2)]
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.5.2
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -s v0.5.2
 ```
 
 :::

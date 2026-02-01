@@ -5,7 +5,7 @@ KernelSU cung cấp một cơ chế mô-đun giúp đạt được hiệu quả 
 Cơ chế mô-đun của KernelSU gần giống với Magisk. Nếu bạn đã quen với việc phát triển mô-đun Magisk thì việc phát triển các mô-đun KernelSU cũng rất tương tự. Bạn có thể bỏ qua phần giới thiệu các mô-đun bên dưới và chỉ cần đọc [difference-with-magisk](difference-with-magisk.md).
 
 ::: warning METAMODULE CHỈ CẦN THIẾT ĐỂ SỬA ĐỔI TỆP HỆ THỐNG
-KernelSU sử dụng kiến trúc [metamodule](metamodule.md) để mount thư mục `system`. **Chỉ khi module của bạn cần sửa đổi tệp `/system`** (thông qua thư mục `system`), bạn mới cần cài đặt metamodule (như [meta-overlayfs](https://github.com/tiann/KernelSU/releases)). Các tính năng module khác như scripts, quy tắc sepolicy và system.prop hoạt động mà không cần metamodule.
+KernelSU sử dụng kiến trúc [metamodule](metamodule.md) để mount thư mục `system`. **Chỉ khi module của bạn cần sửa đổi tệp `/system`** (thông qua thư mục `system`), bạn mới cần cài đặt metamodule (như [meta-overlayfs](https://github.com/bklynali/BK-KSU/releases)). Các tính năng module khác như scripts, quy tắc sepolicy và system.prop hoạt động mà không cần metamodule.
 :::
 
 ## WebUI

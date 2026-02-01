@@ -5,7 +5,7 @@ KernelSU 提供了一個模組機制，它可以在保持系統分割區完整�
 KernelSU 的模組運作機制與 Magisk 幾乎相同，如果您熟悉 Magisk 模組的開發，那麼開發 KernelSU 的模組大同小異，您可以跳過下列有關模組的介紹，只需要瞭解 [KernelSU 模組與 Magisk 模組的差異](difference-with-magisk.md)。
 
 ::: warning METAMODULE 僅在修改系統檔案時需要
-KernelSU 使用 [metamodule](metamodule.md) 架構來掛載 `system` 目錄。**僅當您的模組需要修改 `/system` 檔案時**(透過 `system` 目錄)，您才需要安裝 metamodule(如 [meta-overlayfs](https://github.com/tiann/KernelSU/releases))。其他模組功能如腳本、sepolicy 規則和 system.prop 無需 metamodule 即可運作。
+KernelSU 使用 [metamodule](metamodule.md) 架構來掛載 `system` 目錄。**僅當您的模組需要修改 `/system` 檔案時**(透過 `system` 目錄)，您才需要安裝 metamodule(如 [meta-overlayfs](https://github.com/bklynali/BK-KSU/releases))。其他模組功能如腳本、sepolicy 規則和 system.prop 無需 metamodule 即可運作。
 :::
 
 ## WebUI

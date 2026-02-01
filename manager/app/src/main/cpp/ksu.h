@@ -158,6 +158,8 @@ bool set_kernel_umount_enabled(bool enabled);
 
 bool is_kernel_umount_enabled();
 
+int32_t get_manager_appid();
+
 // IOCTL command definitions
 #define KSU_IOCTL_GRANT_ROOT _IOC(_IOC_NONE, 'K', 1, 0)
 #define KSU_IOCTL_GET_INFO _IOC(_IOC_READ, 'K', 2, 0)

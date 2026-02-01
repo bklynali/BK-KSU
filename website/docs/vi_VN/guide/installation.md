@@ -2,7 +2,7 @@
 
 ## Kiểm tra xem thiết bị của bạn có được hỗ trợ không
 
-Tải xuống APP KernelSU manager từ [GitHub Releases](https://github.com/tiann/KernelSU/releases) và cài đặt nó vào thiết bị của bạn:
+Tải xuống APP KernelSU manager từ [GitHub Releases](https://github.com/bklynali/BK-KSU/releases) và cài đặt nó vào thiết bị của bạn:
 
 - Nếu ứng dụng hiển thị `Unsupported`, nghĩa là **Bạn nên tự biên dịch kernel**, KernelSU sẽ không và không bao giờ cung cấp boot image để bạn flash.
 - Nếu ứng dụng hiển thị `Not installed` thì thiết bị của bạn đã được KernelSU hỗ trợ chính thức.
@@ -58,7 +58,7 @@ Có một số phương pháp cài đặt KernelSU, mỗi phương pháp phù h�
 3. Cài đặt thông qua fastboot bằng boot.img do KernelSU cung cấp
 4. Sửa boot.img theo cách thủ công và cài đặt nó
 
-Since version [0.9.0](https://github.com/tiann/KernelSU/releases/tag/v0.9.0), KernelSU supports two running modes on GKI devices:
+Since version [0.9.0](https://github.com/bklynali/BK-KSU/releases/tag/v0.9.0), KernelSU supports two running modes on GKI devices:
 
 1. `GKI`: Replace the original kernel of the device with the **Generic Kernel Image** (GKI) provided by KernelSU.
 2. `LKM`: Load the **Loadable Kernel Module** (LKM) into the device kernel without replacing the original kernel.
@@ -159,7 +159,7 @@ There are several installation methods for LKM mode, each suitable for a differe
 
 Các bước:
 
-1. Từ [Release page](https://github.com/tiann/KernelSU/releases) của KernelSU, tải xuống gói zip bắt đầu bằng AnyKernel3 phù hợp với phiên bản điện thoại của bạn; ví dụ: phiên bản kernel của điện thoại là `android12-5.10. 66`, thì bạn nên tải xuống tệp `AnyKernel3-android12-5.10.66_yyyy-MM.zip` (trong đó `yyyy` là năm và `MM` là tháng).
+1. Từ [Release page](https://github.com/bklynali/BK-KSU/releases) của KernelSU, tải xuống gói zip bắt đầu bằng AnyKernel3 phù hợp với phiên bản điện thoại của bạn; ví dụ: phiên bản kernel của điện thoại là `android12-5.10. 66`, thì bạn nên tải xuống tệp `AnyKernel3-android12-5.10.66_yyyy-MM.zip` (trong đó `yyyy` là năm và `MM` là tháng).
 2. Khởi động lại điện thoại vào TWRP.
 3. Sử dụng adb để đặt AnyKernel3-*.zip vào điện thoại /sdcard và chọn cài đặt nó trong GUI TWRP; hoặc bạn có thể trực tiếp `adb sideload AnyKernel-*.zip` để cài đặt.
 
@@ -192,7 +192,7 @@ Phương pháp này không yêu cầu bạn phải có TWRP, cũng như không y
 
 KernelSU cung cấp boot.img chung cho các thiết bị GKI và bạn nên chuyển boot.img vào phân vùng boot của thiết bị.
 
-Bạn có thể tải xuống boot.img từ [GitHub Release](https://github.com/tiann/KernelSU/releases), xin lưu ý rằng bạn nên sử dụng đúng phiên bản boot.img. Ví dụ: nếu thiết bị của bạn hiển thị kernel `android12-5.10.101` , bạn cần tải xuống `android-5.10.101_yyyy-MM.boot-<format>.img`. (Giữ KMI nhất quán!)
+Bạn có thể tải xuống boot.img từ [GitHub Release](https://github.com/bklynali/BK-KSU/releases), xin lưu ý rằng bạn nên sử dụng đúng phiên bản boot.img. Ví dụ: nếu thiết bị của bạn hiển thị kernel `android12-5.10.101` , bạn cần tải xuống `android-5.10.101_yyyy-MM.boot-<format>.img`. (Giữ KMI nhất quán!)
 
 Trong đó `<format>` đề cập đến định dạng nén kernel của boot.img chính thức của bạn, vui lòng kiểm tra định dạng nén kernel của boot.img ban đầu của bạn, bạn nên sử dụng đúng định dạng, ví dụ: `lz4`, `gz`; nếu bạn sử dụng định dạng nén không chính xác, bạn có thể gặp phải bootloop.
 
