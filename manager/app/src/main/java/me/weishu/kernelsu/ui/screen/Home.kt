@@ -570,7 +570,7 @@ fun DonateCard() {
                 )
             },
             onClick = {
-                uriHandler.openUri("https://patreon.com/weishu")
+                uriHandler.openUri("https://www.paypal.com/donate/?hosted_button_id=NG7V3KC74AHVE")
             },
             insideMargin = PaddingValues(18.dp)
         )
@@ -613,12 +613,46 @@ private fun InfoCard() {
             )
             InfoText(
                 title = stringResource(R.string.home_manager_version),
-                content = "${managerVersion.first} (${managerVersion.second})"
+                content = "${managerVersion.first} (${managerVersion.second}) | UID: ${Natives.getManagerAppid()}"
+            )
+            InfoText(
+                title = stringResource(R.string.home_build_number),
+                content = Build.DISPLAY
             )
             InfoText(
                 title = stringResource(R.string.home_fingerprint),
                 content = Build.FINGERPRINT
             )
+            val isManager = Natives.isManager
+            val ksuVersion = if (isManager) Natives.version else null
+            if (ksuVersion != null) {
+                val zygiskEnabled by produceState(initialValue = false) {
+                    value = withContext(Dispatchers.IO) {
+                        isZygiskEnabled()
+                    }
+                }
+                if (zygiskEnabled) {
+                    val zygiskName by produceState(initialValue = "None") {
+                        value = withContext(Dispatchers.IO) {
+                            getZygiskImplementation("name")
+                        }
+                    }
+                    val zygiskVersion by produceState(initialValue = "None") {
+                        value = withContext(Dispatchers.IO) {
+                            getZygiskImplementation("version")
+                        }
+                    }
+                    val zygiskContent = if (zygiskName == "BK-KSU Zygisk") {
+                        "${stringResource(R.string.enabled)} | $zygiskName"
+                    } else {
+                        "${stringResource(R.string.enabled)} | $zygiskName | $zygiskVersion"
+                    }
+                    InfoText(
+                        title = stringResource(R.string.zygisk_status),
+                        content = zygiskContent
+                    )
+                }
+            }
             InfoText(
                 title = stringResource(R.string.home_selinux_status),
                 content = getSELinuxStatus(),

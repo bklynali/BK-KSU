@@ -1216,6 +1216,8 @@ fun ModuleItem(
     val actionIconTint = colorScheme.onSurface.copy(alpha = if (isDark) 0.7f else 0.9f)
     val updateBg = colorScheme.tertiaryContainer.copy(alpha = 0.6f)
     val updateTint = colorScheme.onTertiaryContainer.copy(alpha = 0.8f)
+    val errorBg = colorScheme.errorContainer.copy(alpha = 0.6f)
+    val errorTint = colorScheme.onErrorContainer.copy(alpha = 0.8f)
     val hasUpdate by remember(updateUrl) { derivedStateOf { updateUrl.isNotEmpty() } }
     val textDecoration by remember(module.remove) {
         mutableStateOf(if (module.remove) TextDecoration.LineThrough else null)
@@ -1267,6 +1269,45 @@ fun ModuleItem(
                     } else null
 
                     val reserved = (metaPlaceable?.width ?: 0) + if (metaPlaceable != null) spacingPx else 0
+                    val zygiskPlaceable = if (zygiskImpl.isNotBlank() && zygiskImpl != "None" && module.name == zygiskImpl && !module.remove) {
+                        subcompose("zygisk") {
+                            Text(
+                                text = stringResource(R.string.zygisk),
+                                fontSize = 12.sp,
+                                color = updateTint,
+                                modifier = Modifier
+                                    .clip(ContinuousRoundedRectangle(6.dp))
+                                    .background(updateBg)
+                                    .padding(horizontal = 6.dp, vertical = 2.dp),
+                                fontWeight = FontWeight(750),
+                                maxLines = 1,
+                                softWrap = false
+                            )
+                        }.first().measure(Constraints(0, constraints.maxWidth, 0, constraints.maxHeight))
+                    } else null
+                    
+                    val zygiskRequiredPlaceable = if (!zygiskEnabled && module.zygiskRequired && !module.remove) {
+                        subcompose("zygiskRequired") {
+                            Text(
+                                text = stringResource(R.string.zygisk_required),
+                                fontSize = 12.sp,
+                                color = errorTint,
+                                modifier = Modifier
+                                    .clip(ContinuousRoundedRectangle(6.dp))
+                                    .background(errorBg)
+                                    .padding(horizontal = 6.dp, vertical = 2.dp),
+                                fontWeight = FontWeight(750),
+                                maxLines = 1,
+                                softWrap = false
+                            )
+                        }.first().measure(Constraints(0, constraints.maxWidth, 0, constraints.maxHeight))
+                    } else null
+                    val reserved = (metaPlaceable?.width ?: 0) + 
+                        (if (metaPlaceable != null) spacingPx else 0) +
+                        (zygiskPlaceable?.width ?: 0) +
+                        (if (zygiskPlaceable != null) spacingPx else 0) +
+                        (zygiskRequiredPlaceable?.width ?: 0) +
+                        (if (zygiskRequiredPlaceable != null) spacingPx else 0)
                     val nameMax = (constraints.maxWidth - reserved).coerceAtLeast(0)
                     val namePlaceable = subcompose("name") {
                         Text(
@@ -1280,7 +1321,12 @@ fun ModuleItem(
                     }.first().measure(Constraints(constraints.minWidth, nameMax, constraints.minHeight, constraints.maxHeight))
 
                     val width = (namePlaceable.width + reserved).coerceIn(constraints.minWidth, constraints.maxWidth)
-                    val height = maxOf(namePlaceable.height, metaPlaceable?.height ?: 0)
+                     val height = maxOf(
+                        namePlaceable.height, 
+                        metaPlaceable?.height ?: 0,
+                        zygiskPlaceable?.height ?: 0,
+                        zygiskRequiredPlaceable?.height ?: 0
+                    )
 
                     layout(width, height) {
                         namePlaceable.placeRelative(0, 0)
@@ -1288,7 +1334,21 @@ fun ModuleItem(
                             val last = (layoutRes.lineCount - 1).coerceAtLeast(0)
                             layoutRes.getLineRight(last).toInt()
                         } ?: namePlaceable.width
-                        metaPlaceable?.placeRelative(endX + spacingPx, (height - (metaPlaceable.height)) / 2)
+                        var currentX = endX
+                        metaPlaceable?.let {
+                            currentX += spacingPx
+                            it.placeRelative(currentX, (height - it.height) / 2)
+                            currentX += it.width
+                        }
+                        zygiskPlaceable?.let {
+                            currentX += spacingPx
+                            it.placeRelative(currentX, (height - it.height) / 2)
+                            currentX += it.width
+                        }
+                        zygiskRequiredPlaceable?.let {
+                            currentX += spacingPx
+                            it.placeRelative(currentX, (height - it.height) / 2)
+                        }
                     }
                 }
                 Text(
@@ -1326,8 +1386,7 @@ fun ModuleItem(
                             durationMillis = 250,
                             easing = FastOutSlowInEasing
                         )
-                    )
-            ) {
+                    ) {
                 Text(
                     text = module.description,
                     fontSize = 14.sp,
@@ -1347,7 +1406,7 @@ fun ModuleItem(
 
         Row {
             AnimatedVisibility(
-                visible = module.enabled && !module.remove && !module.update,
+                visible = module.enabled && !module.remove && !module.update && filterZygiskModules,
                 enter = fadeIn(),
                 exit = fadeOut()
             ) {

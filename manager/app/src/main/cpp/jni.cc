@@ -9,7 +9,7 @@
 
 #include "ksu.h"
 
-#define LOG_TAG "KernelSU"
+#define LOG_TAG "BK-KSU"
 #ifdef NDEBUG
 #define LOGD(...) (void)0
 #else
@@ -330,4 +330,10 @@ Java_me_weishu_kernelsu_Natives_getUserName(JNIEnv *env, jobject thiz, jint uid)
         return env->NewStringUTF(pw->pw_name);
     }
     return nullptr;
+}
+
+extern "C"
+JNIEXPORT jint JNICALL
+Java_me_weishu_kernelsu_Natives_getManagerAppid(JNIEnv *env, jobject thiz) {
+    return get_manager_appid();
 }
