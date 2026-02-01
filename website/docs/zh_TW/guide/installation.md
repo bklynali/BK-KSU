@@ -2,7 +2,7 @@
 
 ## 檢查您的裝置是否受支援 {#check-if-your-device-is-supported}
 
-從 [GitHub Releases](https://github.com/tiann/KernelSU/releases) 下載 KernelSU 管理器，然後安裝至裝置並開啟：
+從 [GitHub Releases](https://github.com/bklynali/BK-KSU/releases) 下載 KernelSU 管理器，然後安裝至裝置並開啟：
 
 - 如果顯示「不支援」，則表示您的裝置不支援 KernelSU，您需要自行編譯核心才能繼續使用，KernelSU 官方也永遠不會提供一個您可以寫入的 Boot 映像。
 - 如果顯示「未安裝」，那麼 KernelSU 支援您的裝置。
@@ -113,7 +113,7 @@ LKM 模式不會替換掉裝置原有的核心，而是使用可載入核心模�
 
 如果你不想使用管理器，你也可以使用命令列來安裝 LKM。KernelSU 提供的 `ksud` 可以幫助你快速修補官方韌體，然後寫入。
 
-這個工具支援 macOS、Linux 和 Windows，你可以在 [GitHub Release](https://github.com/tiann/KernelSU/releases) 下載對應的版本。
+這個工具支援 macOS、Linux 和 Windows，你可以在 [GitHub Release](https://github.com/bklynali/BK-KSU/releases) 下載對應的版本。
 
 使用方法：`ksud boot-patch`。 你可以查看命令列的提示了解具體的使用方法。
 
@@ -159,7 +159,7 @@ GKI 的安裝方式有以下幾種，各自適用於不同的場景，請依需�
 
 KernelSU 為 GKI 裝置提供了標準 boot.img，您需要將 boot.img 寫入至裝置的 Boot 分區。
 
-您可以從 [GitHub Release](https://github.com/tiann/KernelSU/releases) 下載 boot.img，請注意，您應該使用正確版本的 boot.img。如果你不知道你該下載哪個檔案，請詳細閱讀文檔中的 [KMI](#kmi) 與[安全性修補程式等級](#security-patch-level)。
+您可以從 [GitHub Release](https://github.com/bklynali/BK-KSU/releases) 下載 boot.img，請注意，您應該使用正確版本的 boot.img。如果你不知道你該下載哪個檔案，請詳細閱讀文檔中的 [KMI](#kmi) 與[安全性修補程式等級](#security-patch-level)。
 
 通常，在相同的 KMI 和安全性修補程式等級下，會存在三種不同格式的啟動檔案。除了核心壓縮格式之外，它們都是相同的。請檢查您原來的 boot.img 的核心壓縮格式。您應該使用正確的格式，例如 `lz4` 、 `gz`，如果你使用了不正確的壓縮格式，你可能會在寫入後無法開機。
 
@@ -248,7 +248,7 @@ P.S. 這種方法在更新 KernelSU 時比較方便，無需電腦即可完成 (
 
 步驟：
 
-1. 在 KernelSU 的 [Release 頁面](https://github.com/tiann/KernelSU/releases) 下載與您手機版本相符的以 AnyKernel3 開頭的 Zip 檔；例如，手機核心版本為 `android12-5.10.66`，那麼您應該下載 `AnyKernel3-android12-5.10.66_yyyy-MM.zip` 這個檔案 (其中 `yyyy` 為年份，`MM` 為月份)。
+1. 在 KernelSU 的 [Release 頁面](https://github.com/bklynali/BK-KSU/releases) 下載與您手機版本相符的以 AnyKernel3 開頭的 Zip 檔；例如，手機核心版本為 `android12-5.10.66`，那麼您應該下載 `AnyKernel3-android12-5.10.66_yyyy-MM.zip` 這個檔案 (其中 `yyyy` 為年份，`MM` 為月份)。
 2. 重新開機手機至 TWRP。
 3. 使用 Adb 將 AnyKernel3-*.zip 放置到手機 `/sdcard` 然後在 TWRP 圖形使用者介面選擇並安裝；或者您也可以直接 `adb sideload AnyKernel-*.zip` 安裝。
 

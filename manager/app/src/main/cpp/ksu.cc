@@ -186,3 +186,10 @@ bool is_kernel_umount_enabled() {
     }
     return value != 0;
 }
+int32_t get_manager_appid() {
+    struct ksu_get_manager_appid_cmd cmd = {};
+    if (ksuctl(KSU_IOCTL_GET_MANAGER_APPID, &cmd) != 0) {
+        return -1; // Return -1 on failure
+    }
+    return (int32_t)cmd.appid;
+}

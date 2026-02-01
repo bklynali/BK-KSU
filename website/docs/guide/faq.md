@@ -4,7 +4,7 @@
 
 KernelSU supports devices running Android with an unlocked bootloader. However, official support is only for GKI Linux Kernels 5.10+ (in practice, this means your device needs to have Android 12 out-of-the-box to be supported).
 
-You can easily check the support for your device through the KernelSU manager, which is available [here](https://github.com/tiann/KernelSU/releases). 
+You can easily check the support for your device through the KernelSU manager, which is available [here](https://github.com/bklynali/BK-KSU/releases). 
 
 If the app shows `Not installed`, it means your device is officially supported by KernelSU.
 
