@@ -23,11 +23,11 @@ KernelSU menggunakan kprobe untuk melakukan hook kernel, jika *kprobe* berjalan 
 Pertama, tambahkan KernelSU ke dalam berkas kernel source tree:
 
 ```sh
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.9.5
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -s v0.9.5
 ```
 
 :::info
-[KernelSU 1.0 dan versi yang lebih baru tidak lagi mendukung kernel non-GKI](https://github.com/tiann/KernelSU/issues/1705). Versi terakhir yang didukung adalah `v0.9.5`, pastikan untuk menggunakan versi yang benar.
+[KernelSU 1.0 dan versi yang lebih baru tidak lagi mendukung kernel non-GKI](https://github.com/bklynali/BK-KSU/issues/1705). Versi terakhir yang didukung adalah `v0.9.5`, pastikan untuk menggunakan versi yang benar.
 :::
 
 Kemudian, Anda harus memeriksa apakah *kprobe* diaktifkan dalam konfigurasi kernel Anda, jika tidak, tambahkan konfigurasi ini ke dalamnya:
@@ -51,7 +51,7 @@ Jika kprobe tidak dapat bekerja pada kernel Anda (mungkin karena bug di upstream
 Pertama, tambahkan KernelSU ke dalam direktori kernel source tree:
 
 ```sh
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.9.5
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -s v0.9.5
 ```
 
 Kemudian, tambahkan panggilan KernelSU ke source kernel, berikut ini adalah patch yang dapat dirujuk:

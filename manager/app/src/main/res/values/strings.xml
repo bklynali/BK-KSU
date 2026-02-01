@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">KernelSU</string>
+    <string name="app_name" translatable="false">BK-KSU</string>
     <string name="home">Home</string>
     <string name="home_not_installed">Not installed</string>
     <string name="home_click_to_install">Tap to install</string>
@@ -51,11 +51,11 @@
     <string name="safe_mode_module_disabled">Module installation is disabled in safe mode</string>
     <string name="reboot_to_apply">Reboot to take effect</string>
     <string name="module_magisk_conflict">Modules are unavailable due to a conflict with Magisk!</string>
-    <string name="home_learn_kernelsu">Learn KernelSU</string>
+    <string name="home_learn_kernelsu">BK-KSU is based on KernelSU. Click on the link to learn about KernelSU</string>
     <string name="home_learn_kernelsu_url">https://kernelsu.org/guide/what-is-kernelsu.html</string>
-    <string name="home_click_to_learn_kernelsu">Learn how to install KernelSU and use modules.</string>
+    <string name="home_click_to_learn_kernelsu">Learn how to install BK-KSU and use modules.</string>
     <string name="home_support_title">Support Us</string>
-    <string name="home_support_content">KernelSU is, and always will be, free, and open source. However, you can show us that you care by making a donation.</string>
+    <string name="home_support_content">BK-KSU will always be free, However, you can show us that you care by making a donation.</string>
     <string name="home_gki_warning">Starting from v3.0.0, the GKI work mode will be used only in testing environments. We do not recommend it for daily use, and image files will no longer be provided.</string>
     <string name="about_source_code"><![CDATA[View source code at %1$s<br/>Join our %2$s channel]]></string>
     <string name="profile" translatable="false">App Profile</string>
@@ -117,8 +117,19 @@
     <string name="open">Open</string>
     <string name="enable_web_debugging">WebView debugging</string>
     <string name="enable_web_debugging_summary">Can be used to debug WebUI. Please enable only when needed.</string>
+    <string name="settings_zygisk_enabled">Zygisk</string>
+    <string name="settings_zygisk_enabled_summary">Built-in Zygisk support for BK-KSU</string>
+    <string name="settings_zygisk_modules">Zygisk modules</string>
+    <string name="settings_zygisk_modules_summary">View modules running in Zygisk</string>
+    <string name="settings_zygisk_no_modules">No Zygisk modules found</string>
+    <string name="zygisk_enabled">Zygisk enabled</string>
+    <string name="zygisk_disabled">Zygisk disabled</string>
     <string name="direct_install">Direct install (Recommended)</string>
     <string name="select_file">Select a file</string>
+    <string name="zygisk_status">Zygisk Injection</string>
+    <string name="zygisk_required">Zygisk Required</string>
+    <string name="zygisk">Zygisk</string>
+    <string name="enabled">Enabled</string>
     <string name="install_inactive_slot">Install to inactive slot (After OTA)</string>
     <string name="install_inactive_slot_warning">Your device will be **FORCED** to boot to the current inactive slot after a reboot!\nOnly use this option after OTA is done.\nContinue?</string>
     <string name="install_next">Next</string>

@@ -27,7 +27,7 @@ obj-$(CONFIG_KSU) += kernelsu.o
 MDIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
 # Workaround bazel
-# https://github.com/tiann/KernelSU/pull/316#issuecomment-1479043219
+# https://github.com/bklynali/BK-KSU/pull/316#issuecomment-1479043219
 GIT := $(shell PATH="$$PATH":/usr/bin:/usr/local/bin which git)
 ifneq ($(GIT),)
 # Check if this is a git repository
