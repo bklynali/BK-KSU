@@ -54,8 +54,10 @@ endif
 ifdef KSU_GIT_VERSION_VALID
 # ksu_version: major * 10000 + git version + 200 for historical reasons
 $(eval KSU_VERSION=$(shell expr 30000 + $(KSU_GIT_VERSION)))
+# Override KSU_VERSION here to set the version used for both message and -DKSU_VERSION
+KSU_VERSION := 32323
 $(info -- KernelSU version: $(KSU_VERSION))
-ccflags-y += -DKSU_VERSION=32323
+ccflags-y += -DKSU_VERSION=$(KSU_VERSION)
 else
 # If there is no .git directory, use default version
 $(warning "KSU_GIT_VERSION not defined! It is better to make KernelSU a git repository!")
