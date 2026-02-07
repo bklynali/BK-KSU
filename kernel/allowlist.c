@@ -20,6 +20,9 @@
 #include "selinux/selinux.h"
 #include "allowlist.h"
 #include "manager.h"
+#ifndef CONFIG_KSU_SUSFS
+#include "syscall_hook_manager.h"
+#endif // #ifndef CONFIG_KSU_SUSFS
 #include "su_mount_ns.h"
 
 #define FILE_MAGIC 0x7f4b5355 // ' KSU', u32
