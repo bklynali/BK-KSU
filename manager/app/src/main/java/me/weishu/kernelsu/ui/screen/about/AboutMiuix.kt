@@ -2,6 +2,7 @@ package me.weishu.kernelsu.ui.screen.about
 
 import android.os.Build
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -20,7 +21,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.lazy.LazyColumn
@@ -39,11 +39,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.layout.FixedScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.layout.positionInWindow
@@ -282,7 +282,6 @@ private fun AboutContent(
                 contentAlignment = Alignment.Center,
                 modifier = Modifier
                     .size(100.dp)
-                    .clipToBounds()
                     .graphicsLayer {
                         alpha = 1 - iconProgress
                         scaleX = 1 - (iconProgress * 0.05f)
@@ -295,25 +294,30 @@ private fun AboutContent(
                         iconY = y + size.height
                     },
             ) {
-                Image(
+                Box(
+                    contentAlignment = Alignment.Center,
                     modifier = Modifier
-                        .requiredSize(245.dp)
+                        .size(100.dp)
+                        .clip(RoundedCornerShape(22.dp))
+                        .background(Color.White)
                         .then(
                             if (enableBlur) {
                                 Modifier.textureBlur(
                                     backdrop = backdrop,
-                                    shape = RoundedCornerShape(0.dp),
-                                    blurRadius = 150f,
-                                    colors = BlurColors(blendColors = logoBlend),
-                                    contentBlendMode = ComposeBlendMode.DstIn,
+                                    shape = RoundedCornerShape(22.dp),
+                                    blurRadius = 60f,
+                                    colors = BlurColors(blendColors = blendColors),
                                     enabled = true,
                                 )
                             } else Modifier
                         ),
-                    painter = painterResource(id = R.drawable.ic_launcher_foreground),
-                    colorFilter = ColorFilter.tint(colorScheme.onBackground),
-                    contentDescription = null,
-                )
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_launcher_foreground),
+                        contentDescription = null,
+                        contentScale = FixedScale(1f),
+                    )
+                }
             }
             Text(
                 modifier = Modifier

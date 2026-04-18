@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="home">Home</string>
     <string name="home_not_installed">Niet geïnstalleerd</string>
-    <string name="home_click_to_install">Tik om te installeren</string>
+    <string name="home_click_to_install">Klik om te installeren</string>
     <string name="home_working">Werkend</string>
     <string name="home_working_version">Versie: %d</string>
     <string name="home_unsupported">Niet ondersteund</string>
-    <string name="home_unsupported_reason">KernelSU ondersteunt momenteel alleen GKI-kernels, maar je kunt de image patchen voor GKI-apparaten.</string>
+    <string name="home_unsupported_reason">BK-KSU only supports GKI kernels now, but you can patch the image for GKI devices.</string>
     <string name="home_kernel">Kernel version</string>
     <string name="home_manager_version">Manager versie</string>
     <string name="home_fingerprint">Fingerprint</string>
@@ -41,12 +41,12 @@
     <string name="safe_mode">Safe mode</string>
     <string name="reboot_to_apply">Herstart om effect te hebben</string>
     <string name="module_magisk_conflict">Modules zijn niet beschikbaar vanwege een conflict met Magisk!</string>
-    <string name="home_learn_kernelsu">Leer KernelSU</string>
+    <string name="home_learn_kernelsu">Learn BK-KSU</string>
     <string name="home_learn_kernelsu_url">https://kernelsu.org/guide/what-is-kernelsu.html</string>
-    <string name="home_click_to_learn_kernelsu">Leer hoe KernelSU te installeren en modules te gebruiken.</string>
+    <string name="home_click_to_learn_kernelsu">Learn how to install BK-KSU and use modules.</string>
     <string name="home_support_title">Ondersteun ons</string>
-    <string name="home_support_content">KernelSU is en blijft gratis en open source. U kunt ons echter laten zien dat u ons steunt door een donatie te doen.</string>
-    <string name="about_source_code"><![CDATA[Bekijk source code op %1$s<br/>Vervoeg ons %2$s kanaal]]></string>
+    <string name="home_support_content">BK-KSU will always be free, However, you can show us that you care by making a donation.</string>
+    <string name="about_source_code">Bekijk source code op %1$s&lt;br/&gt;Vervoeg ons %2$s kanaal</string>
     <string name="profile" translatable="false">App profiel</string>
     <string name="profile_default">Standaard</string>
     <string name="profile_template">Sjabloon</string>
@@ -63,7 +63,7 @@
     <string name="failed_to_update_app_profile">Mislukt om App Profiel te updaten voor %s</string>
     <string name="settings_umount_modules_default">Ontkoppel standaard de modules</string>
     <string name="settings_umount_modules_default_summary">De globale standaardwaarde voor \"Umount modules\" in App Profile. Als dit is ingeschakeld, worden alle modulewijzigingen in het systeem verwijderd voor apps waarvoor geen profiel is ingesteld.</string>
-    <string name="profile_umount_modules_summary">Met deze optie ingeschakeld zal KernelSU toelaten om alle gewijzigde bestanden door de modules voor deze app te herstellen.</string>
+    <string name="profile_umount_modules_summary">Enabling this option will allow BK-KSU to restore any modified files by the modules for this app.</string>
     <string name="profile_selinux_domain">Domein</string>
     <string name="profile_selinux_rules">Regels</string>
     <string name="module_update">Update</string>
@@ -74,7 +74,7 @@
     <string name="restart_app">Herstart</string>
     <string name="module_start_downloading">Begin met downloaden: %s</string>
     <string name="failed_to_update_sepolicy">Kan SELinux-regels niet bijwerken voor %s</string>
-    <string name="require_kernel_version">De huidige KernelSU-versie %1$d is te laag voor de manager om goed te werken. Upgrade naar versie %2$d of hoger!</string>
+    <string name="require_kernel_version">The current BK-KSU version %1$d is too low for the manager to work properly. Please upgrade to version %2$d or higher!</string>
     <string name="module_changelog">wijzigings logboek</string>
     <string name="settings_profile_template">App-profiel sjabloon</string>
     <string name="app_profile_template_create">Maken sjabloon</string>
@@ -114,9 +114,9 @@
     <string name="settings_uninstall_temporary">Tijdelijk verwijderen</string>
     <string name="settings_uninstall_permanent">Permanent verwijderen</string>
     <string name="settings_restore_stock_image">Herstel stockafbeelding</string>
-    <string name="settings_uninstall_temporary_message">Verwijder KernelSU tijdelijk en herstel het naar de oorspronkelijke staat na de volgende herstart.</string>
-    <string name="settings_uninstall_permanent_message">Het verwijderen van KernelSU (root en alle modules) volledig en permanent.</string>
-    <string name="settings_restore_stock_image_message">Herstel de standaard fabrieksimage (als er een back-up bestaat), die normaal gesproken vóór OTA wordt gebruikt. Als u KernelSU moet verwijderen, gebruikt u permanent verwijderen.</string>
+    <string name="settings_uninstall_temporary_message">Temporarily uninstall BK-KSU, restore to original state after next reboot.</string>
+    <string name="settings_uninstall_permanent_message">Uninstalling BK-KSU (root and all modules) completely and permanently.</string>
+    <string name="settings_restore_stock_image_message">Restore the stock factory image (if a backup exists), usually used before OTA; if you need to uninstall BK-KSU, please use \"Uninstall permanently\".</string>
     <string name="flashing">Knipperen</string>
     <string name="save_log">Logboeken Opslaan</string>
     <string name="flash_success">Flash-succes</string>
@@ -124,33 +124,21 @@
     <string name="selected_lkm">Geselecteerde LKM: %s</string>
     <string name="action">Actie</string>
     <string name="log_saved">Logs opgeslagen</string>
-    <string name="module_sort_enabled_first">Eerst ingeschakeld</string>
-    <string name="module_sort_action_first">Eerst actie ondernemen</string>
+    <string name="module_sort_enabled_first">Sorteren (eerst ingeschakeld)</string>
+    <string name="module_sort_action_first">Sorteren (actie eerst)</string>
     <string name="module_install_prompt_with_name">De volgende modules worden geïnstalleerd: %1$s</string>
     <string name="su_not_allowed">Kan geen Superuser-toegang verlenen aan %s</string>
     <string name="confirm">Bevestigen</string>
     <string name="settings_module_check_update">Controleer op module-updates</string>
     <string name="install_upload_lkm_file">Gebruik lokaal LKM-bestand</string>
     <string name="install_only_support_ko_file">Alleen .ko bestanden worden ondersteund</string>
-    <string name="settings_sucompat">SU binary omleiden</string>
+    <string name="settings_sucompat">su binary omleiden</string>
     <string name="settings_sucompat_summary">Stelt apps met Superuser-toestemming in App Profiel in staat om een superuser-shell te verkrijgen door /system/bin/su uit te voeren; alleen effectief voor nieuwe processen.</string>
-    <string name="settings_kernel_umount">Modules ontkoppelen (op kernelniveau)</string>
-    <string name="settings_kernel_umount_summary">Kernel-niveau ontkoppelgedrag beheerd door KernelSU.</string>
+    <string name="settings_kernel_umount">Kernel ontkoppelen</string>
+    <string name="settings_kernel_umount_summary">Kernel-niveau ontkoppelgedrag beheerd door BK-KSU</string>
     <string name="processing">Verwerken…</string>
     <string name="refresh_pulling">Trek omlaag om te vernieuwen</string>
     <string name="refresh_release">Vrijgeven om te vernieuwen</string>
     <string name="refresh_refresh">Verfrissend…</string>
     <string name="refresh_complete">Succesvol vernieuwd</string>
-    <string name="module_repos">Rest</string>
-    <string name="module_repos_sort_name">Naam (A → Z)</string>
-    <string name="module_repos_source_code">Broncode</string>
-    <string name="metamodule_uninstall_confirm">Weet je zeker dat je module %s wilt verwijderen? Deze actie heeft gevolgen voor alle modules en bepaalde functies van de metamodule (zoals mounten) zullen niet meer werken.</string>
-    <string name="safe_mode_module_disabled">Module-installatie is uitgeschakeld in de veilige modus</string>
-    <string name="home_gki_warning">Vanaf versie 3.0.0 zal de GKI-werkmodus alleen nog in testomgevingen worden gebruikt. We raden het gebruik ervan voor dagelijks gebruik af en er zullen geen imagebestanden meer worden meegeleverd.</string>
-    <string name="module_action_success">Moduleactie succesvol uitgevoerd.</string>
-    <string name="app_profile_affects_following_apps">Dit heeft gevolgen voor de volgende apps</string>
-    <string name="install_select_partition">Selecteer partitie</string>
-    <string name="feature_status_unsupported_summary">De kernel ondersteunt deze functie niet</string>
-    <string name="feature_status_managed_summary">Deze functie wordt beheerd door een module</string>
-    <string name="settings_mode_enable_by_default">Inschakelen (Standaard)</string>
-</resources>
+<string name="app_name" translatable="false">BK-KSU</string><string name="home_version_mismatch">Manager version (%1$d) and BK-KSU driver version (%2$d) mismatch.</string><string name="home_build_number">Build</string><string name="enabled">Enabled</string><string name="zygisk_status">Zygisk Injection</string><string name="sulog_entry_description_ioctl_grant_root">Granted root access via BK-KSU ioctl</string><string name="settings_sulog_summary">Record root-related events into BK-KSU sulog files.</string><string name="home_seccomp_status">Seccomp status</string><string name="seccomp_status_not_supported">Not supported</string><string name="seccomp_status_disabled">Disabled</string><string name="seccomp_status_strict">Strict</string><string name="seccomp_status_filter">Filter</string><string name="seccomp_status_unknown">Unknown</string><string name="sulog_log_files">Log files</string><string name="sulog_failed_to_load">Failed to load sulog</string><string name="sulog_disabled_title">SU log is not enabled</string><string name="sulog_unsupported_title">SU log is unsupported</string><string name="sulog_enable_action">Enable</string><string name="sulog_filter_title">Filter by type</string><string name="sulog_clean_title">Clean log</string><string name="sulog_filter_root_execve">Root execve</string><string name="sulog_filter_sucompat">Classic SU</string><string name="sulog_filter_ioctl_grant_root">Grant root</string><string name="sulog_filter_daemon_restart">Daemon restart</string><string name="sulog_entry_unknown_event">Unknown event</string><string name="sulog_entry_description_sucompat">Intercepted /system/bin/su request</string><string name="sulog_entry_title_root_grant_request">Root grant request</string><string name="sulog_entry_title_daemon_restarted">Daemon restarted</string><string name="sulog_entry_title_dropped_events">Dropped events</string><string name="module_repos">Repos</string><string name="module_repos_sort_name">Name (A → Z)</string><string name="module_repos_source_code">Source code</string><string name="reboot_soft">Soft restart</string><string name="metamodule_uninstall_confirm">Are you sure you want to uninstall module %s? This action will affect all modules, and certain features provided by the metamodule (such as mounting) will no longer work.</string><string name="jailbreak_mode">Jailbreak mode</string><string name="home_jailbreak">Jailbreak</string><string name="jailbreak_timeout">Jailbreak may have failed, please check logs</string><string name="safe_mode_module_disabled">Module installation is disabled in safe mode</string><string name="module_action_success">Module action executed successfully.</string><string name="app_profile_affects_following_apps">Affects the following apps</string><string name="settings_enable_predictive_back">Predictive back gesture</string><string name="settings_enable_predictive_back_summary">Enable predictive back gesture support.</string><string name="home_pr_build_warning">This is a PR debug build. Do NOT use it in production!</string><string name="home_pr_kernel_warning">The kernel was built with PR signature support. This is not a production kernel!</string><string name="jailbreak_flash_warning">You are in **Jailbreak mode**. Flashing a partition on a device with a **locked bootloader** will break AVB (Android Verified Boot) and may cause the device to **fail to boot**.\n\nMake sure your bootloader is unlocked before proceeding!</string><string name="jailbreak_flash_warning_countdown">Continue (%1$d)</string><string name="install_select_partition">Select partition</string><string name="settings_sulog">SU Log</string><string name="feature_status_unsupported_summary">Kernel does not support this feature</string><string name="feature_status_managed_summary">This feature is managed by a module</string><string name="settings_mode_enable_by_default">Enable (Default)</string><string name="settings_mode_disable_until_reboot">Disable until Reboot</string><string name="settings_mode_disable_always">Always disable</string><string name="undo">Undo</string><string name="module_undo_uninstall_success">Successfully canceled uninstall of %s</string><string name="module_undo_uninstall_failed">Failed to undo uninstall: %s</string><string name="group_contains_apps">Contains %d apps</string><string name="settings_theme">Theme</string><string name="settings_theme_summary">Choose the app theme mode.</string><string name="settings_theme_mode_system">Follow system</string><string name="settings_theme_mode_light">Light</string><string name="settings_theme_mode_dark">Dark</string><string name="settings_monet">Enable Monet</string><string name="settings_key_color">Key color</string><string name="settings_key_color_default">Default</string><string name="settings_ui_mode">UI Style</string><string name="settings_ui_mode_summary">Choose the interface style.</string><string name="settings_page_scale">Page Scale</string><string name="settings_page_scale_summary">Adjust the global display scale.</string><string name="settings_color_spec">Color Spec</string><string name="settings_color_style">Color Style</string><string name="color_blue">Blue</string><string name="color_red">Red</string><string name="color_green">Green</string><string name="color_purple">Purple</string><string name="color_orange">Orange</string><string name="color_teal">Teal</string><string name="color_pink">Pink</string><string name="color_brown">Brown</string><string name="color_deep_purple">Deep Purple</string><string name="color_indigo">Indigo</string><string name="color_cyan">Cyan</string><string name="color_yellow">Yellow</string><string name="color_amber">Amber</string><string name="color_blue_grey">Blue Grey</string><string name="color_sakura">Sakura</string><string name="network_offline">Not connected to network</string><string name="network_retry">Retry</string><string name="tab_readme">README</string><string name="tab_releases">Releases</string><string name="tab_info">Info</string><string name="module_shortcut_title">Create shortcut</string><string name="module_shortcut_name_label">Shortcut name</string><string name="module_shortcut_icon_pick">Choose custom icon</string><string name="module_shortcut_not_supported">Launcher does not support desktop shortcuts</string><string name="module_shortcut_created">Shortcut created on desktop</string><string name="module_shortcut_updated">Shortcut updated</string><string name="module_shortcut_delete">Delete shortcut</string><string name="module_shortcut_permission_tip_xiaomi">Please enable \"Home screen shortcuts\" permission for this app in Xiaomi settings.</string><string name="module_shortcut_permission_tip_oppo">Please enable \"Create Home screen shortcuts\" permission for this app in OPPO settings.</string><string name="module_shortcut_permission_tip_default">If shortcut creation fails, please enable desktop shortcut permission for this app in system settings.</string><string name="no_such_module">Module %s does not exist</string><string name="module_unavailable">Module %s is disabled, updating, or pending removal</string><string name="select_file_tip_nogki">Please select the GKI device image file you want to patch!</string><string name="current_kmi">KMI version of this device: %s</string><string name="current_device_kmi">This device KMI</string><string name="settings_enable_blur">Blur</string><string name="settings_enable_blur_summary">Enable blur effect for top and bottom bars.</string><string name="settings_floating_bottom_bar">Floating bottom bar</string><string name="settings_floating_bottom_bar_summary">Use Apple style floating bottom bar.</string><string name="settings_enable_glass">Liquid glass</string><string name="settings_enable_glass_summary">Enable liquid glass effect for floating bottom bar.</string><string name="settings_smooth_corner">Smooth corner</string><string name="settings_smooth_corner_summary">Enable global smooth rounded corners.</string><string name="show_only_primary_user_apps">Show only primary user apps</string><string name="settings_auto_jailbreak">Auto jailbreak</string><string name="settings_auto_jailbreak_summary">Automatically use Magica to escalate privileges when Permissive SELinux is detected at boot. Requires granting autostart permission to this app.</string><string name="allow_shell">Always grant root to Shell</string><string name="allow_shell_summary">Always allow adb shell to call su. Do not enable this unless absolutely necessary.</string><string name="enable_adb">Force enable adb on boot</string><string name="enable_adb_summary">Force enable USB debugging and disable adb authentication. Do not enable this unless absolutely necessary.</string><string name="advanced_options">Advanced Options</string><string name="expand">Expand</string><string name="download_channel_name">Module Downloads</string><string name="download_progress_title">Downloading %s</string><string name="download_complete_title">Download complete</string><string name="download_complete_content">%s downloaded successfully</string><string name="download_failed_title">Download failed</string><string name="download_failed_content">Failed to download %s</string><string name="download">Download</string><string name="download_cancel">Cancel</string><string name="download_install">Install</string><string name="settings_adb_root" translatable="false">ADB Root</string><string name="settings_adb_root_summary">Run adbd daemon with root privileges</string></resources>

@@ -14,9 +14,13 @@ data class ManagerVersion(
 data class SystemInfo(
     val kernelVersion: String,
     val managerVersion: String,
+    val buildNumber: String,
     val fingerprint: String,
     val selinuxStatus: String,
-    val seccompStatus: Int
+    val seccompStatus: Int,
+    /** "None" when no Zygisk module reports a name (matches legacy home screen). */
+    val zygiskName: String,
+    val zygiskVersion: String,
 )
 
 fun getManagerVersion(context: Context): ManagerVersion {

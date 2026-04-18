@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="home">Начало</string>
     <string name="home_not_installed">Не е инсталирано</string>
@@ -6,7 +6,7 @@
     <string name="home_working">Работи</string>
     <string name="home_working_version">Версия: %d</string>
     <string name="home_unsupported">Неподдържано</string>
-    <string name="home_unsupported_reason">KernelSU само поддържа GKI кернели за сега.</string>
+    <string name="home_unsupported_reason">BK-KSU only supports GKI kernels now, but you can patch the image for GKI devices.</string>
     <string name="home_kernel">Версия на кернела</string>
     <string name="home_manager_version">Версия на мениджъра</string>
     <string name="home_fingerprint">Пръстов отпечатък</string>
@@ -46,12 +46,12 @@
     <string name="safe_mode">Безопасен режим</string>
     <string name="reboot_to_apply">Рестартирай за да приеме ефект</string>
     <string name="module_magisk_conflict">Модулите не са налични поради конфликт с Magisk!</string>
-    <string name="home_learn_kernelsu">Научи KernelSU</string>
+    <string name="home_learn_kernelsu">Learn BK-KSU</string>
     <string name="home_learn_kernelsu_url">https://kernelsu.org/guide/what-is-kernelsu.html</string>
-    <string name="home_click_to_learn_kernelsu">Научи как да изтеглите KernelSU и да използвате модули.</string>
+    <string name="home_click_to_learn_kernelsu">Learn how to install BK-KSU and use modules.</string>
     <string name="home_support_title">Помогнете Ни</string>
-    <string name="home_support_content">KernelSU си е, и винаги ще е безплатен, и с отворен код. Обаче, можете да ни покажете че се интересувате като ни направите дарение.</string>
-    <string name="about_source_code"><![CDATA[View source code at %1$s<br/>Присъединете се към нашия%2$s канал]]></string>
+    <string name="home_support_content">BK-KSU will always be free, However, you can show us that you care by making a donation.</string>
+    <string name="about_source_code">View source code at %1$s&lt;br/&gt;Присъединете се към нашия%2$s канал</string>
     <string name="profile_default">По подразбиране</string>
     <string name="profile_template">Шаблон</string>
     <string name="profile_custom">По избор</string>
@@ -65,10 +65,10 @@
     <string name="profile_selinux_context">SELinux контекст</string>
     <string name="profile_umount_modules">Разкачи модули по подразбиране</string>
     <string name="failed_to_update_app_profile">Неуспешно актуализиране на App Profile за %s</string>
-    <string name="require_kernel_version">Текущата версия %1$d на KernelSU е твърде ниска, за да работи правилно мениджърът. Моля, актуализирайте към версия %2$d или по-висока!</string>
+    <string name="require_kernel_version">The current BK-KSU version %1$d is too low for the manager to work properly. Please upgrade to version %2$d or higher!</string>
     <string name="settings_umount_modules_default">Разкачи модули</string>
     <string name="settings_umount_modules_default_summary">Глобалната стойност по подразбиране за „Разкачи модули“ в профила на приложението. Ако е активирана, ще премахне всички модификации на модулите в системата за приложения, които нямат зададен профил.</string>
-    <string name="profile_umount_modules_summary">Активирането на тази опция ще позволи на KernelSU да възстанови всички модифицирани файлове от модулите за това приложение.</string>
+    <string name="profile_umount_modules_summary">Enabling this option will allow BK-KSU to restore any modified files by the modules for this app.</string>
     <string name="profile_selinux_domain">Домейн</string>
     <string name="profile_selinux_rules">Правила</string>
     <string name="module_update">Актуализиране</string>
@@ -123,9 +123,9 @@
     <string name="settings_uninstall_temporary">Премахнете временно</string>
     <string name="settings_uninstall_permanent">Премахнете завинаги</string>
     <string name="settings_restore_stock_image">Възстановяване на стоков .img фаил</string>
-    <string name="settings_uninstall_temporary_message">Временно премахнете KernelSU, ще се върне в нормално състояние след следващото рестартиране.</string>
-    <string name="settings_uninstall_permanent_message">Премахване на KernelSU (root и всички модули) напълно, завинаги.</string>
-    <string name="settings_restore_stock_image_message">Възстановете фабричното копие (ако съществува резервно копие), обикновено използвано преди софтуерна актуализация; ако трябва да премахнете KernelSU, моля, използвайте „Премахване завинаги“.</string>
+    <string name="settings_uninstall_temporary_message">Temporarily uninstall BK-KSU, restore to original state after next reboot.</string>
+    <string name="settings_uninstall_permanent_message">Uninstalling BK-KSU (root and all modules) completely and permanently.</string>
+    <string name="settings_restore_stock_image_message">Restore the stock factory image (if a backup exists), usually used before OTA; if you need to uninstall BK-KSU, please use \"Uninstall permanently\".</string>
     <string name="flashing">Флашване</string>
     <string name="flash_success">Флашване успешно</string>
     <string name="flash_failed">Флашване не бе успешно</string>
@@ -137,7 +137,7 @@
     <string name="settings_sucompat">Пренасочване на su бинарния файл</string>
     <string name="settings_sucompat_summary">Позволяет приложениям с предоставени права на Superuser в профила на приложението да получат superuser shell чрез изпълнение на /system/bin/su; в сила само за нови процеси.</string>
     <string name="settings_kernel_umount">Kernel umount</string>
-    <string name="settings_kernel_umount_summary">Поведение за umount на ниво ядро, контролирано от KernelSU</string>
+    <string name="settings_kernel_umount_summary">Поведение за umount на ниво ядро, контролирано от BK-KSU</string>
     <string name="processing">Обработва се…</string>
     <string name="refresh_pulling">Опънете надолу за да обновите</string>
     <string name="refresh_release">Пуснете за да обновите</string>
@@ -152,7 +152,11 @@
     <string name="settings_theme_mode_system">Следвай системата</string>
     <string name="settings_theme_mode_light">Светъл</string>
     <string name="settings_theme_mode_dark">Тъмен</string>
+    <string name="settings_theme_mode_monet_system">Monet (Следвай системата)</string>
+    <string name="settings_theme_mode_monet_light">Monet (Светъл)</string>
+    <string name="settings_theme_mode_monet_dark">Monet (Тъмен)</string>
     <string name="settings_key_color">Цвят на копчето</string>
+    <string name="settings_key_color_summary">Персонализирайте акцента, когато използвате Monet.</string>
     <string name="settings_key_color_default">По подразбиране</string>
     <string name="color_blue">Син</string>
     <string name="color_red">Червен</string>
@@ -171,4 +175,4 @@
     <string name="tab_readme">ПРОЧЕТИ МЕ</string>
     <string name="tab_releases">Версии</string>
     <string name="tab_info">Информация</string>
-</resources>
+<string name="app_name" translatable="false">BK-KSU</string><string name="home_version_mismatch">Manager version (%1$d) and BK-KSU driver version (%2$d) mismatch.</string><string name="home_build_number">Build</string><string name="enabled">Enabled</string><string name="zygisk_status">Zygisk Injection</string><string name="sulog_entry_description_ioctl_grant_root">Granted root access via BK-KSU ioctl</string><string name="settings_sulog_summary">Record root-related events into BK-KSU sulog files.</string><string name="home_seccomp_status">Seccomp status</string><string name="seccomp_status_not_supported">Not supported</string><string name="seccomp_status_disabled">Disabled</string><string name="seccomp_status_strict">Strict</string><string name="seccomp_status_filter">Filter</string><string name="seccomp_status_unknown">Unknown</string><string name="sulog_log_files">Log files</string><string name="sulog_failed_to_load">Failed to load sulog</string><string name="sulog_disabled_title">SU log is not enabled</string><string name="sulog_unsupported_title">SU log is unsupported</string><string name="sulog_enable_action">Enable</string><string name="sulog_filter_title">Filter by type</string><string name="sulog_clean_title">Clean log</string><string name="sulog_filter_root_execve">Root execve</string><string name="sulog_filter_sucompat">Classic SU</string><string name="sulog_filter_ioctl_grant_root">Grant root</string><string name="sulog_filter_daemon_restart">Daemon restart</string><string name="sulog_entry_unknown_event">Unknown event</string><string name="sulog_entry_description_sucompat">Intercepted /system/bin/su request</string><string name="sulog_entry_title_root_grant_request">Root grant request</string><string name="sulog_entry_title_daemon_restarted">Daemon restarted</string><string name="sulog_entry_title_dropped_events">Dropped events</string><string name="reboot_soft">Soft restart</string><string name="jailbreak_mode">Jailbreak mode</string><string name="home_jailbreak">Jailbreak</string><string name="jailbreak_timeout">Jailbreak may have failed, please check logs</string><string name="safe_mode_module_disabled">Module installation is disabled in safe mode</string><string name="profile" translatable="false">App Profile</string><string name="module_action_success">Module action executed successfully.</string><string name="settings_enable_predictive_back">Predictive back gesture</string><string name="settings_enable_predictive_back_summary">Enable predictive back gesture support.</string><string name="home_pr_build_warning">This is a PR debug build. Do NOT use it in production!</string><string name="home_pr_kernel_warning">The kernel was built with PR signature support. This is not a production kernel!</string><string name="jailbreak_flash_warning">You are in **Jailbreak mode**. Flashing a partition on a device with a **locked bootloader** will break AVB (Android Verified Boot) and may cause the device to **fail to boot**.\n\nMake sure your bootloader is unlocked before proceeding!</string><string name="jailbreak_flash_warning_countdown">Continue (%1$d)</string><string name="settings_sulog">SU Log</string><string name="settings_mode_enable_by_default">Enable (Default)</string><string name="settings_mode_disable_until_reboot">Disable until Reboot</string><string name="settings_mode_disable_always">Always disable</string><string name="settings_monet">Enable Monet</string><string name="settings_ui_mode">UI Style</string><string name="settings_ui_mode_summary">Choose the interface style.</string><string name="settings_page_scale">Page Scale</string><string name="settings_page_scale_summary">Adjust the global display scale.</string><string name="settings_color_spec">Color Spec</string><string name="settings_color_style">Color Style</string><string name="color_deep_purple">Deep Purple</string><string name="color_indigo">Indigo</string><string name="color_cyan">Cyan</string><string name="color_yellow">Yellow</string><string name="color_amber">Amber</string><string name="color_blue_grey">Blue Grey</string><string name="color_sakura">Sakura</string><string name="module_shortcut_title">Create shortcut</string><string name="module_shortcut_name_label">Shortcut name</string><string name="module_shortcut_icon_pick">Choose custom icon</string><string name="module_shortcut_not_supported">Launcher does not support desktop shortcuts</string><string name="module_shortcut_created">Shortcut created on desktop</string><string name="module_shortcut_updated">Shortcut updated</string><string name="module_shortcut_delete">Delete shortcut</string><string name="module_shortcut_permission_tip_xiaomi">Please enable \"Home screen shortcuts\" permission for this app in Xiaomi settings.</string><string name="module_shortcut_permission_tip_oppo">Please enable \"Create Home screen shortcuts\" permission for this app in OPPO settings.</string><string name="module_shortcut_permission_tip_default">If shortcut creation fails, please enable desktop shortcut permission for this app in system settings.</string><string name="no_such_module">Module %s does not exist</string><string name="module_unavailable">Module %s is disabled, updating, or pending removal</string><string name="select_file_tip_nogki">Please select the GKI device image file you want to patch!</string><string name="current_kmi">KMI version of this device: %s</string><string name="current_device_kmi">This device KMI</string><string name="settings_enable_blur">Blur</string><string name="settings_enable_blur_summary">Enable blur effect for top and bottom bars.</string><string name="settings_floating_bottom_bar">Floating bottom bar</string><string name="settings_floating_bottom_bar_summary">Use Apple style floating bottom bar.</string><string name="settings_enable_glass">Liquid glass</string><string name="settings_enable_glass_summary">Enable liquid glass effect for floating bottom bar.</string><string name="settings_smooth_corner">Smooth corner</string><string name="settings_smooth_corner_summary">Enable global smooth rounded corners.</string><string name="show_only_primary_user_apps">Show only primary user apps</string><string name="settings_auto_jailbreak">Auto jailbreak</string><string name="settings_auto_jailbreak_summary">Automatically use Magica to escalate privileges when Permissive SELinux is detected at boot. Requires granting autostart permission to this app.</string><string name="allow_shell">Always grant root to Shell</string><string name="allow_shell_summary">Always allow adb shell to call su. Do not enable this unless absolutely necessary.</string><string name="enable_adb">Force enable adb on boot</string><string name="enable_adb_summary">Force enable USB debugging and disable adb authentication. Do not enable this unless absolutely necessary.</string><string name="advanced_options">Advanced Options</string><string name="expand">Expand</string><string name="download_channel_name">Module Downloads</string><string name="download_progress_title">Downloading %s</string><string name="download_complete_title">Download complete</string><string name="download_complete_content">%s downloaded successfully</string><string name="download_failed_title">Download failed</string><string name="download_failed_content">Failed to download %s</string><string name="download">Download</string><string name="download_cancel">Cancel</string><string name="download_install">Install</string><string name="settings_adb_root" translatable="false">ADB Root</string><string name="settings_adb_root_summary">Run adbd daemon with root privileges</string></resources>
