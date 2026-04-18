@@ -78,7 +78,8 @@ fun getBugreportFile(context: Context): File {
         pw.println("PREVIEW_SDK: " + Build.VERSION.PREVIEW_SDK_INT)
         pw.println("FINGERPRINT: " + Build.FINGERPRINT)
         pw.println("DEVICE: " + Build.DEVICE)
-        pw.println("Manager: " + getManagerVersion(context))
+        val mgr = getManagerVersion(context)
+        pw.println("Manager: ${mgr.versionName} (${mgr.versionCode})")
         pw.println("SELinux: $selinux")
 
         val uname = Os.uname()
@@ -89,7 +90,7 @@ fun getBugreportFile(context: Context): File {
         pw.println("Sysname: ${uname.sysname}")
 
         val ksuKernel = Natives.version
-        pw.println("KernelSU: $ksuKernel")
+        pw.println("BK-KSU: $ksuKernel")
         val safeMode = Natives.isSafeMode
         pw.println("SafeMode: $safeMode")
         val lkmMode = Natives.isLkmMode
@@ -103,7 +104,7 @@ fun getBugreportFile(context: Context): File {
     val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH_mm")
     val current = LocalDateTime.now().format(formatter)
 
-    val targetFile = File(context.cacheDir, "KernelSU_bugreport_${current}.tar.gz")
+    val targetFile = File(context.cacheDir, "BK-KSU_bugreport_${current}.tar.gz")
 
     shell.newJob().add("tar czf ${targetFile.absolutePath} -C ${bugreportDir.absolutePath} .").exec()
     shell.newJob().add("rm -rf ${bugreportDir.absolutePath}").exec()

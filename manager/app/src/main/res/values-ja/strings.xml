@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="home">ホーム</string>
     <string name="home_not_installed">未インストール</string>
-    <string name="home_click_to_install">タップしてインストール</string>
+    <string name="home_click_to_install">タップでインストール</string>
     <string name="home_working">動作中</string>
     <string name="home_working_version">バージョン: %d</string>
     <string name="home_unsupported">非対応</string>
-    <string name="home_unsupported_reason">KernelSU は現在 GKI カーネルのみをサポートしています。ただし、GKI デバイス向けにイメージにパッチを適用することは可能です。</string>
+    <string name="home_unsupported_reason">BK-KSU only supports GKI kernels now, but you can patch the image for GKI devices.</string>
     <string name="home_kernel">カーネル</string>
     <string name="home_manager_version">アプリのバージョン</string>
     <string name="home_fingerprint">Fingerprint</string>
@@ -41,12 +41,12 @@
     <string name="safe_mode">セーフモード</string>
     <string name="reboot_to_apply">再起動すると有効化されます</string>
     <string name="module_magisk_conflict">モジュールが Magisk との競合により利用できません!</string>
-    <string name="home_learn_kernelsu">KernelSU について</string>
-    <string name="home_learn_kernelsu_url">https://kernelsu.org/ja_JP/guide/what-is-kernelsu.html</string>
-    <string name="home_click_to_learn_kernelsu">KernelSU のインストール方法やモジュールの使い方はこちら</string>
+    <string name="home_learn_kernelsu">Learn BK-KSU</string>
+    <string name="home_learn_kernelsu_url">https://kernelsu.org/guide/what-is-kernelsu.html</string>
+    <string name="home_click_to_learn_kernelsu">Learn how to install BK-KSU and use modules.</string>
     <string name="home_support_title">支援する</string>
-    <string name="home_support_content">KernelSU はこれからもずっと無料でオープンソースです。寄付をして頂くことで、開発を支援していただけます。</string>
-    <string name="about_source_code"><![CDATA[%1$s でソースコードを表示<br/>%2$s チャンネルに参加]]></string>
+    <string name="home_support_content">BK-KSU will always be free, However, you can show us that you care by making a donation.</string>
+    <string name="about_source_code">%1$s でソースコードを表示&lt;br/&gt;%2$s チャンネルに参加</string>
     <string name="profile">アプリのプロファイル</string>
     <string name="profile_default">既定</string>
     <string name="profile_template">テンプレート</string>
@@ -71,10 +71,10 @@
     <string name="failed_to_update_sepolicy">SELinux ルールの更新に失敗しました %s</string>
     <string name="profile_capabilities">ケーパビリティ</string>
     <string name="module_downloading">モジュールをダウンロード中: %s</string>
-    <string name="profile_umount_modules_summary">このオプションを有効にすると、KernelSU はこのアプリのモジュールによって変更されたファイルを復元できるようになります。</string>
+    <string name="profile_umount_modules_summary">Enabling this option will allow BK-KSU to restore any modified files by the modules for this app.</string>
     <string name="settings_umount_modules_default">デフォルトでモジュールをアンマウントする</string>
     <string name="settings_umount_modules_default_summary">アプリプロファイルの「モジュールのアンマウント」の共通のデフォルト値です。 有効にすると、プロファイルセットを持たないアプリのシステムに対するすべてのモジュールの変更が削除されます。</string>
-    <string name="require_kernel_version">現在の KernelSU バージョン %1$d はマネージャーが適切に機能するには低すぎます。 バージョン %2$d 以降にアップグレードしてください！</string>
+    <string name="require_kernel_version">The current BK-KSU version %1$d is too low for the manager to work properly. Please upgrade to version %2$d or higher!</string>
     <string name="module_changelog">変更履歴</string>
     <string name="app_profile_template_import_success">インポート成功</string>
     <string name="app_profile_export_to_clipboard">クリップボードからエクスポート</string>
@@ -112,9 +112,9 @@
     <string name="settings_restore_stock_image">ストックイメージを復元</string>
     <string name="settings_uninstall_temporary">一時的にアンインストールする</string>
     <string name="settings_uninstall">アンインストール</string>
-    <string name="settings_uninstall_temporary_message">KernelSU を一時的にアンインストールし、次回の再起動後に元の状態に戻します。</string>
-    <string name="settings_uninstall_permanent_message">KernelSU (ルートおよびすべてのモジュール) を完全かつ永久にアンインストールします。</string>
-    <string name="settings_restore_stock_image_message">バックアップが存在する場合、工場出荷時のイメージを復元できます (OTA の前に使用してください)。KernelSU をアンインストールする必要がある場合は、「完全にアンインストールする」を使用してください。</string>
+    <string name="settings_uninstall_temporary_message">Temporarily uninstall BK-KSU, restore to original state after next reboot.</string>
+    <string name="settings_uninstall_permanent_message">Uninstalling BK-KSU (root and all modules) completely and permanently.</string>
+    <string name="settings_restore_stock_image_message">Restore the stock factory image (if a backup exists), usually used before OTA; if you need to uninstall BK-KSU, please use \"Uninstall permanently\".</string>
     <string name="flashing">フラッシュ</string>
     <string name="flash_success">フラッシュ成功</string>
     <string name="flash_failed">フラッシュ失敗</string>
@@ -158,7 +158,11 @@
     <string name="settings_theme_mode_system">システムに従う</string>
     <string name="settings_theme_mode_light">ライト</string>
     <string name="settings_theme_mode_dark">ダーク</string>
+    <string name="settings_theme_mode_monet_system">Monet (システムに従う)</string>
+    <string name="settings_theme_mode_monet_light">Monet (ライト)</string>
+    <string name="settings_theme_mode_monet_dark">Monet (ダーク)</string>
     <string name="settings_key_color">キーカラー</string>
+    <string name="settings_key_color_summary">Monet を使用するときのアクセントカラーをカスタマイズします。</string>
     <string name="settings_key_color_default">デフォルト</string>
     <string name="color_blue">ブルー</string>
     <string name="color_red">レッド</string>
@@ -180,10 +184,12 @@
     <string name="module_shortcut_title">ショートカットを作成</string>
     <string name="module_shortcut_name_label">ショートカット名</string>
     <string name="module_shortcut_icon_pick">カスタムアイコンを選択</string>
+    <string name="module_shortcut_add">ショートカットを追加</string>
     <string name="module_shortcut_not_supported">ランチャーはホーム画面ショートカットをサポートしていません。</string>
     <string name="module_shortcut_created">ホーム画面にショートカットを作成しました。</string>
     <string name="module_shortcut_updated">ショートカットが更新されました。</string>
     <string name="module_shortcut_delete">ショートカットを削除</string>
+    <string name="module_shortcut_type_title">タイプを選択</string>
     <string name="module_shortcut_permission_tip_xiaomi">Xiaomi の設定で、このアプリに対して「ホーム画面ショートカット」権限を有効にしてください。</string>
     <string name="module_shortcut_permission_tip_oppo">OPPO の設定で、このアプリに対して「ホーム画面ショートカット」権限を有効にしてください。</string>
     <string name="module_shortcut_permission_tip_default">ショートカットの作成に失敗した場合は、システム設定でこのアプリに対してホーム画面ショートカットの権限を有効にしてください。</string>
@@ -192,11 +198,4 @@
     <string name="select_file_tip_nogki">パッチを適用する GKI デバイスのイメージファイルを選択してください</string>
     <string name="current_kmi">このデバイスの KMI バージョン: %s</string>
     <string name="current_device_kmi">このデバイスの KMI</string>
-    <string name="color_deep_purple">ディープパープル</string>
-    <string name="color_indigo">インディゴ</string>
-    <string name="color_cyan">シアン</string>
-    <string name="color_yellow">イエロー</string>
-    <string name="color_amber">アンバー</string>
-    <string name="color_blue_grey">ブルーグレー</string>
-    <string name="color_sakura">桜</string>
-</resources>
+<string name="app_name" translatable="false">BK-KSU</string><string name="home_version_mismatch">Manager version (%1$d) and BK-KSU driver version (%2$d) mismatch.</string><string name="home_build_number">Build</string><string name="enabled">Enabled</string><string name="zygisk_status">Zygisk Injection</string><string name="sulog_entry_description_ioctl_grant_root">Granted root access via BK-KSU ioctl</string><string name="settings_sulog_summary">Record root-related events into BK-KSU sulog files.</string><string name="home_seccomp_status">Seccomp status</string><string name="seccomp_status_not_supported">Not supported</string><string name="seccomp_status_disabled">Disabled</string><string name="seccomp_status_strict">Strict</string><string name="seccomp_status_filter">Filter</string><string name="seccomp_status_unknown">Unknown</string><string name="sulog_log_files">Log files</string><string name="sulog_failed_to_load">Failed to load sulog</string><string name="sulog_disabled_title">SU log is not enabled</string><string name="sulog_unsupported_title">SU log is unsupported</string><string name="sulog_enable_action">Enable</string><string name="sulog_filter_title">Filter by type</string><string name="sulog_clean_title">Clean log</string><string name="sulog_filter_root_execve">Root execve</string><string name="sulog_filter_sucompat">Classic SU</string><string name="sulog_filter_ioctl_grant_root">Grant root</string><string name="sulog_filter_daemon_restart">Daemon restart</string><string name="sulog_entry_unknown_event">Unknown event</string><string name="sulog_entry_description_sucompat">Intercepted /system/bin/su request</string><string name="sulog_entry_title_root_grant_request">Root grant request</string><string name="sulog_entry_title_daemon_restarted">Daemon restarted</string><string name="sulog_entry_title_dropped_events">Dropped events</string><string name="reboot_soft">Soft restart</string><string name="jailbreak_mode">Jailbreak mode</string><string name="home_jailbreak">Jailbreak</string><string name="jailbreak_timeout">Jailbreak may have failed, please check logs</string><string name="settings_enable_predictive_back">Predictive back gesture</string><string name="settings_enable_predictive_back_summary">Enable predictive back gesture support.</string><string name="home_pr_build_warning">This is a PR debug build. Do NOT use it in production!</string><string name="home_pr_kernel_warning">The kernel was built with PR signature support. This is not a production kernel!</string><string name="jailbreak_flash_warning">You are in **Jailbreak mode**. Flashing a partition on a device with a **locked bootloader** will break AVB (Android Verified Boot) and may cause the device to **fail to boot**.\n\nMake sure your bootloader is unlocked before proceeding!</string><string name="jailbreak_flash_warning_countdown">Continue (%1$d)</string><string name="settings_sulog">SU Log</string><string name="settings_monet">Enable Monet</string><string name="settings_ui_mode">UI Style</string><string name="settings_ui_mode_summary">Choose the interface style.</string><string name="settings_page_scale">Page Scale</string><string name="settings_page_scale_summary">Adjust the global display scale.</string><string name="settings_color_spec">Color Spec</string><string name="settings_color_style">Color Style</string><string name="color_deep_purple">Deep Purple</string><string name="color_indigo">Indigo</string><string name="color_cyan">Cyan</string><string name="color_yellow">Yellow</string><string name="color_amber">Amber</string><string name="color_blue_grey">Blue Grey</string><string name="color_sakura">Sakura</string><string name="settings_enable_blur">Blur</string><string name="settings_enable_blur_summary">Enable blur effect for top and bottom bars.</string><string name="settings_floating_bottom_bar">Floating bottom bar</string><string name="settings_floating_bottom_bar_summary">Use Apple style floating bottom bar.</string><string name="settings_enable_glass">Liquid glass</string><string name="settings_enable_glass_summary">Enable liquid glass effect for floating bottom bar.</string><string name="settings_smooth_corner">Smooth corner</string><string name="settings_smooth_corner_summary">Enable global smooth rounded corners.</string><string name="show_only_primary_user_apps">Show only primary user apps</string><string name="settings_auto_jailbreak">Auto jailbreak</string><string name="settings_auto_jailbreak_summary">Automatically use Magica to escalate privileges when Permissive SELinux is detected at boot. Requires granting autostart permission to this app.</string><string name="allow_shell">Always grant root to Shell</string><string name="allow_shell_summary">Always allow adb shell to call su. Do not enable this unless absolutely necessary.</string><string name="enable_adb">Force enable adb on boot</string><string name="enable_adb_summary">Force enable USB debugging and disable adb authentication. Do not enable this unless absolutely necessary.</string><string name="advanced_options">Advanced Options</string><string name="expand">Expand</string><string name="download_channel_name">Module Downloads</string><string name="download_progress_title">Downloading %s</string><string name="download_complete_title">Download complete</string><string name="download_complete_content">%s downloaded successfully</string><string name="download_failed_title">Download failed</string><string name="download_failed_content">Failed to download %s</string><string name="download">Download</string><string name="download_cancel">Cancel</string><string name="download_install">Install</string><string name="settings_adb_root" translatable="false">ADB Root</string><string name="settings_adb_root_summary">Run adbd daemon with root privileges</string></resources>

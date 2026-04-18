@@ -2,6 +2,7 @@ package me.weishu.kernelsu.ui.viewmodel
 
 import android.content.Context
 import android.os.Build
+import android.os.Process
 import android.system.Os
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -21,6 +22,7 @@ import me.weishu.kernelsu.ui.screen.home.SystemInfo
 import me.weishu.kernelsu.ui.screen.home.getManagerVersion
 import me.weishu.kernelsu.ui.util.checkNewVersion
 import me.weishu.kernelsu.ui.util.getModuleCount
+import me.weishu.kernelsu.ui.util.getZygiskImplementation
 import me.weishu.kernelsu.ui.util.getSELinuxStatusRaw
 import me.weishu.kernelsu.ui.util.getSuperuserCount
 import me.weishu.kernelsu.ui.util.module.LatestVersionInfo
@@ -49,6 +51,9 @@ class HomeViewModel : ViewModel() {
         val lkmMode = ksuVersion?.let { if (kernelVersion.isGKI()) Natives.isLkmMode else null }
         val isRootAvailable = rootAvailable()
         val managerVersion = getManagerVersion(ksuApp)
+        val zygiskName = if (ksuVersion != null) getZygiskImplementation("name") else "None"
+        val zygiskVersion =
+            if (ksuVersion != null && zygiskName != "None") getZygiskImplementation("version") else "None"
 
         return HomeUiState(
             kernelVersion = kernelVersion,
@@ -69,12 +74,15 @@ class HomeViewModel : ViewModel() {
             moduleCount = getModuleCount(),
             systemInfo = SystemInfo(
                 kernelVersion = Os.uname().release,
-                managerVersion = "${managerVersion.versionName} (${managerVersion.versionCode})",
+                managerVersion = "${managerVersion.versionName} (${managerVersion.versionCode}) | UID: ${Process.myUid()}",
+                buildNumber = Build.DISPLAY,
                 fingerprint = Build.FINGERPRINT,
                 selinuxStatus = getSELinuxStatusRaw(),
                 seccompStatus = runCatching {
                     Os.prctl(21 /* PR_GET_SECCOMP */, 0, 0, 0, 0)
                 }.getOrDefault(-1),
+                zygiskName = zygiskName,
+                zygiskVersion = zygiskVersion,
             ),
         )
     }

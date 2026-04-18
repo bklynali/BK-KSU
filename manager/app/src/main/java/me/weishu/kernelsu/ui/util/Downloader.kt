@@ -44,7 +44,7 @@ fun download(
 
 fun checkNewVersion(): LatestVersionInfo {
     if (!isNetworkAvailable(ksuApp)) return LatestVersionInfo()
-    val url = "https://api.github.com/repos/tiann/KernelSU/releases/latest"
+    val url = "https://api.github.com/repos/bklynali/BK-KSU/releases/latest"
     // default null value if failed
     val defaultValue = LatestVersionInfo()
     runCatching {
@@ -65,16 +65,26 @@ fun checkNewVersion(): LatestVersionInfo {
                         continue
                     }
 
-                    val regex = Regex("v(.+?)_(\\d+)-")
-                    val matchResult = regex.find(name) ?: continue
-                    matchResult.groupValues[1]
-                    val versionCode = matchResult.groupValues[2].toInt()
+                    // Match filenames like:
+                    // BK-KSU_v1.0.1_32221-release.apk
+                    // BK-KSU_v1.0.1_32221.apk
+                    // Extract:
+                    //  - versionName: v1.0.1
+                    //  - versionCode: 32221 (numeric part after the last underscore)
+                    val nameRegex = Regex("BK-KSU_(v?\\d+(?:\\.\\d+){1,2})")
+                    val nameMatch = nameRegex.find(name) ?: continue
+                    val versionName = nameMatch.groupValues.getOrNull(1) ?: continue
+
+                    val codeRegex = Regex("BK-KSU_.*?_(\\d+)")
+                    val codeMatch = codeRegex.find(name) ?: continue
+                    val versionCode = codeMatch.groupValues.getOrNull(1)?.toIntOrNull() ?: continue
                     val downloadUrl = asset.getString("browser_download_url")
 
                     return LatestVersionInfo(
-                        versionCode,
-                        downloadUrl,
-                        changelog
+                        versionCode = versionCode,
+                        versionName = versionName,
+                        downloadUrl = downloadUrl,
+                        changelog = changelog,
                     )
                 }
 

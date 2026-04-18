@@ -20,6 +20,7 @@ backdrop = "1.0.6"
 okhttp = "5.3.2"
 hiddenapibypass = "6.1"
 appiconloader = "1.5.0"
+bcprov = "1.78.1"
 
 [plugins]
 agp-app = { id = "com.android.application", version.ref = "agp" }

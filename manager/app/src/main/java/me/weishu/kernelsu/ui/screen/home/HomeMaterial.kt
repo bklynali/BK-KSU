@@ -134,7 +134,10 @@ private fun UpdateCard(
     ) {
         val updateDialog = rememberConfirmDialog(onConfirm = { actions.onOpenUrl(newVersion.downloadUrl) })
         WarningCard(
-            message = stringResource(id = R.string.new_version_available, newVersion.versionCode),
+            message = stringResource(
+                id = R.string.new_version_available,
+                newVersion.versionName.ifEmpty { newVersion.versionCode.toString() },
+            ),
             MaterialTheme.colorScheme.outlineVariant
         ) {
             if (newVersion.changelog.isEmpty()) {
@@ -390,7 +393,7 @@ private fun LearnMoreCard(onOpenUrl: (String) -> Unit) {
 
 @Composable
 private fun DonateCard(onOpenUrl: (String) -> Unit) {
-    TonalCard(onClick = { onOpenUrl("https://patreon.com/weishu") }) {
+    TonalCard(onClick = { onOpenUrl("https://www.paypal.com/donate/?hosted_button_id=NG7V3KC74AHVE") }) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -432,8 +435,17 @@ private fun InfoCard(systemInfo: SystemInfo) {
             Spacer(Modifier.height(16.dp))
             InfoCardItem(stringResource(R.string.home_manager_version), systemInfo.managerVersion)
             Spacer(Modifier.height(16.dp))
+            InfoCardItem(stringResource(R.string.home_build_number), systemInfo.buildNumber)
+            Spacer(Modifier.height(16.dp))
             InfoCardItem(stringResource(R.string.home_fingerprint), systemInfo.fingerprint)
             Spacer(Modifier.height(16.dp))
+            if (systemInfo.zygiskName != "None") {
+                InfoCardItem(
+                    stringResource(R.string.zygisk_status),
+                    "${stringResource(R.string.enabled)} | ${systemInfo.zygiskName} | ${systemInfo.zygiskVersion}",
+                )
+                Spacer(Modifier.height(16.dp))
+            }
             val selinuxDisplay = when (systemInfo.selinuxStatus) {
                 "Enforcing" -> stringResource(R.string.selinux_status_enforcing)
                 "Permissive" -> stringResource(R.string.selinux_status_permissive)
@@ -489,10 +501,13 @@ private fun StatusCardJailbreakPreview() {
 
 private val previewSystemInfo = SystemInfo(
     kernelVersion = "6.1.0-android14-0-g1234567",
-    managerVersion = "1.0.0 (10000)",
+    managerVersion = "1.0.0 (10000) | UID: 10267",
+    buildNumber = "AP1A.240305.019",
     fingerprint = "google/raven/raven:14/AP1A.240305.019:user/release-keys",
     selinuxStatus = "Enforcing",
-    seccompStatus = 2
+    seccompStatus = 2,
+    zygiskName = "None",
+    zygiskVersion = "None",
 )
 
 private val previewUriHandler = object : UriHandler {

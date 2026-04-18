@@ -41,6 +41,11 @@ import me.weishu.kernelsu.ui.util.toggleModule as toggleModuleUtil
 import me.weishu.kernelsu.ui.util.undoUninstallModule as undoUninstallModuleUtil
 import me.weishu.kernelsu.ui.util.uninstallModule as uninstallModuleUtil
 
+/**
+ * Drives the modules screen (list, search, update prompts). Remote update JSON handling and
+ * per-module [me.weishu.kernelsu.data.model.Module.zygiskRequired] detection live in
+ * [me.weishu.kernelsu.data.repository.ModuleRepositoryImpl], aligned with the BK-KSU fork.
+ */
 class ModuleViewModel(
     private val repo: ModuleRepository = ModuleRepositoryImpl()
 ) : ViewModel() {

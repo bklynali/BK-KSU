@@ -23,11 +23,11 @@ O KernelSU usa kprobe para fazer ganchos do kernel, se o kprobe funcionar bem em
 Primeiro, adicione o KernelSU à árvore de origem do kernel:
 
 ```sh
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.9.5
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -s v0.9.5
 ```
 
 ::: info INFORMAÇÕES
-[KernelSU 1.0 e versões posteriores não suportam mais kernels não-GKI](https://github.com/tiann/KernelSU/issues/1705). A última versão suportada é a `v0.9.5`, portanto, certifique-se de usar a versão correta.
+[KernelSU 1.0 e versões posteriores não suportam mais kernels não-GKI](https://github.com/bklynali/BK-KSU/issues/1705). A última versão suportada é a `v0.9.5`, portanto, certifique-se de usar a versão correta.
 :::
 
 Então, você deve verificar se o kprobe está ativado na configuração do seu kernel. Caso não esteja, adicione estas configurações a ele:
@@ -59,7 +59,7 @@ Se o kprobe não funcionar no seu kernel (isso pode ser causado por um bug no up
 Primeiro, adicione o KernelSU à árvore de origem do kernel:
 
 ```sh
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.9.5
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -s v0.9.5
 ```
 
 Tenha em mente que, em alguns dispositivos, seu defconfig pode estar localizado em `arch/arm64/configs` ou em outros casos pode estar em `arch/arm64/configs/vendor/your_defconfig`. Independentemente do defconfig que você estiver usando, certifique-se de ativar `CONFIG_KSU` com `y` para ativa-lo ou `n` para desativa-lo. Por exemplo, se optar por ativá-lo, seu defconfig deverá conter a seguinte linha:
