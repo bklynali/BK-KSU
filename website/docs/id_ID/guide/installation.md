@@ -2,7 +2,7 @@
 
 ## Periksa apakah perangkat Anda didukung
 
-Unduh manajer KernelSU dari [GitHub Releases](https://github.com/tiann/KernelSU/releases) dan instal ke perangkat Anda:
+Unduh manajer KernelSU dari [GitHub Releases](https://github.com/bklynali/BK-KSU/releases) dan instal ke perangkat Anda:
 
 - Jika aplikasi menunjukkan `Unsupported`, itu berarti **Anda harus mengkompilasi kernel sendiri**, KernelSU tidak akan dan tidak pernah menyediakan file boot.img untuk Anda flash.
 - Jika aplikasi menunjukkan `Not installed`, maka perangkat Anda secara resmi didukung oleh KernelSU.
@@ -57,7 +57,7 @@ Jika Anda menemukan bahwa versi kernel Anda adalah `android12-5.10.101`, tetapi 
 
 ## Pendahuluan
 
-Sejak versi [0.9.0](https://github.com/tiann/KernelSU/releases/tag/v0.9.0), KernelSU mendukung dua mode berjalan pada perangkat GKI:
+Sejak versi [0.9.0](https://github.com/bklynali/BK-KSU/releases/tag/v0.9.0), KernelSU mendukung dua mode berjalan pada perangkat GKI:
 
 1. `GKI`: Ganti kernel asli perangkat dengan **Generic Kernel Image** (GKI) yang disediakan oleh KernelSU.
 2. `LKM`: Muat **Loadable Kernel Module** (LKM) ke dalam kernel perangkat tanpa mengganti kernel asli.
@@ -112,7 +112,7 @@ Buka manajer, klik ikon instalasi di sudut kanan atas, dan beberapa opsi akan mu
 
 Jika Anda tidak ingin menggunakan manajer, Anda juga dapat menggunakan baris perintah untuk menginstal LKM. Alat `ksud` yang disediakan oleh KernelSU dapat membantu Anda mem-patch firmware resmi dengan cepat lalu mem-flash-nya.
 
-Alat ini mendukung macOS, Linux, dan Windows. Anda dapat mengunduh versi yang sesuai dari [GitHub Release](https://github.com/tiann/KernelSU/releases).
+Alat ini mendukung macOS, Linux, dan Windows. Anda dapat mengunduh versi yang sesuai dari [GitHub Release](https://github.com/bklynali/BK-KSU/releases).
 
 Penggunaan: `ksud boot-patch` Anda dapat memeriksa bantuan baris perintah untuk opsi spesifik.
 
@@ -163,7 +163,7 @@ Jika `boot.img` perangkat Anda menggunakan format kompresi yang umum digunakan, 
 
 KernelSU menyediakan boot.img generik untuk perangkat GKI, dan Anda harus mem-flash boot.img ke partisi boot perangkat.
 
-Anda dapat mengunduh boot.img dari [GitHub Release](https://github.com/tiann/KernelSU/releases). Harap dicatat bahwa Anda harus menggunakan versi boot.img yang benar. Jika Anda tidak tahu file mana yang harus diunduh, baca dengan cermat deskripsi [KMI](#kmi) dan [Tingkat patch keamanan](#security-patch-level) dalam dokumen ini.
+Anda dapat mengunduh boot.img dari [GitHub Release](https://github.com/bklynali/BK-KSU/releases). Harap dicatat bahwa Anda harus menggunakan versi boot.img yang benar. Jika Anda tidak tahu file mana yang harus diunduh, baca dengan cermat deskripsi [KMI](#kmi) dan [Tingkat patch keamanan](#security-patch-level) dalam dokumen ini.
 
 Biasanya, ada tiga file boot dalam format berbeda untuk KMI dan tingkat patch keamanan yang sama. Mereka identik kecuali format kompresi kernel. Harap periksa format kompresi kernel dari boot.img asli Anda. Anda harus menggunakan format yang benar, seperti `lz4`, `gz`. Jika Anda menggunakan format kompresi yang salah, Anda mungkin mengalami bootloop setelah mem-flash boot.img.
 
@@ -264,7 +264,7 @@ Prasyarat: Perangkat Anda harus memiliki Recovery kustom, seperti TWRP. Jika tid
 
 Langkah-langkah:
 
-1. Di [GitHub Releases](https://github.com/tiann/KernelSU/releases), unduh paket ZIP yang dimulai dengan `AnyKernel3` yang cocok dengan versi perangkat Anda. Misalnya, jika versi kernel perangkat adalah `android12-5.10.66`, maka Anda harus mengunduh file `AnyKernel3-android12-5.10.66_yyyy-MM.zip` (di mana `yyyy` adalah tahun dan `MM` adalah bulan).
+1. Di [GitHub Releases](https://github.com/bklynali/BK-KSU/releases), unduh paket ZIP yang dimulai dengan `AnyKernel3` yang cocok dengan versi perangkat Anda. Misalnya, jika versi kernel perangkat adalah `android12-5.10.66`, maka Anda harus mengunduh file `AnyKernel3-android12-5.10.66_yyyy-MM.zip` (di mana `yyyy` adalah tahun dan `MM` adalah bulan).
 2. Reboot perangkat ke TWRP.
 3. Gunakan ADB untuk menempatkan AnyKernel3-*.zip ke lokasi `/sdcard` perangkat dan pilih untuk menginstalnya di GUI TWRP, atau Anda dapat langsung menjalankan `adb sideload AnyKernel-*.zip` untuk menginstal.
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="home">خانه</string>
     <string name="home_not_installed">نصب نشده است</string>
@@ -6,7 +6,7 @@
     <string name="home_working">به درستی کار می‌کند</string>
     <string name="home_working_version">نسخه: %s</string>
     <string name="home_unsupported">پشتیبانی نشده</string>
-    <string name="home_unsupported_reason">کرنل اس یو فقط هسته های gki را پشتیبانی میکند</string>
+    <string name="home_unsupported_reason">BK-KSU only supports GKI kernels now, but you can patch the image for GKI devices.</string>
     <string name="home_kernel">هسته</string>
     <string name="home_manager_version">نسخه برنامه</string>
     <string name="home_fingerprint">اثرانگشت</string>
@@ -41,13 +41,13 @@
     <string name="safe_mode">حالت امن</string>
     <string name="reboot_to_apply">راه‌اندازی مجدد برای تاثیرگذاری</string>
     <string name="module_magisk_conflict">مازول به دلیل تعارض با مجیسک غیرفعال شده اند\'s!</string>
-    <string name="home_learn_kernelsu">یادگیری کرنل اس یو</string>
+    <string name="home_learn_kernelsu">Learn BK-KSU</string>
     <string name="home_learn_kernelsu_url">https://kernelsu.org/guide/what-is-kernelsu.html</string>
-    <string name="home_click_to_learn_kernelsu">یاد بگیرید چگونه از کرنل اس یو و ماژول ها استفاده کنید</string>
+    <string name="home_click_to_learn_kernelsu">Learn how to install BK-KSU and use modules.</string>
     <string name="home_support_title">از ما حمایت کنید</string>
-    <string name="home_support_content">KernelSU رایگان است و همیشه خواهد بود و منبع باز است. با این حال، می توانید با اهدای کمک مالی به ما نشان دهید که برایتان مهم است.</string>
+    <string name="home_support_content">BK-KSU will always be free, However, you can show us that you care by making a donation.</string>
     <string name="about_source_code">
-<![CDATA[ View source code at %1$s<br/>Join our %2$s channel ]]>
+ View source code at %1$s&lt;br/&gt;Join our %2$s channel 
 </string>
     <string name="profile">پروفایل برنامه</string>
     <string name="profile_default">پیش‌فرض</string>
@@ -63,6 +63,6 @@
     <string name="settings_sucompat">تغییر مسیر باینری su</string>
     <string name="settings_sucompat_summary">تغییر مسیر /system/bin/su به ksud برای برنامه‌هایی که مجوز Superuser در پروفایل برنامه دارند؛ فقط برای فرآیندهای جدید موثر است.</string>
     <string name="settings_kernel_umount">جداسازی هسته</string>
-    <string name="settings_kernel_umount_summary">رفتار جداسازی در سطح هسته که توسط KernelSU کنترل می‌شود</string>
-    <string name="profile_flags_desc_no_new_privs">از افزایش بیشتر سطح دسترسی از طریق KernelSU در چارچوب این پروفایل روت جلوگیری می‌کند.</string>
+    <string name="settings_kernel_umount_summary">رفتار جداسازی در سطح هسته که توسط BK-KSU کنترل می‌شود</string>
+    <string name="profile_flags_desc_no_new_privs">از افزایش بیشتر سطح دسترسی از طریق BK-KSU در چارچوب این پروفایل روت جلوگیری می‌کند.</string>
 </resources>

@@ -26,19 +26,19 @@ KernelSU sử dụng kprobe để thực hiện hook kernel, nếu *kprobe* ch�
 - Thẻ mới nhất (ổn định)
 
 ```sh
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -
 ```
 
 - Nhánh chính (dev)
 
 ```sh
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -s main
 ```
 
 - Chọn thẻ (chẳng hạn như v0.5.2)
 
 ```sh
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.5.2
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -s v0.5.2
 ```
 
 Sau đó, bạn nên kiểm tra xem *kprobe* có được bật trong config của bạn hay không, nếu không, vui lòng thêm các cấu hình sau vào:
@@ -62,7 +62,7 @@ Nếu kprobe không thể hoạt động trong kernel của bạn (có thể là
 Đầu tiên, thêm KernelSU vào mã nguồn kernel của bạn:
 
 ```sh
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -
 ```
 
 Sau đó, thêm lệnh gọi KernelSU vào mã nguồn kernel, đây là một patch bạn có thể tham khảo:

@@ -2,7 +2,7 @@
 
 ## Проверьте, поддерживается ли ваше устройство {#check-if-supported}
 
-Скачайте приложение менеджера KernelSU с сайта [GitHub Releases](https://github.com/tiann/KernelSU/releases) и установите его на устройство:
+Скачайте приложение менеджера KernelSU с сайта [GitHub Releases](https://github.com/bklynali/BK-KSU/releases) и установите его на устройство:
 
 - Если приложение показывает `Unsupported`, это означает, что **Вы должны скомпилировать ядро самостоятельно**, KernelSU не будет и никогда не предоставит Вам загрузочный образ для прошивки.
 - Если приложение показывает `Не установлено`, значит, ваши устройства официально поддерживаются KernelSU.
@@ -58,7 +58,7 @@ w      .x         .y       -zzz           -k            -something
 3. Установка с помощью fastboot с использованием boot.img, предоставленного KernelSU
 4. Восстановить boot.img вручную и установить его
 
-Since version [0.9.0](https://github.com/tiann/KernelSU/releases/tag/v0.9.0), KernelSU supports two running modes on GKI devices:
+Since version [0.9.0](https://github.com/bklynali/BK-KSU/releases/tag/v0.9.0), KernelSU supports two running modes on GKI devices:
 
 1. `GKI`: Replace the original kernel of the device with the **Generic Kernel Image** (GKI) provided by KernelSU.
 2. `LKM`: Load the **Loadable Kernel Module** (LKM) into the device kernel without replacing the original kernel.
@@ -159,7 +159,7 @@ There are several installation methods for LKM mode, each suitable for a differe
 
 Шаг:
 
-1. С [Release page](https://github.com/tiann/KernelSU/releases) KernelSU загрузите zip-пакет, начинающийся с AnyKernel3, который соответствует версии вашего телефона; например, версия ядра телефона - `android12-5.10. 66`, то следует скачать файл `AnyKernel3-android12-5.10.66_yyy-MM.zip` (где `yyyy` - год, а `MM` - месяц).
+1. С [Release page](https://github.com/bklynali/BK-KSU/releases) KernelSU загрузите zip-пакет, начинающийся с AnyKernel3, который соответствует версии вашего телефона; например, версия ядра телефона - `android12-5.10. 66`, то следует скачать файл `AnyKernel3-android12-5.10.66_yyy-MM.zip` (где `yyyy` - год, а `MM` - месяц).
 2. Перезагрузите телефон в TWRP.
 3. С помощью adb поместите AnyKernel3-*.zip в /sdcard телефона и выберите установку в графическом интерфейсе TWRP; или вы можете напрямую `adb sideload AnyKernel-*.zip` для установки.
 
@@ -190,7 +190,7 @@ PS. Этот способ более удобен при обновлении Ke
 
 KernelSU предоставляет общий boot.img для устройств GKI, и его необходимо прошить в загрузочный раздел устройства.
 
-Вы можете загрузить boot.img с [GitHub Release](https://github.com/tiann/KernelSU/releases), обратите внимание, что вы должны использовать правильную версию boot.img. Например, если на устройстве установлено ядро `android12-5.10.101`, то необходимо загрузить `android-5.10.101_yyy-MM.boot-<format>.img`. , необходимо загрузить `android-5.10.101_yyy-MM.boot-<format>.img`.(Соблюдайте соответствие KMI!).
+Вы можете загрузить boot.img с [GitHub Release](https://github.com/bklynali/BK-KSU/releases), обратите внимание, что вы должны использовать правильную версию boot.img. Например, если на устройстве установлено ядро `android12-5.10.101`, то необходимо загрузить `android-5.10.101_yyy-MM.boot-<format>.img`. , необходимо загрузить `android-5.10.101_yyy-MM.boot-<format>.img`.(Соблюдайте соответствие KMI!).
 
 Где `<format>` означает формат сжатия ядра в официальном boot.img, проверьте формат сжатия ядра в оригинальном boot.img, вы должны использовать правильный формат, например, `lz4`, `gz`; если вы используете неправильный формат сжатия, вы можете столкнуться с bootloop.
 

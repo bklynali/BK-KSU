@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="home">Главная</string>
     <string name="home_not_installed">Не установлен</string>
@@ -7,7 +7,7 @@
     <string name="home_working_version">Версия: %s</string>
     <!--Don't translate this string!-->
     <string name="home_unsupported">Не поддерживается</string>
-    <string name="home_unsupported_reason">Теперь KernelSU поддерживает только ядра GKI, однако вы всё ещё можете пропатчить образ для GKI-устройств.</string>
+    <string name="home_unsupported_reason">BK-KSU only supports GKI kernels now, but you can patch the image for GKI devices.</string>
     <string name="home_kernel">Версия ядра</string>
     <string name="home_manager_version">Версия менеджера</string>
     <string name="home_fingerprint">Подпись</string>
@@ -17,7 +17,7 @@
     <string name="selinux_status_permissive">Разрешающий</string>
     <string name="selinux_status_unknown">Неизвестно</string>
     <string name="superuser">Суперюзеры</string>
-    <!--Don't translate this string!-->
+    
     <string name="module_failed_to_enable">Не удалось включить модуль %s</string>
     <string name="module_failed_to_disable">Не удалось отключить модуль %s</string>
     <string name="module_empty">Нет установленных модулей</string>
@@ -43,14 +43,14 @@
     <string name="safe_mode">Безопасный режим</string>
     <string name="reboot_to_apply">Перезагрузите, чтобы изменения вступили в силу</string>
     <string name="module_magisk_conflict">Модули недоступны из-за конфликта с Magisk!</string>
-    <string name="home_learn_kernelsu">Узнайте о KernelSU</string>
-    <string name="home_learn_kernelsu_url">https://kernelsu.org/ru_RU/guide/what-is-kernelsu.html</string>
-    <string name="home_click_to_learn_kernelsu">Узнайте, как установить KernelSU и использовать модули.</string>
+    <string name="home_learn_kernelsu">Learn BK-KSU</string>
+    <string name="home_learn_kernelsu_url">https://kernelsu.org/guide/what-is-kernelsu.html</string>
+    <string name="home_click_to_learn_kernelsu">Learn how to install BK-KSU and use modules.</string>
     <string name="home_support_title">Поддержите нас</string>
-    <string name="home_support_content">KernelSU был и всегда будет бесплатным и открытым проектом. Однако Вы всегда можете поддержать нас, отправив небольшое пожертвование.</string>
-    <string name="about_source_code"><![CDATA[Посмотреть исходный код на %1$s<br/>Присоединяйтесь к нашему %2$s каналу]]></string>
+    <string name="home_support_content">BK-KSU will always be free, However, you can show us that you care by making a donation.</string>
+    <string name="about_source_code">Посмотреть исходный код на %1$s&lt;br/&gt;Присоединяйтесь к нашему %2$s каналу</string>
     <string name="profile" translatable="false">App Profile</string>
-    <!--Don't translate this string!-->
+    
     <string name="profile_default">По умолчанию</string>
     <string name="profile_template">Шаблон</string>
     <string name="profile_custom">Пользовательский</string>
@@ -66,7 +66,7 @@
     <string name="failed_to_update_app_profile">Не удалось обновить App Profile для %s</string>
     <string name="settings_umount_modules_default">Размонтировать модули по умолчанию</string>
     <string name="settings_umount_modules_default_summary">Глобальное значение по умолчанию для \"Размонтировать модули\" в App Profile. При включении будут удалены все модификации модулей в системе для приложений, у которых не задан Profile.</string>
-    <string name="profile_umount_modules_summary">Включение этой опции позволит KernelSU восстанавливать любые изменённые модулями файлы для данного приложения.</string>
+    <string name="profile_umount_modules_summary">Enabling this option will allow BK-KSU to restore any modified files by the modules for this app.</string>
     <string name="profile_selinux_domain">Домен</string>
     <string name="profile_selinux_rules">Правила</string>
     <string name="module_update">Обновить</string>
@@ -77,7 +77,7 @@
     <string name="failed_to_update_sepolicy">Не удалось обновить правила SELinux для %s</string>
     <string name="launch_app">Запустить</string>
     <string name="restart_app">Перезапустить</string>
-    <string name="require_kernel_version">Текущая версия KernelSU %1$d слишком низкая для правильной работы менеджера. Пожалуйста, обновите до версии %2$d или выше!</string>
+    <string name="require_kernel_version">The current BK-KSU version %1$d is too low for the manager to work properly. Please upgrade to version %2$d or higher!</string>
     <string name="module_changelog">Список изменений</string>
     <string name="app_profile_template_import_success">Успешный импорт</string>
     <string name="app_profile_export_to_clipboard">Экспортировать в буфер обмена</string>
@@ -114,12 +114,12 @@
     <string name="select_kmi">Выбрать KMI</string>
     <string name="select_file_tip">%1$s образ раздела рекомендуется</string>
     <string name="settings_uninstall_temporary">Удалить на время</string>
-    <string name="settings_uninstall_permanent_message">Удалить KernelSU (root и все модули) полностью.</string>
+    <string name="settings_uninstall_permanent_message">Uninstalling BK-KSU (root and all modules) completely and permanently.</string>
     <string name="settings_uninstall_permanent">Удалить полностью</string>
-    <string name="settings_uninstall_temporary_message">Временно удалить KernelSU, восстановить исходное состояние после следующей перезагрузки.</string>
+    <string name="settings_uninstall_temporary_message">Temporarily uninstall BK-KSU, restore to original state after next reboot.</string>
     <string name="settings_uninstall">Удалить</string>
     <string name="settings_restore_stock_image">Восстановить сток образ</string>
-    <string name="settings_restore_stock_image_message">Восстановить исходный заводской образ (если существует резервная копия), обычно используется перед OTA; если вам нужно удалить KernelSU, используйте «Удалить полностью».</string>
+    <string name="settings_restore_stock_image_message">Restore the stock factory image (if a backup exists), usually used before OTA; if you need to uninstall BK-KSU, please use \"Uninstall permanently\".</string>
     <string name="flash_success">Установка выполнена</string>
     <string name="flashing">Установка</string>
     <string name="flash_failed">Установка не выполнена</string>
@@ -139,10 +139,10 @@
     <string name="processing">Обработка…</string>
     <string name="install_upload_lkm_file">Использовать локальный LKM файл</string>
     <string name="install_only_support_ko_file">Поддерживаются только .ko файлы</string>
-    <string name="settings_sucompat">Классическая команда SU</string>
+    <string name="settings_sucompat">Классическая команда su</string>
     <string name="settings_sucompat_summary">Разрешить root-доступ через /system/bin/su в новых процессах.</string>
-    <string name="settings_kernel_umount">Размонтировать модули (на уровне ядра)</string>
-    <string name="settings_kernel_umount_summary">Размонтировать модули в ядре для профиля приложения.</string>
+    <string name="settings_kernel_umount">Размонтирование модулей</string>
+    <string name="settings_kernel_umount_summary">Размонтировать модули в ядре для профиля приложения</string>
     <string name="settings_module_check_update">Проверять обновления модулей</string>
     <string name="install_select_partition">Выбрать раздел</string>
     <string name="app_profile_affects_following_apps">Влияет на следующие приложения</string>
@@ -157,6 +157,7 @@
     <string name="feature_status_managed_summary">Эта функция управляется модулем.</string>
     <string name="feature_status_unsupported_summary">Ядро не поддерживает эту функцию.</string>
     <string name="settings_key_color">Ключевой цвет</string>
+    <string name="settings_key_color_summary">Настройте акцент при использовании Monet.</string>
     <string name="settings_key_color_default">По умолчанию</string>
     <string name="color_blue">Синий</string>
     <string name="color_red">Красный</string>
@@ -166,6 +167,9 @@
     <string name="color_teal">Бирюзовый</string>
     <string name="color_pink">Розовый</string>
     <string name="color_brown">Коричневый</string>
+    <string name="settings_theme_mode_monet_system">Monet (Как в системе)</string>
+    <string name="settings_theme_mode_monet_light">Monet (Светлая)</string>
+    <string name="settings_theme_mode_monet_dark">Monet (Тёмная)</string>
     <string name="settings_theme_mode_light">Светлая</string>
     <string name="settings_theme_mode_dark">Тёмная</string>
     <string name="module_repos">Репозиторий</string>
@@ -185,10 +189,12 @@
     <string name="module_shortcut_title">Создать ярлык</string>
     <string name="module_shortcut_name_label">Название ярлыка</string>
     <string name="module_shortcut_icon_pick">Выбрать пользовательскую иконку</string>
+    <string name="module_shortcut_add">Добавить ярлык</string>
     <string name="module_shortcut_not_supported">Лаунчер не поддерживает ярлыки на рабочем столе.</string>
     <string name="module_shortcut_created">Ярлык создан на рабочем столе.</string>
     <string name="module_shortcut_updated">Ярлык обновлен.</string>
     <string name="module_shortcut_delete">Удалить ярлык</string>
+    <string name="module_shortcut_type_title">Выберите тип</string>
     <string name="module_shortcut_permission_tip_xiaomi">Пожалуйста, включите разрешение «Ярлыки на рабочем столе» для этого приложения в настройках Xiaomi.</string>
     <string name="module_shortcut_permission_tip_oppo">Пожалуйста, включите разрешение «Ярлыки на рабочем столе» для этого приложения в настройках OPPO.</string>
     <string name="module_shortcut_permission_tip_default">Если создание ярлыка не удалось, пожалуйста, включите разрешение на создание ярлыков на рабочем столе для этого приложения в системных настройках.</string>
@@ -204,5 +210,5 @@
     <string name="color_amber">Янтарный</string>
     <string name="color_blue_grey">Серо-голубой</string>
     <string name="color_sakura">Сакура</string>
-    <string name="profile_flags_desc_no_new_privs">Предотвращает дальнейшее повышение привилегий через KernelSU в контексте этого root-профиля.</string>
+    <string name="profile_flags_desc_no_new_privs">Предотвращает дальнейшее повышение привилегий через BK-KSU в контексте этого root-профиля.</string>
 </resources>

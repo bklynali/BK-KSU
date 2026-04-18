@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="home_unsupported_reason">কর্নেল এস ইউ কেবল মাত্র জিকআই কর্নেল সাপোর্ট করে</string>
+    <string name="home_unsupported_reason">BK-KSU only supports GKI kernels now, but you can patch the image for GKI devices.</string>
     <string name="home_selinux_status">এসইলিনাক্স স্টেটাস</string>
     <string name="selinux_status_unknown">আননোন</string>
     <string name="module_failed_to_enable">মোডিউল ইনেবল করা যায়নি: %s</string>
@@ -50,6 +50,6 @@
     <string name="settings_sucompat">su বাইনারি পুনর্নির্দেশ করুন</string>
     <string name="settings_sucompat_summary">অ্যাপ প্রোফাইলে সুপারইউজার অনুমতি সহ অ্যাপের জন্য /system/bin/su কে ksud-এ পুনর্নির্দেশ করুন; শুধুমাত্র নতুন প্রক্রিয়ার জন্য কার্যকর।</string>
     <string name="settings_kernel_umount">কার্নেল আনমাউন্ট</string>
-    <string name="settings_kernel_umount_summary">KernelSU দ্বারা নিয়ন্ত্রিত কার্নেল-লেভেল আনমাউন্ট আচরণ</string>
-    <string name="profile_flags_desc_no_new_privs">এই রুট প্রোফাইলের প্রেক্ষাপটে KernelSU-এর মাধ্যমে আরও বিশেষাধিকার বৃদ্ধি প্রতিরোধ করে।</string>
+    <string name="settings_kernel_umount_summary">BK-KSU দ্বারা নিয়ন্ত্রিত কার্নেল-লেভেল আনমাউন্ট আচরণ</string>
+    <string name="profile_flags_desc_no_new_privs">এই রুট প্রোফাইলের প্রেক্ষাপটে BK-KSU-এর মাধ্যমে আরও বিশেষাধিকার বৃদ্ধি প্রতিরোধ করে।</string>
 </resources>

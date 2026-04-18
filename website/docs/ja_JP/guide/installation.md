@@ -2,7 +2,7 @@
 
 ## デバイスが対応しているか確認する
 
-[GitHub Releases](https://github.com/tiann/KernelSU/releases) から KernelSU Manager アプリをダウンロードし、お使いのデバイスにインストールしてください。
+[GitHub Releases](https://github.com/bklynali/BK-KSU/releases) から KernelSU Manager アプリをダウンロードし、お使いのデバイスにインストールしてください。
 
 - アプリが「非対応」と表示した場合は、**自分でカーネルをコンパイルする必要がある**という意味です。KernelSU は書き込むためのブートイメージを提供しません。
 - アプリが「未インストール」と表示した場合、お使いのデバイスは KernelSU に対応しています。
@@ -55,7 +55,7 @@ w      .x         .y       -zzz           -k            -something
 
 ## はじめに
 
-バージョン [0.9.0](https://github.com/tiann/KernelSU/releases/tag/v0.9.0) 以降、KernelSU は GKI 端末において 2 つの動作モードに対応しています。
+バージョン [0.9.0](https://github.com/bklynali/BK-KSU/releases/tag/v0.9.0) 以降、KernelSU は GKI 端末において 2 つの動作モードに対応しています。
 
 1. `GKI`: 端末本来のカーネルを KernelSU によって提供される **汎用カーネルイメージ** (GKI) で置き換えます。
 2. `LKM`: 端末本来のカーネルを置き換えずに、カーネルに **ローダブルカーネルモジュール** (LKM) を読み込みます。
@@ -110,7 +110,7 @@ GKI モードとは異なり、LKM モードは `ramdisk` を展開します。�
 
 マネージャーを使いたくない場合、コマンドラインを使って LKM をインストールできます。KernelSU の提供する `ksud` ツールを使うと、迅速に公式ファームウェアにパッチを当てフラッシュすることができます。
 
-このツールは macOS、Linux および Windows に対応しています。[GitHub Release](https://github.com/tiann/KernelSU/releases) から対応するバージョンをダウンロードしてください。
+このツールは macOS、Linux および Windows に対応しています。[GitHub Release](https://github.com/bklynali/BK-KSU/releases) から対応するバージョンをダウンロードしてください。
 
 使用方法: `ksud bootpatch` コマンドの各オプションのヘルプをコマンドラインから確認できます。
 ```sh
@@ -160,7 +160,7 @@ GKI モードのインストール方法はいくつかあり、それぞれ適�
 
 KernelSU では、GKI デバイス用の汎用 boot.img を提供しています。デバイスの boot パーティションに boot.img をフラッシュする必要があります。
 
-boot.img は、[GitHub Release](https://github.com/tiann/KernelSU/releases) からダウンロードできます。例えば、あなたのデバイスがカーネル `android12-5.10.101` の場合、`android-5.10.101_yyyy-MM.boot-<format>.img`をダウンロードする必要があります。（KMI を同じにしてください！）。
+boot.img は、[GitHub Release](https://github.com/bklynali/BK-KSU/releases) からダウンロードできます。例えば、あなたのデバイスがカーネル `android12-5.10.101` の場合、`android-5.10.101_yyyy-MM.boot-<format>.img`をダウンロードする必要があります。（KMI を同じにしてください！）。
 
 `<format>`は純正 boot.img のカーネル圧縮形式を指します。純正の boot.img のカーネル圧縮形式を確認してください。間違った圧縮形式を使うと、ブートループするかもしれません。
 
@@ -258,7 +258,7 @@ Android-Image-Kitchen は現在非推奨です。セキュリティパッチレ�
 
 手順:
 
-1. KernelSUの[リリースページ](https://github.com/tiann/KernelSU/releases)から、お使いのデバイスのバージョンにあった AnyKernel3 で始まる ZIP パッケージをダウンロードします。例えば、デバイスのカーネルのバージョンが`android12-5.10. 66`の場合、AnyKernel3-android12-5.10.66_yyyy-MM.zip`（yyyy`は年、`MM`は月）のファイルをダウンロードします。
+1. KernelSUの[リリースページ](https://github.com/bklynali/BK-KSU/releases)から、お使いのデバイスのバージョンにあった AnyKernel3 で始まる ZIP パッケージをダウンロードします。例えば、デバイスのカーネルのバージョンが`android12-5.10. 66`の場合、AnyKernel3-android12-5.10.66_yyyy-MM.zip`（yyyy`は年、`MM`は月）のファイルをダウンロードします。
 2. デバイスを TWRP へ再起動します。
 3. adb を使用して AnyKernel3-*.zip をデバイスの /sdcard に入れ、TWRP GUI でインストールを選択します。または直接`adb sideload AnyKernel-*.zip` でインストールできます。
 
