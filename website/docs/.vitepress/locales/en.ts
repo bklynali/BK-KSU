@@ -18,7 +18,7 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/tiann/KernelSU' }
+      { icon: 'github', link: 'https://github.com/bklynali/BK-KSU' }
     ],
 
     footer: {
@@ -27,7 +27,7 @@ export default defineConfig({
     },
 
     editLink: {
-        pattern: 'https://github.com/tiann/KernelSU/edit/main/website/docs/:path',
+        pattern: 'https://github.com/bklynali/BK-KSU/edit/main/website/docs/:path',
         text: 'Edit this page on GitHub'
     }
   }
@@ -56,7 +56,6 @@ function sidebarGuide() {
           { text: 'Module Configuration', link: '/guide/module-config.md' },
           { text: 'App Profile', link: '/guide/app-profile.md' },
           { text: 'Rescue from bootloop', link: '/guide/rescue-from-bootloop.md' },
-          { text: 'x86_64 support', link: '/guide/x86_64-support' },
           { text: 'FAQ', link: '/guide/faq' },
           { text: 'Hidden features', link: '/guide/hidden-features' },
         ]

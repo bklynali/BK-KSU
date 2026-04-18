@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">KernelSU</string>
+    <string name="app_name" translatable="false">BK-KSU</string>
     <string name="home">Home</string>
     <string name="home_not_installed">Not installed</string>
     <string name="home_click_to_install">Tap to install</string>
     <string name="home_working">Working</string>
     <string name="home_working_version">Version: %d</string>
     <string name="home_unsupported">Unsupported</string>
-    <string name="home_unsupported_reason">KernelSU only supports GKI kernels now, but you can patch the image for GKI devices.</string>
-    <string name="home_version_mismatch">Manager version (%1$d) and KernelSU driver version (%2$d) mismatch.</string>
+    <string name="home_unsupported_reason">BK-KSU only supports GKI kernels now, but you can patch the image for GKI devices.</string>
+    <string name="home_version_mismatch">Manager version (%1$d) and BK-KSU driver version (%2$d) mismatch.</string>
     <string name="home_kernel">Kernel version</string>
     <string name="home_manager_version">Manager version</string>
+    <string name="home_build_number">Build</string>
     <string name="home_fingerprint">Fingerprint</string>
     <string name="home_selinux_status">SELinux status</string>
     <string name="selinux_status_disabled">Disabled</string>
@@ -18,6 +19,8 @@
     <string name="selinux_status_permissive">Permissive</string>
     <string name="selinux_status_unknown">Unknown</string>
     <string name="home_seccomp_status">Seccomp status</string>
+    <string name="enabled">Enabled</string>
+    <string name="zygisk_status">Zygisk Injection</string>
     <string name="seccomp_status_not_supported">Not supported</string>
     <string name="seccomp_status_disabled">Disabled</string>
     <string name="seccomp_status_strict">Strict</string>
@@ -38,7 +41,7 @@
     <string name="sulog_entry_unknown_event">Unknown event</string>
     <string name="sulog_entry_description_sucompat">Intercepted /system/bin/su request</string>
     <string name="sulog_entry_title_root_grant_request">Root grant request</string>
-    <string name="sulog_entry_description_ioctl_grant_root">Granted root access via KernelSU ioctl</string>
+    <string name="sulog_entry_description_ioctl_grant_root">Granted root access via BK-KSU ioctl</string>
     <string name="sulog_entry_title_daemon_restarted">Daemon restarted</string>
     <string name="sulog_entry_title_dropped_events">Dropped events</string>
     <string name="module_failed_to_enable">Failed to enable module: %s</string>
@@ -79,12 +82,11 @@
     <string name="safe_mode_module_disabled">Module installation is disabled in safe mode</string>
     <string name="reboot_to_apply">Reboot to take effect</string>
     <string name="module_magisk_conflict">Modules are unavailable due to a conflict with Magisk!</string>
-    <string name="home_learn_kernelsu">Learn KernelSU</string>
+    <string name="home_learn_kernelsu">Learn BK-KSU</string>
     <string name="home_learn_kernelsu_url">https://kernelsu.org/guide/what-is-kernelsu.html</string>
-    <string name="home_click_to_learn_kernelsu">Learn how to install KernelSU and use modules.</string>
+    <string name="home_click_to_learn_kernelsu">Learn how to install BK-KSU and use modules.</string>
     <string name="home_support_title">Support Us</string>
-    <string name="home_support_content">KernelSU is, and always will be, free, and open source. However, you can show us that you care by making a donation.</string>
-    <string name="home_gki_warning">Starting from v3.0.0, the GKI work mode will be used only in testing environments. We do not recommend it for daily use, and image files will no longer be provided.</string>
+    <string name="home_support_content">BK-KSU will always be free, However, you can show us that you care by making a donation.</string>
     <string name="about_source_code"><![CDATA[View source code at %1$s<br/>Join our %2$s channel]]></string>
     <string name="profile" translatable="false">App Profile</string>
     <string name="profile_default">Default</string>
@@ -100,10 +102,10 @@
     <string name="profile_selinux_context">SELinux context</string>
     <string name="profile_umount_modules">Umount modules</string>
     <string name="failed_to_update_app_profile">Failed to update App Profile for %s</string>
-    <string name="require_kernel_version">The current KernelSU version %1$d is too low for the manager to work properly. Please upgrade to version %2$d or higher!</string>
+    <string name="require_kernel_version">The current BK-KSU version %1$d is too low for the manager to work properly. Please upgrade to version %2$d or higher!</string>
     <string name="settings_umount_modules_default">Umount modules by default</string>
     <string name="settings_umount_modules_default_summary">The global default value for \"Umount modules\" in App Profile. If enabled, it will remove all module modifications to the system for apps that don\'t have a profile set.</string>
-    <string name="profile_umount_modules_summary">Enabling this option will allow KernelSU to restore any modified files by the modules for this app.</string>
+    <string name="profile_umount_modules_summary">Enabling this option will allow BK-KSU to restore any modified files by the modules for this app.</string>
     <string name="profile_selinux_domain">Domain</string>
     <string name="profile_selinux_rules">Rules</string>
     <string name="module_update">Update</string>
@@ -165,9 +167,9 @@
     <string name="settings_uninstall_temporary">Uninstall temporarily</string>
     <string name="settings_uninstall_permanent">Uninstall permanently</string>
     <string name="settings_restore_stock_image">Restore stock image</string>
-    <string name="settings_uninstall_temporary_message">Temporarily uninstall KernelSU, restore to original state after next reboot.</string>
-    <string name="settings_uninstall_permanent_message">Uninstalling KernelSU (root and all modules) completely and permanently.</string>
-    <string name="settings_restore_stock_image_message">Restore the stock factory image (if a backup exists), usually used before OTA; if you need to uninstall KernelSU, please use \"Uninstall permanently\".</string>
+    <string name="settings_uninstall_temporary_message">Temporarily uninstall BK-KSU, restore to original state after next reboot.</string>
+    <string name="settings_uninstall_permanent_message">Uninstalling BK-KSU (root and all modules) completely and permanently.</string>
+    <string name="settings_restore_stock_image_message">Restore the stock factory image (if a backup exists), usually used before OTA; if you need to uninstall BK-KSU, please use \"Uninstall permanently\".</string>
     <string name="flashing">Flashing</string>
     <string name="flash_success">Flash success</string>
     <string name="flash_failed">Flash failed</string>
@@ -179,7 +181,7 @@
     <string name="settings_kernel_umount">Kernel umount</string>
     <string name="settings_kernel_umount_summary">Unmount modules from kernel in App Profile.</string>
     <string name="settings_sulog">SU Log</string>
-    <string name="settings_sulog_summary">Record root-related events into KernelSU sulog files.</string>
+    <string name="settings_sulog_summary">Record root-related events into BK-KSU sulog files.</string>
     <string name="feature_status_unsupported_summary">Kernel does not support this feature</string>
     <string name="feature_status_managed_summary">This feature is managed by a module</string>
     <string name="settings_mode_enable_by_default">Enable (Default)</string>

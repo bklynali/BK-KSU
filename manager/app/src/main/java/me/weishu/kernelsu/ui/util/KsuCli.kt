@@ -504,3 +504,75 @@ fun restartApp(packageName: String, userId: Int? = null) {
     forceStopApp(packageName, userId)
     launchApp(packageName, userId)
 }
+
+fun getZygiskImplementation(property: String): String {
+    val modulesPath = "/data/adb/modules"
+    val zygiskModuleIds = arrayOf("rezygisk", "zygisksu", "neozygisk")
+
+    for (moduleId in zygiskModuleIds) {
+        val moduleDir = "$modulesPath/$moduleId"
+        val disableFile = "$moduleDir/disable"
+        val removeFile = "$moduleDir/remove"
+        val propFile = "$moduleDir/module.prop"
+
+        val shell = getRootShell()
+
+        val checkDir = shell.newJob()
+            .add("test -d $moduleDir")
+            .exec()
+        if (!checkDir.isSuccess) continue
+
+        val checkDisabled = shell.newJob()
+            .add("test -f $disableFile")
+            .exec()
+        if (checkDisabled.isSuccess) continue
+
+        val checkRemoved = shell.newJob()
+            .add("test -f $removeFile")
+            .exec()
+        if (checkRemoved.isSuccess) continue
+
+        val readProp = shell.newJob()
+            .add("grep -E '^$property=' $propFile 2>/dev/null | cut -d'=' -f2 | tr -d '\"'")
+            .to(ArrayList(), null)
+            .exec()
+
+        if (readProp.isSuccess && readProp.out.isNotEmpty()) {
+            val value = readProp.out.first().trim()
+            if (value.isNotBlank()) {
+                Log.i(TAG, "Zygisk $property: $value")
+                return value
+            }
+        }
+    }
+
+    Log.i(TAG, "Zygisk $property: None")
+    return "None"
+}
+
+suspend fun isZygiskEnabled(): Boolean = withContext(Dispatchers.IO) {
+    getZygiskImplementation("name") != "None"
+}
+
+fun setZygiskEnabled(enabled: Boolean): Boolean {
+    // Zygisk is provided by modules (rezygisk, zygisksu, neozygisk), not built-in; no-op.
+    Log.i(TAG, "setZygiskEnabled($enabled) (no-op, using Zygisk modules)")
+    return true
+}
+
+suspend fun getZygiskModules(): List<String> = withContext(Dispatchers.IO) {
+    val shell = getRootShell()
+    val result = shell.newJob()
+        .add("${getKsuDaemonPath()} zygisk list-modules")
+        .to(ArrayList(), null).exec()
+    result.out.filter { it.isNotBlank() }.map { it.trim() }
+}
+
+fun zygiskRequired(moduleDir: String): Boolean {
+    val shell = getRootShell()
+    val zygiskDir = "$moduleDir/zygisk"
+    val result = shell.newJob()
+        .add("test -d $zygiskDir && [ \"$(ls -A $zygiskDir 2>/dev/null | wc -l)\" -gt 0 ]")
+        .exec()
+    return result.isSuccess
+}
