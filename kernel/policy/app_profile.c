@@ -14,7 +14,6 @@
 #include "klog.h" // IWYU pragma: keep
 #include "selinux/selinux.h"
 #include "infra/su_mount_ns.h"
-#include "hook/tp_marker.h"
 
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 7, 0)
 static struct group_info root_groups = { .usage = REFCOUNT_INIT(2) };
@@ -106,8 +105,6 @@ int escape_with_root_profile(void)
 {
     int ret = 0;
     struct cred *cred;
-    struct task_struct *p = current;
-    struct task_struct *t;
     struct root_profile *profile = NULL;
     struct user_struct *new_user;
 
@@ -117,7 +114,7 @@ int escape_with_root_profile(void)
         return -ENOMEM;
     }
 
-    if (cred->euid.val == 0) {
+    if (susfs_is_current_ksu_domain()) {
         pr_warn("Already root, don't escape!\n");
         goto out_abort_creds;
     }
@@ -181,10 +178,6 @@ int escape_with_root_profile(void)
 
     disable_seccomp();
 
-    for_each_thread (p, t) {
-        ksu_set_task_tracepoint_flag(t);
-    }
-
     setup_mount_ns(profile->namespaces);
     ksu_put_root_profile(profile);
     return 0;
@@ -196,14 +189,16 @@ out_abort_creds:
     return ret;
 }
 
-void escape_to_root_for_init(void)
+int escape_to_root_for_init(void)
 {
     struct cred *cred = prepare_creds();
     if (!cred) {
         pr_err("Failed to prepare init's creds!\n");
-        return;
+        return -EINVAL;
     }
 
     setup_selinux(KERNEL_SU_CONTEXT, cred);
     commit_creds(cred);
+
+    return 0;
 }

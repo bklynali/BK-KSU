@@ -12,6 +12,7 @@
 
 bool ksu_module_mounted __read_mostly = false;
 bool ksu_boot_completed __read_mostly = false;
+extern struct static_key_false ksu_input_hook_key_false;
 
 void on_post_fs_data(void)
 {
@@ -28,7 +29,10 @@ void on_post_fs_data(void)
     ksu_load_allow_list();
     ksu_observer_init();
     // Sanity check for safe mode only needs early-boot input samples.
-    ksu_stop_input_hook_runtime();
+    if (static_key_enabled(&ksu_input_hook_key_false)) {
+        static_branch_disable(&ksu_input_hook_key_false);
+        pr_info("disabling ksu_input_hook_key_false\n");
+    }
 }
 
 extern void ext4_unregister_sysfs(struct super_block *sb);
