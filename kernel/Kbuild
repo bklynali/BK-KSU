@@ -53,13 +53,12 @@ endif
 ccflags-y += -I$(srctree)/security/selinux -I$(srctree)/security/selinux/include
 ccflags-y += -I$(objtree)/security/selinux -include $(srctree)/include/uapi/asm-generic/errno.h
 
-ifeq ($(filter /%,$(src)),)
-KSU_KERNEL_DIR := $(srctree)/$(src)
-else
-KSU_KERNEL_DIR := $(src)
-endif
+# Headers live beside this Kbuild (kernel/, kernel/include/, ../uapi/). Derive the path
+# from this file so include flags stay correct when $(src) differs (symlinks, integrator layouts).
+KSU_KERNEL_DIR := $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
 
-ccflags-y += -I$(KSU_KERNEL_DIR) -I$(KSU_KERNEL_DIR)/include
+# uapi/*.h lives next to kernel/ in the KernelSU tree; quoted includes use "uapi/..."
+ccflags-y += -I$(KSU_KERNEL_DIR) -I$(KSU_KERNEL_DIR)/.. -I$(KSU_KERNEL_DIR)/include
 
 obj-$(CONFIG_KSU) += kernelsu.o
 
