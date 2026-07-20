@@ -4,7 +4,7 @@
 
 KernelSU hỗ trợ các thiết bị chạy Android với bootloader đã mở khóa. Tuy nhiên, hỗ trợ chính thức chỉ dành cho GKI Linux Kernel 5.10+ (trong thực tế, điều này có nghĩa là thiết bị của bạn cần có Android 12 out-of-the-box để được hỗ trợ).
 
-Bạn có thể dễ dàng kiểm tra hỗ trợ cho thiết bị của mình thông qua ứng dụng quản lý KernelSU, có sẵn [tại đây](https://github.com/tiann/KernelSU/releases).
+Bạn có thể dễ dàng kiểm tra hỗ trợ cho thiết bị của mình thông qua ứng dụng quản lý KernelSU, có sẵn [tại đây](https://github.com/bklynali/BK-KSU/releases).
 
 Nếu ứng dụng hiển thị `Not installed`, điều đó có nghĩa là thiết bị của bạn được KernelSU hỗ trợ chính thức.
 

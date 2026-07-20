@@ -196,7 +196,10 @@ private fun UpdateCard(
         exit = shrinkVertically() + fadeOut()
     ) {
         WarningCard(
-            message = stringResource(id = R.string.new_version_available, newVersion.versionCode),
+            message = stringResource(
+                id = R.string.new_version_available,
+                newVersion.versionName.ifEmpty { newVersion.versionCode.toString() },
+            ),
             color = colorScheme.outline,
             onClick = {
                 if (newVersion.changelog.isEmpty()) {
@@ -481,7 +484,7 @@ private fun DonateCard(onOpenUrl: (String) -> Unit) {
                     contentDescription = null
                 )
             },
-            onClick = { onOpenUrl("https://patreon.com/weishu") },
+            onClick = { onOpenUrl("https://www.paypal.com/donate/?hosted_button_id=NG7V3KC74AHVE") },
             insideMargin = PaddingValues(18.dp)
         )
     }
@@ -518,7 +521,14 @@ private fun InfoCard(systemInfo: SystemInfo) {
             InfoText(title = stringResource(R.string.home_manager_version), content = systemInfo.managerVersion)
             InfoText(title = stringResource(R.string.home_kernel), content = systemInfo.kernelVersion)
             InfoText(title = stringResource(R.string.home_device_model), content = systemInfo.deviceModel)
+            InfoText(title = stringResource(R.string.home_build_number), content = systemInfo.buildNumber)
             InfoText(title = stringResource(R.string.home_fingerprint), content = systemInfo.fingerprint)
+            if (systemInfo.zygiskName != "None") {
+                InfoText(
+                    title = stringResource(R.string.zygisk_status),
+                    content = "${stringResource(R.string.enabled)} | ${systemInfo.zygiskName} | ${systemInfo.zygiskVersion}",
+                )
+            }
             val selinuxDisplay = when (systemInfo.selinuxStatus) {
                 "Enforcing" -> stringResource(R.string.selinux_status_enforcing)
                 "Permissive" -> stringResource(R.string.selinux_status_permissive)
@@ -582,9 +592,12 @@ private val previewSystemInfo = SystemInfo(
     kernelVersion = "6.12.23-android16-5-g123456789000-abogki123456789-4k",
     managerVersion = "3.0.0 (30000)",
     deviceModel = "Xiaomi 17 Pro Max",
+    buildNumber = "AP1A.240305.019",
     fingerprint = "Xiaomi/popsicle/popsicle:16/BQ2A.250705.001-BP2A.250605.031.A3/OS3.0.313.0.WPBCNXM:user/release-keys",
     selinuxStatus = "Enforcing",
-    seccompStatus = 2
+    seccompStatus = 2,
+    zygiskName = "None",
+    zygiskVersion = "None",
 )
 
 private val previewUriHandler = object : UriHandler {
