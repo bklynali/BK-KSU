@@ -1,5 +1,6 @@
 package me.weishu.kernelsu.data.repository
 
+import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import me.weishu.kernelsu.data.model.Module
@@ -8,6 +9,7 @@ import me.weishu.kernelsu.ksuApp
 import me.weishu.kernelsu.ui.util.isNetworkAvailable
 import me.weishu.kernelsu.ui.util.listModules
 import me.weishu.kernelsu.ui.util.module.sanitizeVersionString
+import me.weishu.kernelsu.ui.util.zygiskRequired
 import okhttp3.Request
 import org.json.JSONArray
 import org.json.JSONObject
@@ -26,8 +28,10 @@ class ModuleRepositoryImpl : ModuleRepository {
                 .asSequence()
                 .map { array.getJSONObject(it) }
                 .map { obj ->
+                    val moduleId = obj.getString("id")
+                    val moduleDir = "/data/adb/modules/$moduleId"
                     Module(
-                        id = obj.getString("id"),
+                        id = moduleId,
                         name = obj.optString("name"),
                         author = obj.optString("author", "Unknown"),
                         version = obj.optString("version", "Unknown"),
@@ -40,6 +44,7 @@ class ModuleRepositoryImpl : ModuleRepository {
                         hasWebUi = obj.optBoolean("web"),
                         hasActionScript = obj.optBoolean("action"),
                         metamodule = (obj.optInt("metamodule") != 0) || obj.optBoolean("metamodule"),
+                        zygiskRequired = zygiskRequired(moduleDir),
                         actionIconPath = obj.optString("actionIcon").takeIf { it.isNotBlank() },
                         webUiIconPath = obj.optString("webuiIcon").takeIf { it.isNotBlank() }
                     )
@@ -57,15 +62,18 @@ class ModuleRepositoryImpl : ModuleRepository {
             }
 
             val url = module.updateJson
+            Log.i(TAG, "checkUpdate url: $url")
             val response = ksuApp.okhttpClient.newCall(
                 Request.Builder().url(url).build()
             ).execute()
+            Log.d(TAG, "checkUpdate code: ${response.code}")
 
             val result = if (response.isSuccessful) {
                 response.body.string()
             } else {
                 ""
             }
+            Log.i(TAG, "checkUpdate result: $result")
 
             if (result.isEmpty()) {
                 return@runCatching ModuleUpdateInfo.Empty

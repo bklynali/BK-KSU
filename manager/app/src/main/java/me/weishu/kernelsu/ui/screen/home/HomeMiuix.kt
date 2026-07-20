@@ -31,8 +31,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.DeveloperBoard
+import androidx.compose.material.icons.filled.Extension
 import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.material.icons.filled.Fingerprint
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Security
 import androidx.compose.material.icons.filled.Smartphone
 import androidx.compose.material.icons.filled.Tag
@@ -452,7 +454,7 @@ private fun SupportLinks(
                     tint = colorScheme.onBackground,
                 )
             },
-            onClick = { onOpenUrl("https://patreon.com/weishu") },
+            onClick = { onOpenUrl("https://www.paypal.com/donate/?hosted_button_id=NG7V3KC74AHVE") },
         )
         ArrowPreference(
             title = stringResource(R.string.home_learn_kernelsu),
@@ -549,11 +551,24 @@ private fun InfoCard(
                     content = systemInfo.deviceModel,
                 )
                 InfoText(
+                    icon = Icons.Filled.Info,
+                    title = stringResource(R.string.home_build_number),
+                    content = systemInfo.buildNumber,
+                )
+                InfoText(
                     icon = Icons.Filled.Fingerprint,
                     title = stringResource(R.string.home_fingerprint),
                     content = systemInfo.fingerprint,
-                    bottomPadding = 0.dp,
+                    bottomPadding = if (systemInfo.zygiskName != "None") 24.dp else 0.dp,
                 )
+                if (systemInfo.zygiskName != "None") {
+                    InfoText(
+                        icon = Icons.Filled.Extension,
+                        title = stringResource(R.string.zygisk_status),
+                        content = "${stringResource(R.string.enabled)} | ${systemInfo.zygiskName} | ${systemInfo.zygiskVersion}",
+                        bottomPadding = 0.dp,
+                    )
+                }
             }
         }
         Card(modifier = Modifier.fillMaxWidth()) {

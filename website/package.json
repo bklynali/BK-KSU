@@ -1,9 +1,9 @@
 {
-  "name": "KernelSU_website",
+  "name": "BK-KSU_website",
   "version": "1.0.0",
-  "description": "KernelSU official website: https://kernelsu.org",
+  "description": "BK-KSU official website: https://github.com/bklynali/BK-KSU",
   "main": "index.js",
-  "repository": "https://kernelsu.org",
+  "repository": "https://github.com/bklynali/BK-KSU",
   "author": "weishu",
   "license": "MIT",
   "devDependencies": {
