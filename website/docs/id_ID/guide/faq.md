@@ -4,7 +4,7 @@
 
 KernelSU mendukung perangkat yang menjalankan Android dengan bootloader yang tidak terkunci. Namun, dukungan resmi hanya untuk GKI Linux Kernel 5.10+ (dalam praktiknya, ini berarti perangkat Anda harus memiliki Android 12 out-of-the-box agar didukung).
 
-Anda dapat dengan mudah memeriksa dukungan untuk perangkat Anda melalui aplikasi manajer KernelSU, yang tersedia [di sini](https://github.com/tiann/KernelSU/releases).
+Anda dapat dengan mudah memeriksa dukungan untuk perangkat Anda melalui aplikasi manajer KernelSU, yang tersedia [di sini](https://github.com/bklynali/BK-KSU/releases).
 
 Jika aplikasi menunjukkan `Not installed`, berarti perangkat Anda secara resmi didukung oleh KernelSU.
 

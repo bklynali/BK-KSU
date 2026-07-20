@@ -52,19 +52,19 @@ tools/bazel build --config=fast //common:kernel_aarch64_dist
 - Последний тэг(стабильный)
 
 ```sh
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -
 ```
 
 - Основная ветвь(разработка)
 
 ```sh
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -s main
 ```
 
 - Выбранный тэг(Например, версия v0.5.2)
 
 ```sh
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.5.2
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -s v0.5.2
 ```
 
 А затем пересоберите ядро и получите образ ядра с KernelSU!

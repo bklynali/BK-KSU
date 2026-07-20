@@ -40,7 +40,7 @@ const { errno, stdout } = exec("getprop ro.product.model");
 
 [Документация по API](https://www.npmjs.com/package/kernelsu)
 
-Если существующего API недостаточно или им неудобно пользоваться, оставьте нам предложение [здесь](https://github.com/tiann/KernelSU/issues)!
+Если существующего API недостаточно или им неудобно пользоваться, оставьте нам предложение [здесь](https://github.com/bklynali/BK-KSU/issues)!
 
 ## Несколько советов
 

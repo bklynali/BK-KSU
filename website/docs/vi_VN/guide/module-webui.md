@@ -40,7 +40,7 @@ Bạn cũng có thể chuyển trang sang chế độ toàn màn hình hoặc hi
 
 [Tài liệu API](https://www.npmjs.com/package/kernelsu)
 
-Nếu API hiện tại chưa đáp ứng nhu cầu hoặc khó sử dụng, hãy gửi đề xuất cho chúng tôi [tại đây](https://github.com/tiann/KernelSU/issues)!
+Nếu API hiện tại chưa đáp ứng nhu cầu hoặc khó sử dụng, hãy gửi đề xuất cho chúng tôi [tại đây](https://github.com/bklynali/BK-KSU/issues)!
 
 ## Một vài lưu ý
 

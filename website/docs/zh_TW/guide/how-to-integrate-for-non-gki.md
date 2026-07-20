@@ -23,11 +23,11 @@ KernelSU 使用 kprobe 機制來處理核心的相關 hook，如果 *kprobe* 可
 首先，把 KernelSU 新增至您的核心來源樹狀結構，再核心的根目錄執行以下命令：
 
 ```sh
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.9.5
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -s v0.9.5
 ```
 
 :::info 公告
-[KernelSU 1.0 及更新版本不再支援非 GKI 核心](https://github.com/tiann/KernelSU/issues/1705)。最後一個支援的版本為 `v0.9.5`，請確保使用的版本正確。
+[KernelSU 1.0 及更新版本不再支援非 GKI 核心](https://github.com/bklynali/BK-KSU/issues/1705)。最後一個支援的版本為 `v0.9.5`，請確保使用的版本正確。
 :::
 
 然後，您需要檢查您的核心是否啟用 *kprobe*，如果未啟用，則需要新增以下設定：
@@ -61,7 +61,7 @@ CONFIG_KPROBE_EVENTS=y
 首先，將 KernelSU 新增至您的原始碼樹狀結構，在核心的根目錄執行以下命令：
 
 ```sh
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.9.5
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -s v0.9.5
 ```
 請記住，在某些裝置上，您的 `defconfig` 可能位於 `arch/arm64/configs` 中，或在其他情況下位於 `arch/arm64/configs/vendor/你的defconfig` 中。無論您使用哪個 `defconfig`，請確保使用 `CONFIG_KSU=y` 啟用KernelSU，或使用 `n` 停用它。例如，如果您選擇啟用它，則 `defconfig` 應包含以下字串：
 ```conf
