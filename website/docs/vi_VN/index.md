@@ -15,7 +15,7 @@ hero:
       link: /guide/what-is-kernelsu
     - theme: alt
       text: Xem trên GitHub
-      link: https://github.com/tiann/KernelSU
+      link: https://github.com/bklynali/BK-KSU
 
 features:
   - title: Dựa trên Kernel

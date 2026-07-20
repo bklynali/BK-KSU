@@ -23,11 +23,11 @@ KernelSU uses kprobe for its kernel hooks. If kprobe runs reliably on your kerne
 First, add KernelSU to your kernel source tree:
 
 ```sh
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.9.5
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -s v0.9.5
 ```
 
 ::: info
-[KernelSU 1.0 and later versions no longer support non-GKI kernels](https://github.com/tiann/KernelSU/issues/1705). The last supported version is `v0.9.5`, so make sure to use the correct version.
+[KernelSU 1.0 and later versions no longer support non-GKI kernels](https://github.com/bklynali/BK-KSU/issues/1705). The last supported version is `v0.9.5`, so make sure to use the correct version.
 :::
 
 Then, you should check if kprobe is enabled in your kernel config. If it isn't, add these configs to it:
@@ -59,7 +59,7 @@ If kprobe doesn't work on your kernel—either because of an upstream bug or bec
 First, add KernelSU to your kernel source tree:
 
 ```sh
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.9.5
+curl -LSs "https://raw.githubusercontent.com/bklynali/BK-KSU/main/kernel/setup.sh" | bash -s v0.9.5
 ```
 
 Keep in mind that, on some devices, your defconfig may be located at `arch/arm64/configs` or in other cases, it may be at `arch/arm64/configs/vendor/your_defconfig`. Regardless of the defconfig you're using, make sure to enable `CONFIG_KSU` with `y` to enable or `n` to disable it. For example, if you choose to enable it, your defconfig should contain the following string:

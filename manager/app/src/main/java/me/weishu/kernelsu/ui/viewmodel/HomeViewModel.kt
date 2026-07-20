@@ -22,6 +22,7 @@ import me.weishu.kernelsu.ui.screen.home.SystemInfo
 import me.weishu.kernelsu.ui.screen.home.getManagerVersion
 import me.weishu.kernelsu.ui.util.checkNewVersion
 import me.weishu.kernelsu.ui.util.getSELinuxStatusRaw
+import me.weishu.kernelsu.ui.util.getZygiskImplementation
 import me.weishu.kernelsu.ui.util.module.LatestVersionInfo
 import me.weishu.kernelsu.ui.util.resolveDeviceName
 import me.weishu.kernelsu.ui.util.rootAvailable
@@ -53,6 +54,9 @@ class HomeViewModel(
         val lkmMode = ksuVersion?.let { if (kernelVersion.isGKI()) Natives.isLkmMode else null }
         val isRootAvailable = rootAvailable()
         val managerVersion = getManagerVersion(ksuApp)
+        val zygiskName = if (ksuVersion != null) getZygiskImplementation("name") else "None"
+        val zygiskVersion =
+            if (ksuVersion != null && zygiskName != "None") getZygiskImplementation("version") else "None"
 
         return HomeUiState(
             kernelVersion = kernelVersion,
@@ -75,11 +79,14 @@ class HomeViewModel(
                 kernelVersion = Os.uname().release,
                 managerVersion = "${managerVersion.versionName} (${managerVersion.versionCode}-${managerUAPIVersion})",
                 deviceModel = resolveDeviceName(),
+                buildNumber = Build.DISPLAY,
                 fingerprint = Build.FINGERPRINT,
                 selinuxStatus = getSELinuxStatusRaw(),
                 seccompStatus = runCatching {
                     Os.prctl(21 /* PR_GET_SECCOMP */, 0, 0, 0, 0)
                 }.getOrDefault(-1),
+                zygiskName = zygiskName,
+                zygiskVersion = zygiskVersion,
             ),
         )
     }

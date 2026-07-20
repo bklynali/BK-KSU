@@ -40,7 +40,7 @@ Anda juga dapat membuat halaman menjadi layar penuh atau menampilkan toast.
 
 [Dokumentasi API](https://www.npmjs.com/package/kernelsu)
 
-Jika API yang ada belum memenuhi kebutuhan atau kurang nyaman digunakan, silakan beri kami masukan [di sini](https://github.com/tiann/KernelSU/issues)!
+Jika API yang ada belum memenuhi kebutuhan atau kurang nyaman digunakan, silakan beri kami masukan [di sini](https://github.com/bklynali/BK-KSU/issues)!
 
 ## Beberapa tips
 
