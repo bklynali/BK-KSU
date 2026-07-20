@@ -25,8 +25,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.DeveloperBoard
+import androidx.compose.material.icons.filled.Extension
 import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.material.icons.filled.Fingerprint
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Security
 import androidx.compose.material.icons.filled.Smartphone
 import androidx.compose.material.icons.filled.Tag
@@ -365,7 +367,7 @@ private fun SupportLinks(
     SegmentedColumn(modifier = modifier.fillMaxWidth()) {
         item {
             SegmentedListItem(
-                onClick = { onOpenUrl("https://patreon.com/weishu") },
+                onClick = { onOpenUrl("https://www.paypal.com/donate/?hosted_button_id=NG7V3KC74AHVE"") },
                 headlineContent = { Text(stringResource(R.string.home_support_title)) },
                 supportingContent = { Text(stringResource(R.string.home_support_content)) },
                 leadingContent = {
@@ -456,10 +458,26 @@ private fun InfoCard(
             }
             item {
                 InfoCardItem(
+                    icon = Icons.Filled.Info,
+                    label = stringResource(R.string.home_build_number),
+                    content = systemInfo.buildNumber,
+                )
+            }
+            item {
+                InfoCardItem(
                     icon = Icons.Filled.Fingerprint,
                     label = stringResource(R.string.home_fingerprint),
                     content = systemInfo.fingerprint,
                 )
+            }
+            if (systemInfo.zygiskName != "None") {
+                item {
+                    InfoCardItem(
+                        icon = Icons.Filled.Extension,
+                        label = stringResource(R.string.zygisk_status),
+                        content = "${stringResource(R.string.enabled)} | ${systemInfo.zygiskName} | ${systemInfo.zygiskVersion}",
+                    )
+                }
             }
         }
         SegmentedColumn(modifier = Modifier.fillMaxWidth()) {
@@ -518,8 +536,11 @@ private val previewSystemInfo = SystemInfo(
     kernelVersion = "6.1.0-android14-0-g123456789000-ab12345678",
     managerVersion = "3.0.0 (30000)",
     deviceModel = "Google Pixel 6 Pro",
+    buildNumber = "AP1A.240305.019",
     fingerprint = "google/raven/raven:14/AP1A.240305.019:user/release-keys",
     selinuxStatus = "Enforcing",
+    zygiskName = "None",
+    zygiskVersion = "None",
     seccompStatus = 2
 )
 

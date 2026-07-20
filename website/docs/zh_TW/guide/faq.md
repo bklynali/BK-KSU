@@ -64,7 +64,7 @@ GKI1 與 GKI2 完全不同，所以您需要自行編譯核心。
 目前沒有 (未來可能會支援)，但實際上有很多種方法手動進入全域命名空間，無需 `su` 內建支援，比如：
 
 1. `nsenter -t 1 -m sh` 可以取得一個全域 mount namespace 的 shell.
-2. 在您要執行的命令前新增 `nsenter --mount=/proc/1/ns/mnt` 即可使此命令在全域 mount namespace 下執行。KernelSU 本身也使用了 [這種方法](https://github.com/tiann/KernelSU/blob/77056a710073d7a5f7ee38f9e77c9fd0b3256576/manager/app/src/main/java/me/weishu/kernelsu/ui/util/KsuCli.kt#L115)
+2. 在您要執行的命令前新增 `nsenter --mount=/proc/1/ns/mnt` 即可使此命令在全域 mount namespace 下執行。KernelSU 本身也使用了 [這種方法](https://github.com/bklynali/BK-KSU/blob/77056a710073d7a5f7ee38f9e77c9fd0b3256576/manager/app/src/main/java/me/weishu/kernelsu/ui/util/KsuCli.kt#L115)
 
 ## KernelSU 可以修改 Hosts 嗎？ 我要怎麼使用 AdAway？
 當然。但是 KernelSU 沒有內建的 Hosts 支持，您可以安裝 [systemless-hosts](https://github.com/symbuzzer/systemless-hosts-KernelSU-module) 來做到這一點。
