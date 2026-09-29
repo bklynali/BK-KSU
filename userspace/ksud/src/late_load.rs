@@ -1,5 +1,6 @@
 use anyhow::{Context, Result};
 use log::{info, warn};
+use prop_rs_android::sys_prop;
 use rustix::cstr;
 use std::process::Command;
 
@@ -35,8 +36,22 @@ fn dump_process_info(label: &str) {
     );
 }
 
+fn clone_pid_environ(pid: u32) {
+    if let Ok(env_raw) = std::fs::read(format!("/proc/{pid}/environ")) {
+        env_raw.split(|&b| b == 0)
+            .filter_map(|e| std::str::from_utf8(e).ok())
+            .filter_map(|s| s.split_once('='))
+            .for_each(|(k, v)| unsafe { std::env::set_var(k, v) });
+    }
+}
+
 pub fn run(package_name: &String, kmi: Option<String>, allow_shell: bool) -> Result<()> {
     utils::daemonize(false)?;
+    utils::switch_mnt_ns(1).context("failed to switch to init mnt ns")?;
+
+    // Start with a basic init environ
+    clone_pid_environ(1);
+
     info!("late-load command triggered!");
     dump_process_info("late-load start");
 
@@ -70,8 +85,28 @@ pub fn run(package_name: &String, kmi: Option<String>, allow_shell: bool) -> Res
     }
 
     // We need to reset stdin/stdout/stderr; otherwise, sending file descriptors via cmd transactions
-    // will be blocked by SELinux because its fsec->sid is still u:r:su:s0 instead of u:r:ksu:s0.
+    // will be blocked by SELinux because its fsec->sid is still u:r:vendor_modprobe:s0 instead of u:r:ksu:s0.
     utils::reset_std()?;
+
+    // Upgrade to a full android environ so that modules can be properly loaded
+    if sys_prop::init().is_ok() {
+        if let Some(val) = sys_prop::get("init.svc_debug_pid.zygote") {
+            if let Ok(pid) = val.parse::<u32>() {
+                clone_pid_environ(pid);
+                info!("cloned env from zygote pid={pid}");
+            }
+        }
+    } else {
+        warn!("could not init sys_prop, skipping zygote env clone");
+    }
+
+    // Append KSU binary dir to PATH
+    let mut paths: Vec<_> = std::env::var_os("PATH")
+        .map_or_else(Vec::new, |v| std::env::split_paths(&v).collect());
+    paths.push(defs::BINARY_DIR.trim_end_matches('/').into());
+    if let Ok(new_path) = std::env::join_paths(paths) {
+        unsafe { std::env::set_var("PATH", new_path) };
+    }
 
     utils::umask(0);
 
