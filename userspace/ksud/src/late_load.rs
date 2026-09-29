@@ -45,7 +45,7 @@ fn clone_pid_environ(pid: u32) {
     }
 }
 
-pub fn run(package_name: &String, kmi: Option<String>, allow_shell: bool) -> Result<()> {
+pub fn run(package_name: &String, kmi: Option<String>, allow_shell: bool, soft_reboot: bool) -> Result<()> {
     utils::daemonize(false)?;
     utils::switch_mnt_ns(1).context("failed to switch to init mnt ns")?;
 
@@ -115,6 +115,13 @@ pub fn run(package_name: &String, kmi: Option<String>, allow_shell: bool) -> Res
     }
 
     utils::install(None, None).context("Failed to install ksud")?;
+
+    if soft_reboot {
+        // soft_reboot runs everything below except late-load
+        // pointless to call module's late-load as it will only confuse them so skip that too
+        // when we are going to immediately soft reboot
+        return Ok(());
+    }
 
     // 5. Handle module updates
     if let Err(e) = handle_updated_modules() {

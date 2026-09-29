@@ -401,3 +401,53 @@ pub fn detach_process_group(use_init_pgrp: bool) {
         log::error!("failed to set process group: {e2:?}");
     }
 }
+
+pub fn set_partitions_ro() -> i32 {
+    use std::os::unix::fs::FileTypeExt;
+    use std::os::unix::io::AsRawFd;
+
+    const BLKROSET: libc::c_int = 0x125d;
+
+    let dir = match std::fs::read_dir("/dev/block/by-name") {
+        std::result::Result::Ok(d) => d,
+        Err(e) => {
+            log::warn!("set_partitions_ro: read_dir failed: {e}");
+            return 0;
+        }
+    };
+
+    let mut count = 0i32;
+
+    for entry in dir.flatten() {
+        let name = entry.file_name();
+        let name = name.to_string_lossy();
+        if name != "super" && name != "misc" && name != "steady" && !name.ends_with("_a") && !name.ends_with("_b") {
+            continue;
+        }
+
+        let path = entry.path();
+        let file = match std::fs::File::open(&path) {
+            std::result::Result::Ok(f) => f,
+            Err(_) => continue,
+        };
+
+        match file.metadata() {
+            std::result::Result::Ok(m) if m.file_type().is_block_device() => {}
+            _ => continue,
+        }
+
+        let on: libc::c_int = 1;
+        let ret = unsafe { libc::ioctl(file.as_raw_fd(), BLKROSET, &on) };
+        if ret == 0 {
+            count += 1;
+        } else {
+            log::warn!(
+                "set_partitions_ro: BLKROSET failed for {}: {}",
+                path.display(),
+                std::io::Error::last_os_error()
+            );
+        }
+    }
+
+    count
+}
