@@ -236,6 +236,12 @@ class SettingsRepositoryImpl : SettingsRepository {
 
     override fun isDefaultUmountModules(): Boolean = Natives.isDefaultUmountModules()
 
+    override suspend fun getAvcSpoofStatus(): String = getFeatureStatus("avc_spoof")
+
+    override fun isAvcSpoofEnabled(): Boolean = Natives.isAvcSpoofEnabled()
+
+    override fun setAvcSpoofEnabled(enabled: Boolean): Boolean = Natives.setAvcSpoofEnabled(enabled)
+
     override fun setDefaultUmountModules(enabled: Boolean): Boolean = Natives.setDefaultUmountModules(enabled)
 
     override fun isLkmMode(): Boolean = Natives.isLkmMode
