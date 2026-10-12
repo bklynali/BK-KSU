@@ -14,16 +14,18 @@ pub enum FeatureId {
     SelinuxHide = 4,
     // 5 was webview_zygote_umount (v3.3.0), keep it unused so stale configs don't apply
     ShellSuAdbOnly = 6,
+    AvcSpoof = 10003,
 }
 
 impl FeatureId {
-    pub const ALL: [Self; 6] = [
+    pub const ALL: [Self; 7] = [
         Self::SuCompat,
         Self::KernelUmount,
         Self::Sulog,
         Self::AdbRoot,
         Self::SelinuxHide,
         Self::ShellSuAdbOnly,
+        Self::AvcSpoof,
     ];
 
     pub const fn from_u32(id: u32) -> Option<Self> {
@@ -33,6 +35,7 @@ impl FeatureId {
             2 => Some(Self::Sulog),
             3 => Some(Self::AdbRoot),
             4 => Some(Self::SelinuxHide),
+            10003 => Some(Self::AvcSpoof),
             6 => Some(Self::ShellSuAdbOnly),
             _ => None,
         }
@@ -64,6 +67,9 @@ impl FeatureId {
             Self::SelinuxHide => {
                 "SELinux Hide - sanitize /sys/fs/selinux access results for app UIDs"
             }
+            Self::AvcSpoof => {
+                "AVC Spoof - fix selinux context leak due to avc denial"
+            }
             Self::ShellSuAdbOnly => {
                 "Shell SU ADB Only - when shell is granted root, additionally require the process to be spawned by adbd or a KernelSU root process (ksu domain)"
             }
@@ -78,6 +84,7 @@ pub fn parse_feature_id(name: &str) -> Result<FeatureId> {
         "sulog" | "2" => Ok(FeatureId::Sulog),
         "adb_root" | "3" => Ok(FeatureId::AdbRoot),
         "selinux_hide" | "4" => Ok(FeatureId::SelinuxHide),
+        "avc_spoof" | "10003" => Ok(FeatureId::AvcSpoof),
         "shell_su_adb_only" | "6" => Ok(FeatureId::ShellSuAdbOnly),
         _ => bail!("Unknown feature: {name}"),
     }
